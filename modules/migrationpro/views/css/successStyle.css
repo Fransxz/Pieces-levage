@@ -1,0 +1,125 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+#migration-success {
+    width: 100%;
+    border: 0.1px solid gray;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 5px 5px 56px 2px rgba(0, 0, 0, 0.36);
+    padding: 50px;
+    background: white;
+}
+
+#migration-success .migration-info .migration-state-holder {
+    border-bottom: 1px solid #4CAF50;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 20px;
+}
+
+#migration-success .migration-info .migration-state-holder p {
+    margin: 0;
+    display: inline;
+    position: absolute;
+    top: 30px;
+    background: white;
+    font-size: 40px;
+    padding: 10px;
+    padding-left: 32px;
+    padding-right: 35px;
+    color: #4CAF50;
+}
+
+#migration-success .migration-info .migration-icon-holder {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+#migration-success .migration-info p {
+    font-size: 20px;
+}
+
+#migration-success .migration-info {
+    margin-bottom: 50px;
+}
+
+#migration-success .migration-info .migration-icon-holder img {
+    /*max-width: 96px;*/
+    margin-top: 15px;
+}
+
+#migration-success .warning-banner {
+    border-radius: 5px;
+    padding: 15px;
+}
+
+#migration-success .warning-banner .warning-icon {
+    max-width: 40px;
+}
+
+#migration-success .warning-banner .warning-icon img {
+    width: 100%;
+}
+
+#migration-success .warning-banner #migration-warning {
+    list-style: none;
+    margin: 0;
+}
+
+#migration-success .warning-banner {
+    width: 100%;
+    /*height: 50px;*/
+    background: #F7F7F7;
+    border-left: 5px solid #FED37F;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#migration-success .error-banner {
+    border-radius: 5px;
+    padding: 15px;
+}
+
+#migration-success .error-banner .warning-icon {
+    max-width: 40px;
+}
+
+#migration-success .error-banner .warning-icon img {
+    width: 100%;
+}
+
+#migration-success .error-banner #migration-error {
+    list-style: none;
+    margin: 0;
+}
+
+#migration-success .error-banner {
+    width: 100%;
+    /*height: 50px;*/
+    background: #F7F7F7;
+    border-left: 5px solid #FED37F;
+    display: flex;
+    align-items: center;
+}
+
+#migration-success .flex-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#migration-success .return-back .btn-success {
+    margin-bottom: 5px;
+}
+
+#migration-success .return-back a i {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
