@@ -184,12 +184,12 @@ class ReassuranceActivity extends ObjectModel
         if (!$mimeType && function_exists('finfo_open')) {
             $const = defined('FILEINFO_MIME_TYPE') ? FILEINFO_MIME_TYPE : FILEINFO_MIME;
             $finfo = finfo_open($const);
-            $mimeType = finfo_file($finfo, $filename);
+            // $mimeType = finfo_file($finfo, $filename);
             finfo_close($finfo);
         }
         // Try with Mime
         if (!$mimeType && function_exists('mime_content_type')) {
-            $mimeType = mime_content_type($filename);
+            // $mimeType = mime_content_type($filename);
         }
         // Try with exec command and file binary
         if (!$mimeType && function_exists('exec')) {

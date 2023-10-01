@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-09-25 23:01:20
+/* Smarty version 4.3.1, created on 2023-10-01 09:44:27
   from 'C:\xampp8.0\htdocs\pieces-levage\themes\pieces-levage\templates\_partials\stylesheets.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6511f5204f9864_41340004',
+  'unifunc' => 'content_6519235b67a145_96031838',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c443a41d1dead9bb6f3bc986146d261ce4f091d9' => 
     array (
       0 => 'C:\\xampp8.0\\htdocs\\pieces-levage\\themes\\pieces-levage\\templates\\_partials\\stylesheets.tpl',
-      1 => 1695655047,
+      1 => 1695736088,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6511f5204f9864_41340004 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6519235b67a145_96031838 (Smarty_Internal_Template $_smarty_tpl) {
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['stylesheets']->value['external'], 'stylesheet');
 $_smarty_tpl->tpl_vars['stylesheet']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['stylesheet']->value) {

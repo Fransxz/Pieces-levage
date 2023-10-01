@@ -26,21 +26,19 @@
   <div class="user-info">
     {if $logged}
       <a
-        class="logout hidden-sm-down"
-        href="{$urls.actions.logout}"
-        rel="nofollow"
-      >
-        <i class="material-icons">&#xE7FF;</i>
-        {l s='Sign out' d='Shop.Theme.Actions'}
-      </a>
-      <a
         class="account"
         href="{$urls.pages.my_account}"
         title="{l s='View my customer account' d='Shop.Theme.Customeraccount'}"
         rel="nofollow"
       >
-        <i class="material-icons hidden-md-up logged">&#xE7FF;</i>
-        <span class="hidden-sm-down">{$customerName}</span>
+        <i class="material-icons">&#xE7FF;</i>
+      </a>
+      <a
+        class="logout hidden-sm-down"
+        href="{$urls.actions.logout}"
+        rel="nofollow"
+      >
+        {l s='Sign out' d='Shop.Theme.Actions'}
       </a>
     {else}
       <a
@@ -49,8 +47,12 @@
         rel="nofollow"
       >
         <i class="material-icons">&#xE7FF;</i>
-        <span class="hidden-sm-down">{l s='Sign in' d='Shop.Theme.Actions'}</span>
       </a>
+      <span class="hidden-sm-down">{l s='Sign in' d='Shop.Theme.Actions'}</span>
     {/if}
   </div>
 </div>
+
+<a href="#" id="call-btn-wrapper">
+  <i class="material-icons shopping-cart" aria-hidden="true">phone</i>
+</a>
