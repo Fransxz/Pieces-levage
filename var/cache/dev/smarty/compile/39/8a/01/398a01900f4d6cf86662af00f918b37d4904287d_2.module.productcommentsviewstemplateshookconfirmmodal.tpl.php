@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-09-25 22:42:54
+/* Smarty version 4.3.1, created on 2023-09-27 22:56:26
   from 'module:productcommentsviewstemplateshookconfirmmodal.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6511f0ce7d91f9_70868722',
+  'unifunc' => 'content_651496fad7cea6_82393464',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '398a01900f4d6cf86662af00f918b37d4904287d' => 
     array (
       0 => 'module:productcommentsviewstemplateshookconfirmmodal.tpl',
-      1 => 1695621414,
+      1 => 1695736070,
       2 => 'module',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6511f0ce7d91f9_70868722 (Smarty_Internal_Template $_smarty_tpl) {
-?><!-- begin C:\xampp8.0\htdocs\pieces-levage/modules/productcomments/views/templates/hook/confirm-modal.tpl -->
+function content_651496fad7cea6_82393464 (Smarty_Internal_Template $_smarty_tpl) {
+?><!-- begin C:\xampp8.0\htdocs\Pieces-levage/modules/productcomments/views/templates/hook/confirm-modal.tpl -->
 <?php $_smarty_tpl->_assignInScope('icon', (($tmp = $_smarty_tpl->tpl_vars['icon']->value ?? null)===null||$tmp==='' ? 'check_circle' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('modal_message', (($tmp = $_smarty_tpl->tpl_vars['modal_message']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp));?>
 
@@ -78,5 +78,5 @@ $_smarty_tpl->_assignInScope('modal_message', (($tmp = $_smarty_tpl->tpl_vars['m
     </div>
   </div>
 </div>
-<!-- end C:\xampp8.0\htdocs\pieces-levage/modules/productcomments/views/templates/hook/confirm-modal.tpl --><?php }
+<!-- end C:\xampp8.0\htdocs\Pieces-levage/modules/productcomments/views/templates/hook/confirm-modal.tpl --><?php }
 }

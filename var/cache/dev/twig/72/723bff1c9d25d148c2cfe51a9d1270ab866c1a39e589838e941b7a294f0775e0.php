@@ -355,6 +355,6 @@ class __TwigTemplate_b14a1320259df9d75e3a21343ce14aa8e2f5eac48dcc681b2c583f56618
   {{- block('form_help') -}}
   {{- block('form_hint') -}}
 {% endblock translatable_choice_widget %}
-", "@PrestaShop/Admin/TwigTemplateForm/translatable_choice.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\TwigTemplateForm\\translatable_choice.html.twig");
+", "@PrestaShop/Admin/TwigTemplateForm/translatable_choice.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\TwigTemplateForm\\translatable_choice.html.twig");
     }
 }

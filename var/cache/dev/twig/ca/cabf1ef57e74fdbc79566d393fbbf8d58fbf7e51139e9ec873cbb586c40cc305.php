@@ -121,6 +121,6 @@ class __TwigTemplate_8b018c719f87d160e4ff4792259d44c4d85991c4c8df9893442ced90000
 {% block addon_card %}
   {% include '@PrestaShop/Admin/Module/Includes/card_manage_installed.html.twig' with { 'display_type': display_type, 'module': module, 'origin': origin|default('none'), 'category': id } %}
 {% endblock %}
-", "@PrestaShop/Admin/Module/Includes/grid_manage_installed.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\grid_manage_installed.html.twig");
+", "@PrestaShop/Admin/Module/Includes/grid_manage_installed.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\grid_manage_installed.html.twig");
     }
 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-09-25 22:42:54
+/* Smarty version 4.3.1, created on 2023-09-27 22:56:26
   from 'module:productcommentsviewstemplateshookproductcommentitemprototype.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6511f0ce5b9177_23132252',
+  'unifunc' => 'content_651496fac182e3_44143274',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '86a3fbdbbaf4c17b3f3d70f925fe6312d03f2c1c' => 
     array (
       0 => 'module:productcommentsviewstemplateshookproductcommentitemprototype.tpl',
-      1 => 1695621414,
+      1 => 1695736070,
       2 => 'module',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6511f0ce5b9177_23132252 (Smarty_Internal_Template $_smarty_tpl) {
-?><!-- begin C:\xampp8.0\htdocs\pieces-levage/modules/productcomments/views/templates/hook/product-comment-item-prototype.tpl -->
+function content_651496fac182e3_44143274 (Smarty_Internal_Template $_smarty_tpl) {
+?><!-- begin C:\xampp8.0\htdocs\Pieces-levage/modules/productcomments/views/templates/hook/product-comment-item-prototype.tpl -->
 <div class="product-comment-list-item row" data-product-comment-id="@COMMENT_ID@" data-product-id="@PRODUCT_ID@">
   <div class="col-sm-3 comment-infos">
     <div class="grade-stars" data-grade="@COMMENT_GRADE@"></div>
@@ -55,5 +55,5 @@ function content_6511f0ce5b9177_23132252 (Smarty_Internal_Template $_smarty_tpl)
     </div>
   </div>
 </div>
-<!-- end C:\xampp8.0\htdocs\pieces-levage/modules/productcomments/views/templates/hook/product-comment-item-prototype.tpl --><?php }
+<!-- end C:\xampp8.0\htdocs\Pieces-levage/modules/productcomments/views/templates/hook/product-comment-item-prototype.tpl --><?php }
 }

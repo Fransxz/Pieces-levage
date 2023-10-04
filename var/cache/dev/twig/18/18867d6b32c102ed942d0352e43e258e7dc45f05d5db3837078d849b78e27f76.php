@@ -103,6 +103,6 @@ class __TwigTemplate_42d24dcb592d287b1ed4c45d8f33d6de4ca39e4b96b1cc46449179b979e
   <p class=\"mb-0 mt-2\"><i class=\"material-icons\">warning</i></p>
   <p class=\"mb-2\">{{ 'No records found'|trans({}, 'Admin.Global') }}</p>
 </div>
-", "@PrestaShop/Admin/Common/Grid/Blocks/EmptyState/_default.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Blocks\\EmptyState\\_default.html.twig");
+", "@PrestaShop/Admin/Common/Grid/Blocks/EmptyState/_default.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Blocks\\EmptyState\\_default.html.twig");
     }
 }

@@ -122,6 +122,6 @@ class __TwigTemplate_8163579b69fcece12c011cb46f3f597e295719633e8ac6d41b05e59909d
     <div class=\"modules-list\" data-name=\"recently-used\"></div>
   </div>
 {% endblock %}
-", "@PrestaShop/Admin/Module/Includes/grid_manage_recently_used.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\grid_manage_recently_used.html.twig");
+", "@PrestaShop/Admin/Module/Includes/grid_manage_recently_used.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\grid_manage_recently_used.html.twig");
     }
 }

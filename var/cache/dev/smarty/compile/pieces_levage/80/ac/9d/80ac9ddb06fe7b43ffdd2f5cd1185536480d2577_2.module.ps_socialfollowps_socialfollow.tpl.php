@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-09-25 23:01:21
+/* Smarty version 4.3.1, created on 2023-09-28 14:21:27
   from 'module:ps_socialfollowps_socialfollow.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6511f5216e4b01_42826895',
+  'unifunc' => 'content_65156fc78577a9_68103338',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '80ac9ddb06fe7b43ffdd2f5cd1185536480d2577' => 
     array (
       0 => 'module:ps_socialfollowps_socialfollow.tpl',
-      1 => 1695655047,
+      1 => 1695736088,
       2 => 'module',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6511f5216e4b01_42826895 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65156fc78577a9_68103338 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
-<!-- begin C:\xampp8.0\htdocs\pieces-levage/themes/pieces-levage/modules/ps_socialfollow/ps_socialfollow.tpl -->
+<!-- begin C:\xampp8.0\htdocs\Pieces-levage/themes/pieces-levage/modules/ps_socialfollow/ps_socialfollow.tpl -->
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2245466206511f5216e15e8_03249928', 'block_social');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_100866382865156fc7855e77_09736516', 'block_social');
 ?>
 
-<!-- end C:\xampp8.0\htdocs\pieces-levage/themes/pieces-levage/modules/ps_socialfollow/ps_socialfollow.tpl --><?php }
+<!-- end C:\xampp8.0\htdocs\Pieces-levage/themes/pieces-levage/modules/ps_socialfollow/ps_socialfollow.tpl --><?php }
 /* {block 'block_social'} */
-class Block_2245466206511f5216e15e8_03249928 extends Smarty_Internal_Block
+class Block_100866382865156fc7855e77_09736516 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'block_social' => 
   array (
-    0 => 'Block_2245466206511f5216e15e8_03249928',
+    0 => 'Block_100866382865156fc7855e77_09736516',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

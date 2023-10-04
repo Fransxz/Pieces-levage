@@ -167,6 +167,6 @@ class __TwigTemplate_f605f839fe204ebe899de06838bd90b48ea47cf76346a13a7981b08b089
     </div>
   </div>
 </div>
-", "@PrestaShop/Admin/Module/Includes/modal_confirm_bulk_action.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\modal_confirm_bulk_action.html.twig");
+", "@PrestaShop/Admin/Module/Includes/modal_confirm_bulk_action.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\modal_confirm_bulk_action.html.twig");
     }
 }

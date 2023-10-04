@@ -886,6 +886,6 @@ class __TwigTemplate_da98efbc0c0d4da1140d9faf75154917fd2953f8f07f73444f066155e26
         </table>
     {% endif %}
 {% endblock %}
-", "@PrestaShop/Admin/WebProfiler/config.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\WebProfiler\\config.html.twig");
+", "@PrestaShop/Admin/WebProfiler/config.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\WebProfiler\\config.html.twig");
     }
 }

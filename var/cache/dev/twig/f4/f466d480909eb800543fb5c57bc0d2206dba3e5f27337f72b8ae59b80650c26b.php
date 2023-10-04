@@ -131,6 +131,6 @@ class __TwigTemplate_ccc9346a00f3843d056787d45099f17309155fe91c55553fd66a1156797
     </p>
   </div>
 {% endblock %}
-", "@PrestaShop/Admin/Module/Includes/grid_manage_empty.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\grid_manage_empty.html.twig");
+", "@PrestaShop/Admin/Module/Includes/grid_manage_empty.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\grid_manage_empty.html.twig");
     }
 }

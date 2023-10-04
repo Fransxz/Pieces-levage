@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-09-25 23:01:21
+/* Smarty version 4.3.1, created on 2023-09-27 20:30:11
   from 'module:blockwishlistviewstemplateshookaccountmyaccountblock.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6511f521dccad7_83333154',
+  'unifunc' => 'content_651474b3479561_66609679',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd3bea152bc88d6ad4c16c87750962bcaf4f57aa3' => 
     array (
       0 => 'module:blockwishlistviewstemplateshookaccountmyaccountblock.tpl',
-      1 => 1695621410,
+      1 => 1695736067,
       2 => 'module',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6511f521dccad7_83333154 (Smarty_Internal_Template $_smarty_tpl) {
-?><!-- begin C:\xampp8.0\htdocs\pieces-levage/modules/blockwishlist/views/templates/hook/account/myaccount-block.tpl -->
+function content_651474b3479561_66609679 (Smarty_Internal_Template $_smarty_tpl) {
+?><!-- begin C:\xampp8.0\htdocs\Pieces-levage/modules/blockwishlist/views/templates/hook/account/myaccount-block.tpl -->
 <?php if ($_smarty_tpl->tpl_vars['customer']->value['is_logged']) {?>
   <li>
     <a href="<?php echo htmlspecialchars((string) $_smarty_tpl->tpl_vars['url']->value, ENT_QUOTES, 'UTF-8');?>
@@ -32,5 +32,5 @@ function content_6511f521dccad7_83333154 (Smarty_Internal_Template $_smarty_tpl)
     </a>
   </li>
 <?php }?>
-<!-- end C:\xampp8.0\htdocs\pieces-levage/modules/blockwishlist/views/templates/hook/account/myaccount-block.tpl --><?php }
+<!-- end C:\xampp8.0\htdocs\Pieces-levage/modules/blockwishlist/views/templates/hook/account/myaccount-block.tpl --><?php }
 }

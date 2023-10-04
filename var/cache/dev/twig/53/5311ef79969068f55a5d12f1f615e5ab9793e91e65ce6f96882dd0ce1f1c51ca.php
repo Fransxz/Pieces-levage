@@ -472,6 +472,6 @@ array_key_exists("legacyBaseLayout", $context)) ? ((isset($context["legacyBaseLa
     />
   </nav>
 {% endblock %}
-", "@PrestaShop/Admin/layout.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\layout.html.twig");
+", "@PrestaShop/Admin/layout.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\layout.html.twig");
     }
 }

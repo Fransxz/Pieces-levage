@@ -560,6 +560,6 @@ class __TwigTemplate_d0e89fc8f998e0f87a7f40c2f564c9839cf54a169530c5e1cdb75039f01
     <script src=\"{{ asset('themes/new-theme/public/multistore_header.bundle.js') }}\"></script>
   {% endif %}
 {% endblock %}
-", "@PrestaShop/Admin/Multistore/header.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Multistore\\header.html.twig");
+", "@PrestaShop/Admin/Multistore/header.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Multistore\\header.html.twig");
     }
 }

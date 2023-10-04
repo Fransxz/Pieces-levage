@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-09-25 23:01:21
+/* Smarty version 4.3.1, created on 2023-09-27 20:30:11
   from 'module:ps_customeraccountlinksps_customeraccountlinks.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6511f5219b3ae8_70228290',
+  'unifunc' => 'content_651474b3219b03_85562583',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '42f9461127ce7396a601c2484841253ea5ba658f' => 
     array (
       0 => 'module:ps_customeraccountlinksps_customeraccountlinks.tpl',
-      1 => 1695655046,
+      1 => 1695736088,
       2 => 'module',
     ),
   ),
@@ -20,10 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6511f5219b3ae8_70228290 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp8.0\\htdocs\\pieces-levage\\vendor\\smarty\\smarty\\libs\\plugins\\modifier.count.php','function'=>'smarty_modifier_count',),));
+function content_651474b3219b03_85562583 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp8.0\\htdocs\\Pieces-levage\\vendor\\smarty\\smarty\\libs\\plugins\\modifier.count.php','function'=>'smarty_modifier_count',),));
 ?>
-<!-- begin C:\xampp8.0\htdocs\pieces-levage/themes/pieces-levage/modules/ps_customeraccountlinks/ps_customeraccountlinks.tpl -->
+<!-- begin C:\xampp8.0\htdocs\Pieces-levage/themes/pieces-levage/modules/ps_customeraccountlinks/ps_customeraccountlinks.tpl -->
 <div id="block_myaccount_infos" class="col-md-3 links wrapper">
   <p class="h3 myaccount-title hidden-sm-down">
     <a class="text-uppercase" href="<?php echo htmlspecialchars((string) $_smarty_tpl->tpl_vars['urls']->value['pages']['my_account'], ENT_QUOTES, 'UTF-8');?>
@@ -107,5 +107,5 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp8.0\\htdocs\\pieces
       <?php }?> 
 	</ul>
 </div>
-<!-- end C:\xampp8.0\htdocs\pieces-levage/themes/pieces-levage/modules/ps_customeraccountlinks/ps_customeraccountlinks.tpl --><?php }
+<!-- end C:\xampp8.0\htdocs\Pieces-levage/themes/pieces-levage/modules/ps_customeraccountlinks/ps_customeraccountlinks.tpl --><?php }
 }

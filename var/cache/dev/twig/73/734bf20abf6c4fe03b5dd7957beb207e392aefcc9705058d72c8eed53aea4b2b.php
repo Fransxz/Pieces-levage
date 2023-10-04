@@ -419,6 +419,6 @@ $context["action"]]);
       {% endif %}
     </div>
 {% endif %}
-", "@PrestaShop/Admin/Common/Grid/Columns/Content/action.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Columns\\Content\\action.html.twig");
+", "@PrestaShop/Admin/Common/Grid/Columns/Content/action.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Columns\\Content\\action.html.twig");
     }
 }

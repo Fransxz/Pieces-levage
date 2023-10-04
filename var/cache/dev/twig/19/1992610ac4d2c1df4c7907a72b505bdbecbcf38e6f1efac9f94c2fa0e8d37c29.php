@@ -93,6 +93,6 @@ class __TwigTemplate_8af65718f9a8129c2b8816169d2dbdeb453cb2186bd01ea4811999980d1
 <span class=\"draggable-column js-drag-handle\">
   <i class=\"material-icons\">drag_indicator</i>
 </span>
-", "@PrestaShop/Admin/Common/Grid/Columns/Content/draggable.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Columns\\Content\\draggable.html.twig");
+", "@PrestaShop/Admin/Common/Grid/Columns/Content/draggable.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Columns\\Content\\draggable.html.twig");
     }
 }

@@ -140,6 +140,6 @@ class __TwigTemplate_1cc4d97ccd30459598940e8e85bb83ed2c34b0d09d34f868cd34aee896d
     {{ 'v%version% - by %author%'|trans({ '%version%' : module.attributes.version, '%author%' : '<b>' ~ module.attributes.author ~ '</b>' }, 'Admin.Modules.Feature')|raw }}
   {% endif %}
 {% endblock %}
-", "@PrestaShop/Admin/Module/Includes/card_manage_installed.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\card_manage_installed.html.twig");
+", "@PrestaShop/Admin/Module/Includes/card_manage_installed.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\card_manage_installed.html.twig");
     }
 }

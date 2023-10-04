@@ -245,6 +245,6 @@ $context["module_action"], "transLabels" =>                         // line 65
     {% endif %}
   {% endif %}
 </div>
-", "@PrestaShop/Admin/Module/Includes/action_menu.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\action_menu.html.twig");
+", "@PrestaShop/Admin/Module/Includes/action_menu.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\action_menu.html.twig");
     }
 }

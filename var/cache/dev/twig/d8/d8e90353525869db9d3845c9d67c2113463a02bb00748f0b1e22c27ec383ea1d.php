@@ -187,6 +187,6 @@ class __TwigTemplate_3e215353f4e09eec4de77089c3c208babba87ce978d93817cc6fa591ac7
   <script src=\"{{ asset('themes/new-theme/public/contacts.bundle.js') }}\"></script>
   <script src=\"{{ asset('themes/default/js/bundle/pagination.js') }}\"></script>
 {% endblock %}
-", "@PrestaShop/Admin/Configure/ShopParameters/Contact/Contacts/index.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Configure\\ShopParameters\\Contact\\Contacts\\index.html.twig");
+", "@PrestaShop/Admin/Configure/ShopParameters/Contact/Contacts/index.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Configure\\ShopParameters\\Contact\\Contacts\\index.html.twig");
     }
 }

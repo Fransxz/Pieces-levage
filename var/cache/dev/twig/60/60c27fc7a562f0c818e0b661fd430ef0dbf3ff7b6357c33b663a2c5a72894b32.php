@@ -288,6 +288,6 @@ class __TwigTemplate_a3f60fc6bf841d086e9f051c53b95ae7e1c72bc8fff5cd9a26202635c55
     </div>
   </div>
 </div>
-", "@PrestaShop/Admin/Common/pagination.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\pagination.html.twig");
+", "@PrestaShop/Admin/Common/pagination.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\pagination.html.twig");
     }
 }

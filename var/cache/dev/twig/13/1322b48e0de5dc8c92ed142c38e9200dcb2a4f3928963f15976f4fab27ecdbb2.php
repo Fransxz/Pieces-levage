@@ -135,6 +135,6 @@ class __TwigTemplate_84c4c34c7038b5b215f56fdafa5f1d8987eb31101dd6688f517a204f1c2
 >
     <i class=\"material-icons\">drag_indicator</i>
 </div>
-", "@PrestaShop/Admin/Common/Grid/Columns/Content/position_handle.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Columns\\Content\\position_handle.html.twig");
+", "@PrestaShop/Admin/Common/Grid/Columns/Content/position_handle.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Columns\\Content\\position_handle.html.twig");
     }
 }

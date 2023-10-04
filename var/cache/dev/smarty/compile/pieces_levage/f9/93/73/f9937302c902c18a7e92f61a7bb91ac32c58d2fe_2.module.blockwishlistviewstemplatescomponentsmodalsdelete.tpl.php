@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-09-25 23:01:22
+/* Smarty version 4.3.1, created on 2023-09-27 20:30:11
   from 'module:blockwishlistviewstemplatescomponentsmodalsdelete.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6511f52229a172_85737855',
+  'unifunc' => 'content_651474b36eb7a5_45213052',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f9937302c902c18a7e92f61a7bb91ac32c58d2fe' => 
     array (
       0 => 'module:blockwishlistviewstemplatescomponentsmodalsdelete.tpl',
-      1 => 1695621410,
+      1 => 1695736067,
       2 => 'module',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6511f52229a172_85737855 (Smarty_Internal_Template $_smarty_tpl) {
-?><!-- begin C:\xampp8.0\htdocs\pieces-levage/modules/blockwishlist/views/templates/components/modals/delete.tpl -->
+function content_651474b36eb7a5_45213052 (Smarty_Internal_Template $_smarty_tpl) {
+?><!-- begin C:\xampp8.0\htdocs\Pieces-levage/modules/blockwishlist/views/templates/components/modals/delete.tpl -->
 <div
   class="wishlist-delete"
   <?php if ((isset($_smarty_tpl->tpl_vars['listUrl']->value))) {?>
@@ -102,5 +102,5 @@ function content_6511f52229a172_85737855 (Smarty_Internal_Template $_smarty_tpl)
   </div>
 </div>
 
-<!-- end C:\xampp8.0\htdocs\pieces-levage/modules/blockwishlist/views/templates/components/modals/delete.tpl --><?php }
+<!-- end C:\xampp8.0\htdocs\Pieces-levage/modules/blockwishlist/views/templates/components/modals/delete.tpl --><?php }
 }

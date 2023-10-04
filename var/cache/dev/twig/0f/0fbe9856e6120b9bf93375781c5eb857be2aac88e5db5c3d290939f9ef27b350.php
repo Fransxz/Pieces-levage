@@ -97,6 +97,6 @@ class __TwigTemplate_2ff00f1f51ae4f9c5a78b6ccb48328d2ce76ad5b39f8c0adf68edafd9f6
  *#}
 
 {{ record[column.options.field] }}
-", "@PrestaShop/Admin/Common/Grid/Columns/Content/data.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Columns\\Content\\data.html.twig");
+", "@PrestaShop/Admin/Common/Grid/Columns/Content/data.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Columns\\Content\\data.html.twig");
     }
 }

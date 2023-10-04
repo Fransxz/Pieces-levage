@@ -437,6 +437,6 @@ class __TwigTemplate_c3a58ac9915966da362dddc24c909f01fcf5bc9b63dd502a6b420e15946
     </table>
   </div>
 {% endblock %}
-", "@PrestaShop/Admin/WebProfiler/commands_and_queries.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\WebProfiler\\commands_and_queries.html.twig");
+", "@PrestaShop/Admin/WebProfiler/commands_and_queries.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\WebProfiler\\commands_and_queries.html.twig");
     }
 }

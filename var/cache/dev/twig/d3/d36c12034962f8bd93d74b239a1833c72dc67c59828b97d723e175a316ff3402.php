@@ -118,6 +118,6 @@ class __TwigTemplate_6be5190aac54cabfbb6d84ea2e38ca062eb30db03af42cbfcd043d8aaf7
     {{ 'See less' | trans({}, 'Admin.Actions') }}
   </button>
 </p>
-", "@PrestaShop/Admin/Module/Includes/see_more.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\see_more.html.twig");
+", "@PrestaShop/Admin/Module/Includes/see_more.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\see_more.html.twig");
     }
 }

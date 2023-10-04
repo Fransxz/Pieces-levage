@@ -178,6 +178,6 @@ class __TwigTemplate_f8dcac20feeb691ed790b1431ced0df9a80118c5eab29662268fb8829d9
     {{ action.name }}
   {% endif %}
 </a>
-", "@PrestaShop/Admin/Common/Grid/Actions/Row/delete_category.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Actions\\Row\\delete_category.html.twig");
+", "@PrestaShop/Admin/Common/Grid/Actions/Row/delete_category.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Actions\\Row\\delete_category.html.twig");
     }
 }

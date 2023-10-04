@@ -248,6 +248,6 @@ class __TwigTemplate_55e6c13784ca371797a5541cd11c419ecd96f79752b14dddb2348c6a510
 </div>
 
 {% block grid_extra_content %}{% endblock %}
-", "@PrestaShop/Admin/Common/Grid/grid.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\grid.html.twig");
+", "@PrestaShop/Admin/Common/Grid/grid.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\grid.html.twig");
     }
 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-09-25 23:01:22
+/* Smarty version 4.3.1, created on 2023-09-27 20:30:11
   from 'module:blockwishlistviewstemplatescomponentstoast.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6511f5225a7841_67991253',
+  'unifunc' => 'content_651474b38a2906_84140646',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a6cf26c62a3d814aa3a70f19a62034bfdce54c8a' => 
     array (
       0 => 'module:blockwishlistviewstemplatescomponentstoast.tpl',
-      1 => 1695621410,
+      1 => 1695736067,
       2 => 'module',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6511f5225a7841_67991253 (Smarty_Internal_Template $_smarty_tpl) {
-?><!-- begin C:\xampp8.0\htdocs\pieces-levage/modules/blockwishlist/views/templates/components/toast.tpl -->
+function content_651474b38a2906_84140646 (Smarty_Internal_Template $_smarty_tpl) {
+?><!-- begin C:\xampp8.0\htdocs\Pieces-levage/modules/blockwishlist/views/templates/components/toast.tpl -->
 <div
     class="wishlist-toast"
     data-rename-wishlist-text="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['l'][0], array( array('s'=>'Wishlist name modified!','d'=>'Modules.Blockwishlist.Shop'),$_smarty_tpl ) );?>
@@ -37,5 +37,5 @@ function content_6511f5225a7841_67991253 (Smarty_Internal_Template $_smarty_tpl)
     data-delete-product-text="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['l'][0], array( array('s'=>'Product deleted!','d'=>'Modules.Blockwishlist.Shop'),$_smarty_tpl ) );?>
 "
   ></div>
-<!-- end C:\xampp8.0\htdocs\pieces-levage/modules/blockwishlist/views/templates/components/toast.tpl --><?php }
+<!-- end C:\xampp8.0\htdocs\Pieces-levage/modules/blockwishlist/views/templates/components/toast.tpl --><?php }
 }

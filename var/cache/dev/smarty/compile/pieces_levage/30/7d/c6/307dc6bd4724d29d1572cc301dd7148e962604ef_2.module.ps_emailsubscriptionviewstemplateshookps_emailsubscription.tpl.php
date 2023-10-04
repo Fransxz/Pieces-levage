@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-09-25 23:01:21
+/* Smarty version 4.3.1, created on 2023-09-27 19:38:49
   from 'module:ps_emailsubscriptionviewstemplateshookps_emailsubscription.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6511f521563da3_82507187',
+  'unifunc' => 'content_651468a94533d6_07132063',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '307dc6bd4724d29d1572cc301dd7148e962604ef' => 
     array (
       0 => 'module:ps_emailsubscriptionviewstemplateshookps_emailsubscription.tpl',
-      1 => 1695655046,
+      1 => 1695736088,
       2 => 'module',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6511f521563da3_82507187 (Smarty_Internal_Template $_smarty_tpl) {
-?><!-- begin C:\xampp8.0\htdocs\pieces-levage/themes/pieces-levage/modules/ps_emailsubscription/views/templates/hook/ps_emailsubscription.tpl -->
+function content_651468a94533d6_07132063 (Smarty_Internal_Template $_smarty_tpl) {
+?><!-- begin C:\xampp8.0\htdocs\Pieces-levage/themes/pieces-levage/modules/ps_emailsubscription/views/templates/hook/ps_emailsubscription.tpl -->
 <div class="block_newsletter col-lg-8 col-md-12 col-sm-12" id="blockEmailSubscription_<?php echo htmlspecialchars((string) $_smarty_tpl->tpl_vars['hookName']->value, ENT_QUOTES, 'UTF-8');?>
 ">
   <div class="row">
@@ -87,5 +87,5 @@ function content_6511f521563da3_82507187 (Smarty_Internal_Template $_smarty_tpl)
     </div>
   </div>
 </div>
-<!-- end C:\xampp8.0\htdocs\pieces-levage/themes/pieces-levage/modules/ps_emailsubscription/views/templates/hook/ps_emailsubscription.tpl --><?php }
+<!-- end C:\xampp8.0\htdocs\Pieces-levage/themes/pieces-levage/modules/ps_emailsubscription/views/templates/hook/ps_emailsubscription.tpl --><?php }
 }

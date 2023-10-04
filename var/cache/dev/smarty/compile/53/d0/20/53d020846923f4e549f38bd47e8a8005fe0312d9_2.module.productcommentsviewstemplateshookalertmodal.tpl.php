@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-09-25 22:42:54
+/* Smarty version 4.3.1, created on 2023-09-27 22:56:26
   from 'module:productcommentsviewstemplateshookalertmodal.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6511f0ce6d7c02_85729944',
+  'unifunc' => 'content_651496facd3063_03351360',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '53d020846923f4e549f38bd47e8a8005fe0312d9' => 
     array (
       0 => 'module:productcommentsviewstemplateshookalertmodal.tpl',
-      1 => 1695621414,
+      1 => 1695736070,
       2 => 'module',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6511f0ce6d7c02_85729944 (Smarty_Internal_Template $_smarty_tpl) {
-?><!-- begin C:\xampp8.0\htdocs\pieces-levage/modules/productcomments/views/templates/hook/alert-modal.tpl -->
+function content_651496facd3063_03351360 (Smarty_Internal_Template $_smarty_tpl) {
+?><!-- begin C:\xampp8.0\htdocs\Pieces-levage/modules/productcomments/views/templates/hook/alert-modal.tpl -->
 <?php $_smarty_tpl->_assignInScope('icon', (($tmp = $_smarty_tpl->tpl_vars['icon']->value ?? null)===null||$tmp==='' ? 'check_circle' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('modal_message', (($tmp = $_smarty_tpl->tpl_vars['modal_message']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp));?>
 
@@ -66,5 +66,5 @@ $_smarty_tpl->_assignInScope('modal_message', (($tmp = $_smarty_tpl->tpl_vars['m
     </div>
   </div>
 </div>
-<!-- end C:\xampp8.0\htdocs\pieces-levage/modules/productcomments/views/templates/hook/alert-modal.tpl --><?php }
+<!-- end C:\xampp8.0\htdocs\Pieces-levage/modules/productcomments/views/templates/hook/alert-modal.tpl --><?php }
 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-09-25 23:01:06
+/* Smarty version 4.3.1, created on 2023-09-28 14:21:06
   from 'module:ps_featuredproductsviewstemplateshookps_featuredproducts.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6511f512c36d42_36862115',
+  'unifunc' => 'content_65156fb2b66e94_19649836',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fa6cc378d2942c8857b89d6bca728048c0caeedd' => 
     array (
       0 => 'module:ps_featuredproductsviewstemplateshookps_featuredproducts.tpl',
-      1 => 1695655046,
+      1 => 1695736088,
       2 => 'module',
     ),
   ),
@@ -21,8 +21,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:catalog/_partials/productlist.tpl' => 1,
   ),
 ),false)) {
-function content_6511f512c36d42_36862115 (Smarty_Internal_Template $_smarty_tpl) {
-?><!-- begin C:\xampp8.0\htdocs\pieces-levage/themes/pieces-levage/modules/ps_featuredproducts/views/templates/hook/ps_featuredproducts.tpl --><section class="featured-products clearfix">
+function content_65156fb2b66e94_19649836 (Smarty_Internal_Template $_smarty_tpl) {
+?><!-- begin C:\xampp8.0\htdocs\Pieces-levage/themes/pieces-levage/modules/ps_featuredproducts/views/templates/hook/ps_featuredproducts.tpl --><section class="featured-products clearfix">
   <h2 class="h2 products-section-title text-uppercase">
     <?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['l'][0], array( array('s'=>'Popular Products','d'=>'Shop.Theme.Catalog'),$_smarty_tpl ) );?>
 
@@ -35,5 +35,5 @@ function content_6511f512c36d42_36862115 (Smarty_Internal_Template $_smarty_tpl)
 <i class="material-icons">&#xE315;</i>
   </a>
 </section>
-<!-- end C:\xampp8.0\htdocs\pieces-levage/themes/pieces-levage/modules/ps_featuredproducts/views/templates/hook/ps_featuredproducts.tpl --><?php }
+<!-- end C:\xampp8.0\htdocs\Pieces-levage/themes/pieces-levage/modules/ps_featuredproducts/views/templates/hook/ps_featuredproducts.tpl --><?php }
 }

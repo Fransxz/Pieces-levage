@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-09-25 23:01:21
+/* Smarty version 4.3.1, created on 2023-09-28 14:21:27
   from 'module:ps_searchbarps_searchbar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6511f5213745c0_54193600',
+  'unifunc' => 'content_65156fc7b9ec86_42035246',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '110ec72aa9921d2c382ad628bdb2f0bc5105a617' => 
     array (
       0 => 'module:ps_searchbarps_searchbar.tpl',
-      1 => 1649818618,
+      1 => 1695824460,
       2 => 'module',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6511f5213745c0_54193600 (Smarty_Internal_Template $_smarty_tpl) {
-?><!-- begin C:\xampp8.0\htdocs\pieces-levage/modules/ps_searchbar/ps_searchbar.tpl -->
+function content_65156fc7b9ec86_42035246 (Smarty_Internal_Template $_smarty_tpl) {
+?><!-- begin C:\xampp8.0\htdocs\Pieces-levage/themes/pieces-levage/modules/ps_searchbar/ps_searchbar.tpl -->
 <div id="search_widget" class="search-widgets" data-search-controller-url="<?php echo htmlspecialchars((string) $_smarty_tpl->tpl_vars['search_controller_url']->value, ENT_QUOTES, 'UTF-8');?>
 ">
   <form method="get" action="<?php echo htmlspecialchars((string) $_smarty_tpl->tpl_vars['search_controller_url']->value, ENT_QUOTES, 'UTF-8');?>
@@ -34,6 +34,6 @@ function content_6511f5213745c0_54193600 (Smarty_Internal_Template $_smarty_tpl)
 ">
     <i class="material-icons clear" aria-hidden="true">clear</i>
   </form>
-</div>
-<!-- end C:\xampp8.0\htdocs\pieces-levage/modules/ps_searchbar/ps_searchbar.tpl --><?php }
+  </div>
+<!-- end C:\xampp8.0\htdocs\Pieces-levage/themes/pieces-levage/modules/ps_searchbar/ps_searchbar.tpl --><?php }
 }

@@ -829,6 +829,6 @@ $context["hook"], "id_hook", [], "array", false, false, false, 187), "editGraft"
   {{ parent() }}
   <script src=\"{{ asset('themes/new-theme/public/improve_design_positions.bundle.js') }}\"></script>
 {% endblock %}
-", "@PrestaShop/Admin/Improve/Design/positions.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Improve\\Design\\positions.html.twig");
+", "@PrestaShop/Admin/Improve/Design/positions.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Improve\\Design\\positions.html.twig");
     }
 }

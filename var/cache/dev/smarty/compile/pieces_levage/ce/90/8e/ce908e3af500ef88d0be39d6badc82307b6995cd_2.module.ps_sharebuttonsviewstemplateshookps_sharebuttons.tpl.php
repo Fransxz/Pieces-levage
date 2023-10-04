@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-09-25 22:42:53
+/* Smarty version 4.3.1, created on 2023-09-27 22:56:25
   from 'module:ps_sharebuttonsviewstemplateshookps_sharebuttons.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6511f0cd95c712_89521634',
+  'unifunc' => 'content_651496f9f2a7d3_51726089',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ce908e3af500ef88d0be39d6badc82307b6995cd' => 
     array (
       0 => 'module:ps_sharebuttonsviewstemplateshookps_sharebuttons.tpl',
-      1 => 1695655047,
+      1 => 1695736088,
       2 => 'module',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6511f0cd95c712_89521634 (Smarty_Internal_Template $_smarty_tpl) {
+function content_651496f9f2a7d3_51726089 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
-<!-- begin C:\xampp8.0\htdocs\pieces-levage/themes/pieces-levage/modules/ps_sharebuttons/views/templates/hook/ps_sharebuttons.tpl -->
+<!-- begin C:\xampp8.0\htdocs\Pieces-levage/themes/pieces-levage/modules/ps_sharebuttons/views/templates/hook/ps_sharebuttons.tpl -->
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_19446255266511f0cd958b74_73322486', 'social_sharing');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_441757489651496f9f28305_41896623', 'social_sharing');
 ?>
 
-<!-- end C:\xampp8.0\htdocs\pieces-levage/themes/pieces-levage/modules/ps_sharebuttons/views/templates/hook/ps_sharebuttons.tpl --><?php }
+<!-- end C:\xampp8.0\htdocs\Pieces-levage/themes/pieces-levage/modules/ps_sharebuttons/views/templates/hook/ps_sharebuttons.tpl --><?php }
 /* {block 'social_sharing'} */
-class Block_19446255266511f0cd958b74_73322486 extends Smarty_Internal_Block
+class Block_441757489651496f9f28305_41896623 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'social_sharing' => 
   array (
-    0 => 'Block_19446255266511f0cd958b74_73322486',
+    0 => 'Block_441757489651496f9f28305_41896623',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

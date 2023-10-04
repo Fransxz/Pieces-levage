@@ -1,3 +1,304 @@
+* {
+    color: #333;
+}
+
+/* Header CSS start */
+
 header#header .header-top {
     background-color: #333333;
+    border-top: 4px solid #E28430;
+    padding: 0 30px;
 }
+
+header#header .header-top > .container-fluid > div:first-of-type {
+    align-items: center; 
+    display: flex;
+}
+
+header#header .header-top #_desktop_top_menu {
+    padding: 0;
+}
+
+header#header .header-top #_desktop_top_menu > ul > li {
+    padding: 30px 24px;
+}
+
+header#header .header-top #_desktop_top_menu > ul > li#category-136:hover,
+header#header .header-top #_desktop_top_menu > ul > li#category-136 > .sub-menu {
+    background-color: #e28430;
+}
+
+header#header .header-top #_desktop_top_menu > ul > li#category-137:hover,
+header#header .header-top #_desktop_top_menu > ul > li#category-137 > .sub-menu {
+    background-color: green;
+}
+
+
+header#header .header-top #_desktop_top_menu > ul > li > a[data-depth="0"]:hover {
+    color: #fff;
+}
+
+header#header .header-top #_desktop_top_menu .sub-menu {
+    box-shadow: 0 12px 11px 2px rgba(0,0,0,.1);
+    margin: 0;
+    padding: 15px;
+    top: 84px !important;
+    width: 100%;
+}
+
+header#header .header-top #_desktop_top_menu .sub-menu a {
+    color: #fff !important;
+}
+
+#header .header-top a[data-depth="0"] {
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    padding: 0;
+}
+
+#header .header-top ul[data-depth=1] > li:last-of-type a[data-depth="0"] {
+    margin: 0;
+}
+
+body.page-index li,
+#header .header-top li#lnk-home a {
+    color: #E28430;
+}
+
+.header-rightnav-wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: right;
+}
+
+.header-top #search_widget {
+    margin-right: 10px;
+    min-width: auto;
+}
+
+.header-top #search_widget form > i.search {
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    left: 4px;
+    top: 4px;
+}
+
+.header-top #search_widget form > input[type=text] {
+    border-radius: 50%;
+    padding: 0;
+    background-color: transparent;
+    border: 1px solid #fff;
+    font-size: 0;
+    width: 40px;
+    height: 40px;
+    transition: width, font-size .3s;
+    float: right;
+}
+
+.header-top #search_widget form > input.fullwidth {
+    border: 0;
+    border-bottom: 1px solid #fff;
+    border-radius: 0;
+    font-size: inherit;
+    padding: 10px 20px 10px 40px;
+    width: 100%;
+}
+
+#header #_desktop_user_info .user-info {
+    display: flex;
+    align-items: center;
+}
+
+#header #_desktop_cart *,
+#header #_desktop_user_info * {
+    color: #fff;
+    font-size: 14px;
+}
+
+#header #_desktop_cart a,
+#header #_desktop_user_info a:not(.logout),
+#call-btn-wrapper {
+    border: 1px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-left: 8px;
+    margin-right: 10px;
+    height: 40px;
+    width: 40px;
+}
+
+#header #_desktop_cart .cart-products-count {
+    background: #E28430;
+    border-radius: 50%;
+    font-size: 10px;
+    position: absolute;
+    top: -10px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+
+#header #_desktop_cart a > i,
+#header #_desktop_user_info a:not(.logout) > i,
+#call-btn-wrapper > i {
+    color: #fff;
+    font-size: 18px;
+}
+
+#call-btn-wrapper {
+    margin-left: 40px;
+}
+
+.header-rightnav-wrapper .block-social {
+    float: none;
+    padding-right: 0;
+    width: auto;
+}
+
+.header-rightnav-wrapper .block-social > ul {
+    margin: 0;
+}
+
+.header-rightnav-wrapper .block-social ul li {
+    background-color: transparent;
+    background-size: contain;
+    color: #fff;
+    margin-left: 12px;
+    margin-right: 0;
+    height: 18px;
+    width: 18px;
+}
+
+#header .instagram {
+    height: 21px;
+    width: 21px;
+}
+
+#header .tiktok {
+    background-image: url(../css/tiktok-icon.svg);
+    background-position: center center;
+    filter: invert(1);
+    height: 15px;
+    width: 15px;
+    position: relative;
+    top: 3px;
+    margin-left: 10px;
+}
+
+/* Footer CSS start */
+
+#footer {
+    padding: 0 30px;
+}
+
+#footer .footer-container * {
+    font-size: 14px;
+    color: #333;
+}
+
+#footer > .container-fluid {
+    padding: 0 30px;
+}
+
+#footer .footer-container {
+    padding: 80px 0 50px;
+}
+
+.partners-quality-wrapper {
+    margin-top: 60px;
+    margin-bottom: 50px;
+}
+
+.footer-partners-wrapper {
+    margin-top: 50px;
+}
+
+.footer-partners-wrapper > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.footer-partners-wrapper img {
+    width: 200px;
+}
+
+.footer-partners-wrapper > div:last-of-type {
+    justify-content: space-evenly;
+}
+
+.footer-partners-wrapper > div:first-of-type img {
+    width: 180px;
+}
+
+.footer-partners-wrapper img._reduce_height {
+    width: 180px;
+    height: 125px;
+    object-fit: contain;
+}
+
+.h2-orange {
+    color: #E28430;
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.h-sub-black {
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+}
+
+#footer .blockreassurance {
+    background: #F4F4F4;
+    border-radius: 30px;
+    padding: 60px 40px;
+}
+
+#footer .blockreassurance > .row > div {
+    align-items: baseline;
+    display: flex;
+    gap: 15px;
+}
+
+#footer .blockreassurance .reassu-text * {
+    font-size: 16px;
+    font-weight: 100;
+    margin: 0;
+    text-align: left;
+}
+
+#footer .blockreassurance img {
+    height: 50px;
+    width: 50px;
+}
+
+#footer .blockreassurance .block-title {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 13px;
+}
+
+
+#footer p.h3 {
+    font-size: 20px;
+}
+
+#footer #contact-infos img {
+    margin-bottom: 30px;
+}
+
+#footer #contact-infos p {
+    margin-bottom: 12px;
+}
+

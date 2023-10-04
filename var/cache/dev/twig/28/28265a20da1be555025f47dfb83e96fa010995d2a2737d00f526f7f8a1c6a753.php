@@ -130,6 +130,6 @@ class __TwigTemplate_6c6d97af61b51bde4dcf28c0aabdc6504970c84276528e1b529677be560
   </label>
 </div>
 {% endif %}
-", "@PrestaShop/Admin/Common/Grid/Columns/Content/bulk_action.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Columns\\Content\\bulk_action.html.twig");
+", "@PrestaShop/Admin/Common/Grid/Columns/Content/bulk_action.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Columns\\Content\\bulk_action.html.twig");
     }
 }

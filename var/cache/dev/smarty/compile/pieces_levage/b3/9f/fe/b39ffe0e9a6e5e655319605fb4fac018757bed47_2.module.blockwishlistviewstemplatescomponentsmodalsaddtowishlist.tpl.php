@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-09-25 23:01:22
+/* Smarty version 4.3.1, created on 2023-09-27 20:30:11
   from 'module:blockwishlistviewstemplatescomponentsmodalsaddtowishlist.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6511f5221c9f89_30897511',
+  'unifunc' => 'content_651474b365bfe8_83501215',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b39ffe0e9a6e5e655319605fb4fac018757bed47' => 
     array (
       0 => 'module:blockwishlistviewstemplatescomponentsmodalsaddtowishlist.tpl',
-      1 => 1695621410,
+      1 => 1695736067,
       2 => 'module',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6511f5221c9f89_30897511 (Smarty_Internal_Template $_smarty_tpl) {
-?><!-- begin C:\xampp8.0\htdocs\pieces-levage/modules/blockwishlist/views/templates/components/modals/add-to-wishlist.tpl -->
+function content_651474b365bfe8_83501215 (Smarty_Internal_Template $_smarty_tpl) {
+?><!-- begin C:\xampp8.0\htdocs\Pieces-levage/modules/blockwishlist/views/templates/components/modals/add-to-wishlist.tpl -->
 <div
   class="wishlist-add-to"
   data-url="<?php echo htmlspecialchars((string) $_smarty_tpl->tpl_vars['url']->value, ENT_QUOTES, 'UTF-8');?>
@@ -89,5 +89,5 @@ function content_6511f5221c9f89_30897511 (Smarty_Internal_Template $_smarty_tpl)
 </div>
 
 
-<!-- end C:\xampp8.0\htdocs\pieces-levage/modules/blockwishlist/views/templates/components/modals/add-to-wishlist.tpl --><?php }
+<!-- end C:\xampp8.0\htdocs\Pieces-levage/modules/blockwishlist/views/templates/components/modals/add-to-wishlist.tpl --><?php }
 }

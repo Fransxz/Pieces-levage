@@ -23,8 +23,8 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
-<div class="block-contact col-md-3 links wrapper">
-  <div class="title clearfix hidden-md-up" data-target="#contact-infos" data-toggle="collapse">
+<div class="block-contact col-md-6 links wrapper">
+  {* <div class="title clearfix hidden-md-up" data-target="#contact-infos" data-toggle="collapse">
     <span class="h3">{l s='Store information' d='Shop.Theme.Global'}</span>
     <span class="float-xs-right">
       <span class="navbar-toggler collapse-icons">
@@ -32,27 +32,27 @@
         <i class="material-icons remove">keyboard_arrow_up</i>
       </span>
     </span>
-  </div>
+  </div> *}
 
-  <p class="h4 text-uppercase block-contact-title hidden-sm-down">{l s='Store information' d='Shop.Theme.Global'}</p>
-  <div id="contact-infos" class="collapse">
-    {$contact_infos.address.formatted nofilter}
+  <div id="contact-infos">
+    <a href="{__PS_BASE_URI__}" title="{$shop.name}">
+        <img class="logo img-responsive" src="{_THEME_IMG_DIR_}logo-footer.png" alt="{$shop.name}">
+    </a>
+    <p>{$contact_infos.address.address1 nofilter}, {$contact_infos.address.postcode nofilter} {$contact_infos.address.city nofilter} </p>
     {if $contact_infos.phone}
-      <br>
       {* [1][/1] is for a HTML tag. *}
-      {l s='Call us: [1]%phone%[/1]'
+      <p>{l s='[1]%phone%[/1]'
         sprintf=[
         '[1]' => "<a href='tel:{$contact_infos['phone']|replace:' ':''}'>",
         '[/1]' => '</a>',
         '%phone%' => $contact_infos.phone
         ]
         d='Shop.Theme.Global'
-      }
+      }</p>
     {/if}
     {if $contact_infos.fax}
-      <br>
       {* [1][/1] is for a HTML tag. *}
-      {l
+      <p>{l
         s='Fax: [1]%fax%[/1]'
         sprintf=[
           '[1]' => '<span>',
@@ -60,12 +60,11 @@
           '%fax%' => $contact_infos.fax
         ]
         d='Shop.Theme.Global'
-      }
+      }</p>
     {/if}
     {if $contact_infos.email && $display_email}
-      <br>
-        {l s='Email us:' d='Shop.Theme.Global'}
-        {mailto address=$contact_infos.email encode="javascript"}
+        <p>{mailto address=$contact_infos.email encode="javascript"}</p>
     {/if}
+    <p>Du lundi au Vendredi: 8h-12h // 13h30-17h30</p>
   </div>
 </div>

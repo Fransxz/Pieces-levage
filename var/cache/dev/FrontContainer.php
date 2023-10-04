@@ -296,10 +296,10 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
         $b = new \Doctrine\Persistence\Mapping\Driver\MappingDriverChain();
 
         $c = ($this->services['annotation_reader'] ?? ($this->services['annotation_reader'] = new \Doctrine\Common\Annotations\AnnotationReader()));
-        $d = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($c, [0 => 'C:\\xampp8.0\\htdocs\\pieces-levage\\modules\\productcomments\\src\\Entity']);
-        $d->addExcludePaths([0 => 'C:\\xampp8.0\\htdocs\\pieces-levage\\modules\\productcomments\\src\\Entity/index.php']);
+        $d = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($c, [0 => 'C:\\xampp8.0\\htdocs\\Pieces-levage\\modules\\productcomments\\src\\Entity']);
+        $d->addExcludePaths([0 => 'C:\\xampp8.0\\htdocs\\Pieces-levage\\modules\\productcomments\\src\\Entity/index.php']);
 
-        $b->addDriver(new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($c, [0 => 'C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Entity']), 'PrestaShop');
+        $b->addDriver(new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($c, [0 => 'C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Entity']), 'PrestaShop');
         $b->addDriver($d, 'PrestaShop\\Module\\ProductComment\\Entity');
 
         $a->setEntityNamespaces(['PrestaShopBundle\\Entity' => 'PrestaShop']);
@@ -307,7 +307,7 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
         $a->setQueryCache(new \Symfony\Component\Cache\Adapter\ArrayAdapter());
         $a->setResultCache(new \Symfony\Component\Cache\Adapter\ArrayAdapter());
         $a->setMetadataDriverImpl($b);
-        $a->setProxyDir('C:\\xampp8.0\\htdocs\\pieces-levage/var/cache/dev\\/doctrine/orm/Proxies');
+        $a->setProxyDir('C:\\xampp8.0\\htdocs\\Pieces-levage/var/cache/dev\\/doctrine/orm/Proxies');
         $a->setProxyNamespace('Proxies');
         $a->setAutoGenerateProxyClasses(true);
         $a->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
@@ -403,7 +403,7 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
      */
     protected function getPrestashop_Adapter_Module_Repository_ModuleRepositoryService()
     {
-        return $this->services['prestashop.adapter.module.repository.module_repository'] = new \PrestaShop\PrestaShop\Adapter\Module\Repository\ModuleRepository('C:\\xampp8.0\\htdocs\\pieces-levage', 'C:\\xampp8.0\\htdocs\\pieces-levage/modules/');
+        return $this->services['prestashop.adapter.module.repository.module_repository'] = new \PrestaShop\PrestaShop\Adapter\Module\Repository\ModuleRepository('C:\\xampp8.0\\htdocs\\Pieces-levage', 'C:\\xampp8.0\\htdocs\\Pieces-levage/modules/');
     }
 
     /**
@@ -581,7 +581,7 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
      */
     protected function getPrestashop_Core_Localization_Cldr_Cache_AdapterService()
     {
-        return $this->services['prestashop.core.localization.cldr.cache.adapter'] = new \Symfony\Component\Cache\Adapter\FilesystemAdapter('CLDR', 0, 'C:\\xampp8.0\\htdocs\\pieces-levage/var/cache/dev\\/localization');
+        return $this->services['prestashop.core.localization.cldr.cache.adapter'] = new \Symfony\Component\Cache\Adapter\FilesystemAdapter('CLDR', 0, 'C:\\xampp8.0\\htdocs\\Pieces-levage/var/cache/dev\\/localization');
     }
 
     /**
@@ -591,7 +591,7 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
      */
     protected function getPrestashop_Core_Localization_Cldr_Datalayer_LocaleCacheService()
     {
-        $this->services['prestashop.core.localization.cldr.datalayer.locale_cache'] = $instance = new \PrestaShop\PrestaShop\Core\Localization\CLDR\DataLayer\LocaleCache(($this->services['prestashop.core.localization.cldr.cache.adapter'] ?? ($this->services['prestashop.core.localization.cldr.cache.adapter'] = new \Symfony\Component\Cache\Adapter\FilesystemAdapter('CLDR', 0, 'C:\\xampp8.0\\htdocs\\pieces-levage/var/cache/dev\\/localization'))));
+        $this->services['prestashop.core.localization.cldr.datalayer.locale_cache'] = $instance = new \PrestaShop\PrestaShop\Core\Localization\CLDR\DataLayer\LocaleCache(($this->services['prestashop.core.localization.cldr.cache.adapter'] ?? ($this->services['prestashop.core.localization.cldr.cache.adapter'] = new \Symfony\Component\Cache\Adapter\FilesystemAdapter('CLDR', 0, 'C:\\xampp8.0\\htdocs\\Pieces-levage/var/cache/dev\\/localization'))));
 
         $instance->setLowerLayer(($this->services['prestashop.core.localization.cldr.datalayer.locale_reference'] ?? $this->getPrestashop_Core_Localization_Cldr_Datalayer_LocaleReferenceService()));
 
@@ -753,7 +753,7 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
      */
     protected function getPrestashop_Translation_TranslatorLanguageLoaderService()
     {
-        return $this->services['prestashop.translation.translator_language_loader'] = new \PrestaShopBundle\Translation\TranslatorLanguageLoader(($this->services['prestashop.adapter.module.repository.module_repository'] ?? ($this->services['prestashop.adapter.module.repository.module_repository'] = new \PrestaShop\PrestaShop\Adapter\Module\Repository\ModuleRepository('C:\\xampp8.0\\htdocs\\pieces-levage', 'C:\\xampp8.0\\htdocs\\pieces-levage/modules/'))));
+        return $this->services['prestashop.translation.translator_language_loader'] = new \PrestaShopBundle\Translation\TranslatorLanguageLoader(($this->services['prestashop.adapter.module.repository.module_repository'] ?? ($this->services['prestashop.adapter.module.repository.module_repository'] = new \PrestaShop\PrestaShop\Adapter\Module\Repository\ModuleRepository('C:\\xampp8.0\\htdocs\\Pieces-levage', 'C:\\xampp8.0\\htdocs\\Pieces-levage/modules/'))));
     }
 
     /**
@@ -864,82 +864,81 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
             'kernel.bundles' => [
 
             ],
-            'kernel.root_dir' => 'C:\\xampp8.0\\htdocs\\pieces-levage/app',
-            'kernel.project_dir' => 'C:\\xampp8.0\\htdocs\\pieces-levage',
+            'kernel.root_dir' => 'C:\\xampp8.0\\htdocs\\Pieces-levage/app',
+            'kernel.project_dir' => 'C:\\xampp8.0\\htdocs\\Pieces-levage',
             'kernel.name' => 'app',
             'kernel.debug' => true,
             'kernel.environment' => 'dev',
-            'kernel.cache_dir' => 'C:\\xampp8.0\\htdocs\\pieces-levage/var/cache/dev\\',
+            'kernel.cache_dir' => 'C:\\xampp8.0\\htdocs\\Pieces-levage/var/cache/dev\\',
             'kernel.active_modules' => [
                 0 => 'ps_linklist',
                 1 => 'blockreassurance',
                 2 => 'blockwishlist',
                 3 => 'psgdpr',
                 4 => 'ps_contactinfo',
-                5 => 'ps_languageselector',
-                6 => 'ps_currencyselector',
-                7 => 'ps_customersignin',
-                8 => 'ps_shoppingcart',
-                9 => 'ps_mainmenu',
-                10 => 'ps_searchbar',
-                11 => 'ps_imageslider',
-                12 => 'ps_featuredproducts',
-                13 => 'ps_banner',
-                14 => 'ps_customtext',
-                15 => 'ps_specials',
-                16 => 'ps_newproducts',
-                17 => 'ps_bestsellers',
-                18 => 'ps_emailsubscription',
-                19 => 'ps_socialfollow',
-                20 => 'ps_customeraccountlinks',
-                21 => 'productcomments',
-                22 => 'ps_categorytree',
-                23 => 'ps_facetedsearch',
-                24 => 'contactform',
-                25 => 'ps_sharebuttons',
-                26 => 'dashactivity',
-                27 => 'dashgoals',
-                28 => 'dashproducts',
-                29 => 'dashtrends',
-                30 => 'graphnvd3',
-                31 => 'gridhtml',
-                32 => 'gsitemap',
-                33 => 'pagesnotfound',
-                34 => 'ps_brandlist',
-                35 => 'ps_cashondelivery',
-                36 => 'ps_categoryproducts',
-                37 => 'ps_checkpayment',
-                38 => 'ps_crossselling',
-                39 => 'ps_dataprivacy',
-                40 => 'ps_distributionapiclient',
-                41 => 'ps_emailalerts',
-                42 => 'ps_faviconnotificationbo',
-                43 => 'ps_googleanalytics',
-                44 => 'ps_supplierlist',
-                45 => 'ps_themecusto',
-                46 => 'ps_viewedproduct',
-                47 => 'ps_wirepayment',
-                48 => 'statsbestcategories',
-                49 => 'statsbestcustomers',
-                50 => 'statsbestmanufacturers',
-                51 => 'statsbestproducts',
-                52 => 'statsbestsuppliers',
-                53 => 'statsbestvouchers',
-                54 => 'statscarrier',
-                55 => 'statscatalog',
-                56 => 'statscheckup',
-                57 => 'statsdata',
-                58 => 'statsforecast',
-                59 => 'statsnewsletter',
-                60 => 'statspersonalinfos',
-                61 => 'statsproduct',
-                62 => 'statsregistrations',
-                63 => 'statssales',
-                64 => 'statssearch',
-                65 => 'statsstock',
-                66 => 'autoupgrade',
+                5 => 'ps_currencyselector',
+                6 => 'ps_customersignin',
+                7 => 'ps_shoppingcart',
+                8 => 'ps_mainmenu',
+                9 => 'ps_searchbar',
+                10 => 'ps_imageslider',
+                11 => 'ps_featuredproducts',
+                12 => 'ps_banner',
+                13 => 'ps_customtext',
+                14 => 'ps_specials',
+                15 => 'ps_newproducts',
+                16 => 'ps_bestsellers',
+                17 => 'ps_emailsubscription',
+                18 => 'ps_socialfollow',
+                19 => 'ps_customeraccountlinks',
+                20 => 'productcomments',
+                21 => 'ps_categorytree',
+                22 => 'ps_facetedsearch',
+                23 => 'contactform',
+                24 => 'ps_sharebuttons',
+                25 => 'dashactivity',
+                26 => 'dashgoals',
+                27 => 'dashproducts',
+                28 => 'dashtrends',
+                29 => 'graphnvd3',
+                30 => 'gridhtml',
+                31 => 'gsitemap',
+                32 => 'pagesnotfound',
+                33 => 'ps_brandlist',
+                34 => 'ps_cashondelivery',
+                35 => 'ps_categoryproducts',
+                36 => 'ps_checkpayment',
+                37 => 'ps_crossselling',
+                38 => 'ps_dataprivacy',
+                39 => 'ps_distributionapiclient',
+                40 => 'ps_emailalerts',
+                41 => 'ps_faviconnotificationbo',
+                42 => 'ps_googleanalytics',
+                43 => 'ps_supplierlist',
+                44 => 'ps_themecusto',
+                45 => 'ps_viewedproduct',
+                46 => 'ps_wirepayment',
+                47 => 'statsbestcategories',
+                48 => 'statsbestcustomers',
+                49 => 'statsbestmanufacturers',
+                50 => 'statsbestproducts',
+                51 => 'statsbestsuppliers',
+                52 => 'statsbestvouchers',
+                53 => 'statscarrier',
+                54 => 'statscatalog',
+                55 => 'statscheckup',
+                56 => 'statsdata',
+                57 => 'statsforecast',
+                58 => 'statsnewsletter',
+                59 => 'statspersonalinfos',
+                60 => 'statsproduct',
+                61 => 'statsregistrations',
+                62 => 'statssales',
+                63 => 'statssearch',
+                64 => 'statsstock',
+                65 => 'autoupgrade',
             ],
-            'ps_cache_dir' => 'C:\\xampp8.0\\htdocs\\pieces-levage/var/cache/dev\\',
+            'ps_cache_dir' => 'C:\\xampp8.0\\htdocs\\Pieces-levage/var/cache/dev\\',
             'mail_themes_uri' => '/mails/themes',
             'doctrine.dbal.logger.chain.class' => 'Doctrine\\DBAL\\Logging\\LoggerChain',
             'doctrine.dbal.logger.profiling.class' => 'Doctrine\\DBAL\\Logging\\DebugStack',
@@ -1009,7 +1008,7 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
             'doctrine.orm.second_level_cache.cache_configuration.class' => 'Doctrine\\ORM\\Cache\\CacheConfiguration',
             'doctrine.orm.second_level_cache.regions_configuration.class' => 'Doctrine\\ORM\\Cache\\RegionsConfiguration',
             'doctrine.orm.auto_generate_proxy_classes' => true,
-            'doctrine.orm.proxy_dir' => 'C:\\xampp8.0\\htdocs\\pieces-levage/var/cache/dev\\/doctrine/orm/Proxies',
+            'doctrine.orm.proxy_dir' => 'C:\\xampp8.0\\htdocs\\Pieces-levage/var/cache/dev\\/doctrine/orm/Proxies',
             'doctrine.orm.proxy_namespace' => 'Proxies',
         ];
     }

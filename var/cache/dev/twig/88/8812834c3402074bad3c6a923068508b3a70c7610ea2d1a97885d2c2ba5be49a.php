@@ -169,6 +169,6 @@ class __TwigTemplate_a12981be76696af020044f8f98cf28aeb239e1ad5d10e780ab932c60f0b
   </div>
 {% endblock %}
 
-", "@PrestaShop/Admin/Common/Kpi/kpi_row.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Kpi\\kpi_row.html.twig");
+", "@PrestaShop/Admin/Common/Kpi/kpi_row.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Kpi\\kpi_row.html.twig");
     }
 }

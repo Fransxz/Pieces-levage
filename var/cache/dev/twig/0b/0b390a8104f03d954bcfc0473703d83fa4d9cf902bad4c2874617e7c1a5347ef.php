@@ -618,6 +618,6 @@ class __TwigTemplate_afcc0ed390b943698fda7eaa3325436afe07a03fbd9a157b85523e309d1
         </table>
     {% endfor %}
 {% endmacro %}
-", "@PrestaShop/Admin/WebProfiler/hooks_collector.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\WebProfiler\\hooks_collector.html.twig");
+", "@PrestaShop/Admin/WebProfiler/hooks_collector.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\WebProfiler\\hooks_collector.html.twig");
     }
 }

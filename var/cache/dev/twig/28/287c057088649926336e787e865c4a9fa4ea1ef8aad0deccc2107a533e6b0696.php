@@ -43,7 +43,7 @@ class __TwigTemplate_ad30cfa1db84bc078500158822871cdda11320620b8eaeb7e968adbdcab
         echo "
 ";
         // line 26
-        $this->loadTemplate("@PrestaShop/Admin/Sell/Catalog/Categories/Blocks/delete_categories_modal.html.twig", "@PrestaShop/Admin/Sell/Catalog/Categories/Blocks/delete_categories_modal.html.twig", 26, "1198688534")->display(twig_array_merge($context, ["id" => (twig_get_attribute($this->env, $this->source,         // line 27
+        $this->loadTemplate("@PrestaShop/Admin/Sell/Catalog/Categories/Blocks/delete_categories_modal.html.twig", "@PrestaShop/Admin/Sell/Catalog/Categories/Blocks/delete_categories_modal.html.twig", 26, "2061875731")->display(twig_array_merge($context, ["id" => (twig_get_attribute($this->env, $this->source,         // line 27
 (isset($context["grid"]) || array_key_exists("grid", $context) ? $context["grid"] : (function () { throw new RuntimeError('Variable "grid" does not exist.', 27, $this->source); })()), "id", [], "any", false, false, false, 27) . "_grid_delete_categories_modal"), "title" => $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("What do you want to do with the products associated with this category?", [], "Admin.Catalog.Notification"), "closable" => true, "closeLabel" => $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("Cancel", [], "Admin.Actions"), "actions" => [0 => ["type" => "button", "label" => $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("Delete", [], "Admin.Actions"), "class" => "btn btn-danger btn-lg js-submit-delete-categories"]]]));
         
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
@@ -125,13 +125,13 @@ class __TwigTemplate_ad30cfa1db84bc078500158822871cdda11320620b8eaeb7e968adbdcab
     </div>
   {% endblock %}
 {% endembed %}
-", "@PrestaShop/Admin/Sell/Catalog/Categories/Blocks/delete_categories_modal.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Sell\\Catalog\\Categories\\Blocks\\delete_categories_modal.html.twig");
+", "@PrestaShop/Admin/Sell/Catalog/Categories/Blocks/delete_categories_modal.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Sell\\Catalog\\Categories\\Blocks\\delete_categories_modal.html.twig");
     }
 }
 
 
 /* @PrestaShop/Admin/Sell/Catalog/Categories/Blocks/delete_categories_modal.html.twig */
-class __TwigTemplate_ad30cfa1db84bc078500158822871cdda11320620b8eaeb7e968adbdcab08a20___1198688534 extends Template
+class __TwigTemplate_ad30cfa1db84bc078500158822871cdda11320620b8eaeb7e968adbdcab08a20___2061875731 extends Template
 {
     private $source;
     private $macros = [];
@@ -295,6 +295,6 @@ class __TwigTemplate_ad30cfa1db84bc078500158822871cdda11320620b8eaeb7e968adbdcab
     </div>
   {% endblock %}
 {% endembed %}
-", "@PrestaShop/Admin/Sell/Catalog/Categories/Blocks/delete_categories_modal.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Sell\\Catalog\\Categories\\Blocks\\delete_categories_modal.html.twig");
+", "@PrestaShop/Admin/Sell/Catalog/Categories/Blocks/delete_categories_modal.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Sell\\Catalog\\Categories\\Blocks\\delete_categories_modal.html.twig");
     }
 }

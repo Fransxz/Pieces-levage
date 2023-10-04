@@ -83,6 +83,6 @@ class __TwigTemplate_709250b08d613fc77b05b759960b4964f74977af8b8aedfd83c4fb9e640
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  *#}
-", "@PrestaShop/Admin/Common/Grid/Columns/Header/Content/position_handle.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Columns\\Header\\Content\\position_handle.html.twig");
+", "@PrestaShop/Admin/Common/Grid/Columns/Header/Content/position_handle.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Columns\\Header\\Content\\position_handle.html.twig");
     }
 }

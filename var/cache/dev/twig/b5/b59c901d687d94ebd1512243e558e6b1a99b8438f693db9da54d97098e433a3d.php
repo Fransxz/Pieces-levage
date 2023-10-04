@@ -223,6 +223,6 @@ class __TwigTemplate_1fcc94d881a22a2273cfc37b3e317c8d265a34d73349905becdddfd91fd
   \"An action is already in progress please wait for it to finish.\": 'An action is already in progress please wait for it to finish.'|trans({}, 'Admin.Modules.Notification'),
 }|merge(js_translatable)
 %}
-", "@PrestaShop/Admin/Module/common.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\common.html.twig");
+", "@PrestaShop/Admin/Module/common.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\common.html.twig");
     }
 }

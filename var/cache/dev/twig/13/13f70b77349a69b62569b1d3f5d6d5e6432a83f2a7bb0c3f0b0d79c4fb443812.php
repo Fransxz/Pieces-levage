@@ -213,6 +213,6 @@ class __TwigTemplate_60680f647d4cea60440206f2686005025bf9112e12c3779704206c12d26
 {% set js_translatable = {
   \"Search - placeholder\": \"Search modules: keyword, name, author...\"|trans({}, 'Admin.Modules.Help'),
   }|merge(js_translatable) %}
-", "@PrestaShop/Admin/Module/Includes/menu_top.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\menu_top.html.twig");
+", "@PrestaShop/Admin/Module/Includes/menu_top.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\menu_top.html.twig");
     }
 }

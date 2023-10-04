@@ -183,6 +183,6 @@ class __TwigTemplate_9f41f647f342c36d60c38a84383eb873a589ce7c3cedd9a2ac2d6e643ad
       <span class=\"slide-button\"></span>
   </div>
 </div>
-", "@PrestaShop/Admin/Common/Grid/Columns/Content/toggle.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Columns\\Content\\toggle.html.twig");
+", "@PrestaShop/Admin/Common/Grid/Columns/Content/toggle.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Columns\\Content\\toggle.html.twig");
     }
 }

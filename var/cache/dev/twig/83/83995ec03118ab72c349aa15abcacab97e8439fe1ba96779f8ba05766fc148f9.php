@@ -346,6 +346,6 @@ class __TwigTemplate_555a34b558dd992193e30a4357d3acf7f11f578766f7868cb6ecb11d18c
       'controller': app.request.attributes.get('_controller')
     })
 }}
-", "@PrestaShop/Admin/Common/Grid/Blocks/table.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Blocks\\table.html.twig");
+", "@PrestaShop/Admin/Common/Grid/Blocks/table.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Common\\Grid\\Blocks\\table.html.twig");
     }
 }

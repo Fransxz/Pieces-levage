@@ -475,6 +475,6 @@ class __TwigTemplate_c9efd3638f0bd7e90f9c089aee5174e7845fea2f4a0dbb4b5e4cc5ac0a0
     </div>
   </div>
 </div>
-", "@PrestaShop/Admin/Module/Includes/card_list.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\card_list.html.twig");
+", "@PrestaShop/Admin/Module/Includes/card_list.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\card_list.html.twig");
     }
 }

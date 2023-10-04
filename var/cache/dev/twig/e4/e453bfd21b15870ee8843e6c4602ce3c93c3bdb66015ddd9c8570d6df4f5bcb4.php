@@ -152,6 +152,6 @@ class __TwigTemplate_84cdbc9b0a6d621068f9a367c7f3c36b386f28584e46410aea3e0aaaa22
     {% endfor %}
   </div>
 </div>
-", "@PrestaShop/Admin/Module/Includes/dropdown_bulk.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\dropdown_bulk.html.twig");
+", "@PrestaShop/Admin/Module/Includes/dropdown_bulk.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Module\\Includes\\dropdown_bulk.html.twig");
     }
 }

@@ -1672,6 +1672,6 @@ class __TwigTemplate_322221cd8a05c5e068e166306fc91a75cb29b6806084f78d1fba8cffe68
   {% endif %}
   </div>
 {% endmacro %}
-", "@PrestaShop/Admin/macros.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\macros.html.twig");
+", "@PrestaShop/Admin/macros.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\macros.html.twig");
     }
 }

@@ -81,6 +81,7 @@
 {/block}
 
 <link rel="stylesheet" type="text/css" href="{_THEME_CSS_DIR_}custom.css">
+<script src="{_THEME_JS_DIR_}custom.js" type="text/javascript"></script>
 
 {block name='javascript_head'}
   {include file="_partials/javascript.tpl" javascript=$javascript.head vars=$js_custom_vars}

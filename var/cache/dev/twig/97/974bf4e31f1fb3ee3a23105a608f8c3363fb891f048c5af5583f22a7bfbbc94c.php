@@ -162,6 +162,6 @@ class __TwigTemplate_44a005c6c28dd0a83f3ad96581ba202071f2b74dee32e92ebc951795971
     </i>
   </div>
 {% endif %}
-", "@PrestaShop/Admin/Sell/Catalog/Categories/Blocks/showcase_card.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Sell\\Catalog\\Categories\\Blocks\\showcase_card.html.twig");
+", "@PrestaShop/Admin/Sell/Catalog/Categories/Blocks/showcase_card.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Sell\\Catalog\\Categories\\Blocks\\showcase_card.html.twig");
     }
 }

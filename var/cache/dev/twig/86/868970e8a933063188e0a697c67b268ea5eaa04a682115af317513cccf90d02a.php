@@ -184,7 +184,7 @@ class __TwigTemplate_07acae2ca7dfd1b8e00ab7c5e24b22fdb6d495d6abafe57d0dbe0da0b37
 
         // line 49
         echo "    ";
-        $this->loadTemplate("@PrestaShop/Admin/Sell/Catalog/Categories/index.html.twig", "@PrestaShop/Admin/Sell/Catalog/Categories/index.html.twig", 49, "555052290")->display(twig_array_merge($context, ["grid" => (isset($context["categoriesGrid"]) || array_key_exists("categoriesGrid", $context) ? $context["categoriesGrid"] : (function () { throw new RuntimeError('Variable "categoriesGrid" does not exist.', 49, $this->source); })())]));
+        $this->loadTemplate("@PrestaShop/Admin/Sell/Catalog/Categories/index.html.twig", "@PrestaShop/Admin/Sell/Catalog/Categories/index.html.twig", 49, "1724586086")->display(twig_array_merge($context, ["grid" => (isset($context["categoriesGrid"]) || array_key_exists("categoriesGrid", $context) ? $context["categoriesGrid"] : (function () { throw new RuntimeError('Variable "categoriesGrid" does not exist.', 49, $this->source); })())]));
         // line 58
         echo "  ";
         
@@ -310,13 +310,13 @@ class __TwigTemplate_07acae2ca7dfd1b8e00ab7c5e24b22fdb6d495d6abafe57d0dbe0da0b37
   <script src=\"{{ asset('themes/default/js/bundle/pagination.js') }}\"></script>
   <script src=\"{{ asset('themes/new-theme/public/category.bundle.js') }}\"></script>
 {% endblock %}
-", "@PrestaShop/Admin/Sell/Catalog/Categories/index.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Sell\\Catalog\\Categories\\index.html.twig");
+", "@PrestaShop/Admin/Sell/Catalog/Categories/index.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Sell\\Catalog\\Categories\\index.html.twig");
     }
 }
 
 
 /* @PrestaShop/Admin/Sell/Catalog/Categories/index.html.twig */
-class __TwigTemplate_07acae2ca7dfd1b8e00ab7c5e24b22fdb6d495d6abafe57d0dbe0da0b3710950___555052290 extends Template
+class __TwigTemplate_07acae2ca7dfd1b8e00ab7c5e24b22fdb6d495d6abafe57d0dbe0da0b3710950___1724586086 extends Template
 {
     private $source;
     private $macros = [];
@@ -487,6 +487,6 @@ class __TwigTemplate_07acae2ca7dfd1b8e00ab7c5e24b22fdb6d495d6abafe57d0dbe0da0b37
   <script src=\"{{ asset('themes/default/js/bundle/pagination.js') }}\"></script>
   <script src=\"{{ asset('themes/new-theme/public/category.bundle.js') }}\"></script>
 {% endblock %}
-", "@PrestaShop/Admin/Sell/Catalog/Categories/index.html.twig", "C:\\xampp8.0\\htdocs\\pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Sell\\Catalog\\Categories\\index.html.twig");
+", "@PrestaShop/Admin/Sell/Catalog/Categories/index.html.twig", "C:\\xampp8.0\\htdocs\\Pieces-levage\\src\\PrestaShopBundle\\Resources\\views\\Admin\\Sell\\Catalog\\Categories\\index.html.twig");
     }
 }
