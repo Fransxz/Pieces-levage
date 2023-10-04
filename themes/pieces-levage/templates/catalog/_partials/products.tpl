@@ -23,11 +23,15 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 <div id="js-product-list">
-  {include file="catalog/_partials/productlist.tpl" products=$listing.products cssClass="row"}
 
-  {block name='pagination'}
+  {* hook: ohm_productdisplay module *}
+  {hook h="displayCategoryCustom" subcategories=$subcategories products=$listing.products}
+
+  {* {include file="catalog/_partials/productlist.tpl" products=$listing.products cssClass="row"} *}
+
+  {* {block name='pagination'}
     {include file='_partials/pagination.tpl' pagination=$listing.pagination}
-  {/block}
+  {/block} *}
 
   <div class="hidden-md-up text-xs-right up">
     <a href="#header" class="btn btn-secondary">

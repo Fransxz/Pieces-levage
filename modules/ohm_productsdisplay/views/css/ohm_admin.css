@@ -1,0 +1,9 @@
+.bootstrap div.select2-container {
+    width: 100% !important;
+}
+
+.bootstrap div.select2-container > ul.select2-choices {
+    border: 1px solid #bbcdd2;
+    border-radius: 4px;
+}
+
