@@ -23,7 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {block name='product_miniature_item'}
-<div class="js-product product{if !empty($productClasses)} {$productClasses}{/if}">
+<div class="js-product product{if !empty($productClasses)} {$productClasses}{/if} p-listing-styled" data-idcategory="{$product.ohm_category}">
   <article class="product-miniature js-product-miniature" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}">
     <div class="thumbnail-container">
       <div class="thumbnail-top">
@@ -73,6 +73,9 @@
           {else}
             <h2 class="h3 product-title"><a href="{$product.url}" content="{$product.url}">{$product.name|truncate:30:'...'}</a></h2>
           {/if}
+          {if isset($from) && $from == 'module'}
+            <p class="p-listing-cat-name">{l s='Scanreco' d='Shop.Theme.Catalog'}</p>
+          {/if}
         {/block}
 
         {block name='product_price_and_shipping'}
@@ -91,18 +94,36 @@
 
               {hook h='displayProductPriceBlock' product=$product type="before_price"}
 
-              <span class="price" aria-label="{l s='Price' d='Shop.Theme.Catalog'}">
-                {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='products_list'}{/capture}
-                {if '' !== $smarty.capture.custom_price}
-                  {$smarty.capture.custom_price nofilter}
-                {else}
-                  {$product.price}
-                {/if}
-              </span>
+              {if $product.quantity > 0}
+                <span class="price" aria-label="{l s='Price' d='Shop.Theme.Catalog'}">
+                  {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='products_list'}{/capture}
+                  {if '' !== $smarty.capture.custom_price}
+                    {$smarty.capture.custom_price nofilter}
+                  {else}
+                    {$product.price}
+                  {/if}
+                </span>
+              {/if}
 
               {hook h='displayProductPriceBlock' product=$product type='unit_price'}
-
               {hook h='displayProductPriceBlock' product=$product type='weight'}
+
+              {if $product.quantity > 0}
+                <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
+                  <input type="hidden" name="token" value="{$static_token}">
+                  <input type="hidden" name="id_product" value="{$product.id}" id="product_page_product_id">
+                  <button class="btn btn-primary add-to-cart {if $product.quantity < 1}out-of-stock{/if}" data-button-action="add-to-cart" type="submit">
+                    <i class="material-icons shopping-cart"></i>
+                    {l s='Add to cart' d='Shop.Theme.Actions'}
+                  </button>
+                </form>
+              {else}
+                <button class="btn btn-primary btn-request-qoute">
+                  <i class="material-icons shopping-cart"></i>
+                  {l s='Faire un devis' d='Shop.Theme.Actions'}
+                </button>
+              {/if}
+
             </div>
           {/if}
         {/block}

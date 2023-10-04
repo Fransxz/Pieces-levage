@@ -57,7 +57,7 @@
         {/block}
 
         {hook h="displayWrapperTop"}
-        <div class="container">
+        <div class="container-fluid padded-container">
           {block name='breadcrumb'}
             {include file='_partials/breadcrumb.tpl'}
           {/block}
@@ -74,7 +74,7 @@
             {/block}
 
             {block name="content_wrapper"}
-              <div id="content-wrapper" class="js-content-wrapper left-column right-column col-sm-4 col-md-6">
+              <div id="content-wrapper" class="js-content-wrapper left-column right-column col-sm-4 col-md-12">
                 {hook h="displayContentWrapperTop"}
                 {block name="content"}
                   <p>Hello world! This is HTML5 Boilerplate.</p>

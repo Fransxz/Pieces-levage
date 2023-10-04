@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-10-01 09:44:27
+/* Smarty version 4.3.1, created on 2023-10-02 21:14:47
   from 'C:\xampp8.0\htdocs\pieces-levage\themes\pieces-levage\templates\_partials\pagination-seo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6519235b4f7357_82089978',
+  'unifunc' => 'content_651b16a70acac8_26526030',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6519235b4f7357_82089978 (Smarty_Internal_Template $_smarty_tpl) {
+function content_651b16a70acac8_26526030 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp8.0\\htdocs\\pieces-levage\\vendor\\smarty\\smarty\\libs\\plugins\\modifier.replace.php','function'=>'smarty_modifier_replace',),));
 ?>
 

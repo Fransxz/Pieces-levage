@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2023 at 09:37 AM
--- Server version: 10.4.25-MariaDB
+-- Generation Time: Oct 04, 2023 at 01:11 PM
+-- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `ps_access` (
   `id_profile` int(10) UNSIGNED NOT NULL,
   `id_authorization_role` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_access`
@@ -707,7 +707,7 @@ INSERT INTO `ps_access` (`id_profile`, `id_authorization_role`) VALUES
 CREATE TABLE `ps_accessory` (
   `id_product_1` int(10) UNSIGNED NOT NULL,
   `id_product_2` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -740,7 +740,7 @@ CREATE TABLE `ps_address` (
   `date_upd` datetime NOT NULL,
   `active` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `deleted` tinyint(3) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_address`
@@ -769,7 +769,7 @@ INSERT INTO `ps_address` (`id_address`, `id_country`, `id_state`, `id_customer`,
 CREATE TABLE `ps_address_format` (
   `id_country` int(10) UNSIGNED NOT NULL,
   `format` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_address_format`
@@ -1028,10 +1028,10 @@ CREATE TABLE `ps_admin_filter` (
   `id` int(11) NOT NULL,
   `employee` int(11) NOT NULL,
   `shop` int(11) NOT NULL,
-  `controller` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `action` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `filter` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `filter_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+  `controller` varchar(60) NOT NULL,
+  `action` varchar(100) NOT NULL,
+  `filter` longtext NOT NULL,
+  `filter_id` varchar(191) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1039,15 +1039,16 @@ CREATE TABLE `ps_admin_filter` (
 --
 
 INSERT INTO `ps_admin_filter` (`id`, `employee`, `shop`, `controller`, `action`, `filter`, `filter_id`) VALUES
-(1, 1, 1, 'ProductController', 'catalogAction', '{\"filter_category\":\"\",\"filter_column_id_product\":\"\",\"filter_column_name\":\"\",\"filter_column_reference\":\"\",\"filter_column_name_category\":\"\",\"filter_column_price\":\"\",\"filter_column_sav_quantity\":\"\",\"filter_column_active\":\"\",\"last_offset\":\"0\",\"last_limit\":\"20\",\"last_orderBy\":\"id_product\",\"last_sortOrder\":\"desc\"}', ''),
-(2, 1, 1, '', '', '{\"orderBy\":\"position\",\"sortOrder\":\"asc\",\"limit\":50,\"filters\":{\"id_category_parent\":\"2\"}}', 'category'),
+(1, 1, 1, 'ProductController', 'catalogAction', '{\"filter_category\":\"\",\"filter_column_id_product\":\">=23\",\"filter_column_name\":\"\",\"filter_column_reference\":\"\",\"filter_column_name_category\":\"\",\"filter_column_price\":\"\",\"filter_column_sav_quantity\":\"\",\"filter_column_active\":\"\",\"last_offset\":\"0\",\"last_limit\":\"20\",\"last_orderBy\":\"id_product\",\"last_sortOrder\":\"asc\"}', ''),
+(2, 1, 1, '', '', '{\"orderBy\":\"position\",\"sortOrder\":\"asc\",\"limit\":50,\"filters\":{\"id_category_parent\":10}}', 'category'),
 (3, 1, 1, '', '', '{\"limit\":10,\"orderBy\":\"id_employee_session\",\"sortOrder\":\"asc\",\"filters\":[]}', 'security_session_employee'),
 (4, 1, 1, '', '', '{\"limit\":10,\"orderBy\":\"id_contact\",\"sortOrder\":\"asc\",\"filters\":[]}', 'contact'),
 (5, 1, 1, '', '', '{\"limit\":10,\"orderBy\":\"name\",\"sortOrder\":\"asc\",\"filters\":[]}', 'manufacturer'),
 (6, 1, 1, '', '', '{\"limit\":10,\"orderBy\":\"id_address\",\"sortOrder\":\"desc\",\"filters\":[]}', 'manufacturer_address'),
 (7, 1, 1, '', '', '{\"orderBy\":\"position\",\"sortOrder\":\"asc\",\"limit\":50,\"filters\":{\"id_cms_category_parent\":1}}', 'cms_page_category'),
 (8, 1, 1, '', '', '{\"orderBy\":\"position\",\"sortOrder\":\"asc\",\"limit\":50,\"filters\":{\"id_cms_category_parent\":1}}', 'cms_page'),
-(9, 1, 1, '', '', '{\"limit\":50,\"orderBy\":\"id_mail\",\"sortOrder\":\"desc\",\"filters\":[]}', 'email_logs');
+(9, 1, 1, '', '', '{\"limit\":50,\"orderBy\":\"id_mail\",\"sortOrder\":\"desc\",\"filters\":[]}', 'email_logs'),
+(10, 1, 1, '', '', '{\"limit\":10,\"orderBy\":\"id_request_sql\",\"sortOrder\":\"desc\",\"filters\":[]}', 'sql_request');
 
 -- --------------------------------------------------------
 
@@ -1067,7 +1068,7 @@ CREATE TABLE `ps_advice` (
   `start_day` int(11) NOT NULL DEFAULT 0,
   `stop_day` int(11) NOT NULL DEFAULT 0,
   `weight` int(11) DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1079,7 +1080,7 @@ CREATE TABLE `ps_advice_lang` (
   `id_advice` int(11) NOT NULL,
   `id_lang` int(11) NOT NULL,
   `html` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1092,7 +1093,7 @@ CREATE TABLE `ps_alias` (
   `alias` varchar(191) NOT NULL,
   `search` varchar(255) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1106,7 +1107,7 @@ CREATE TABLE `ps_attachment` (
   `file_name` varchar(128) NOT NULL,
   `file_size` bigint(10) UNSIGNED NOT NULL DEFAULT 0,
   `mime` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1119,7 +1120,7 @@ CREATE TABLE `ps_attachment_lang` (
   `id_lang` int(10) UNSIGNED NOT NULL,
   `name` varchar(32) DEFAULT NULL,
   `description` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1130,7 +1131,7 @@ CREATE TABLE `ps_attachment_lang` (
 CREATE TABLE `ps_attribute` (
   `id_attribute` int(11) NOT NULL,
   `id_attribute_group` int(11) NOT NULL,
-  `color` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `color` varchar(32) NOT NULL,
   `position` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1382,7 +1383,7 @@ INSERT INTO `ps_attribute` (`id_attribute`, `id_attribute_group`, `color`, `posi
 CREATE TABLE `ps_attribute_group` (
   `id_attribute_group` int(11) NOT NULL,
   `is_color_group` tinyint(1) NOT NULL,
-  `group_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `group_type` varchar(255) NOT NULL,
   `position` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1417,8 +1418,8 @@ INSERT INTO `ps_attribute_group` (`id_attribute_group`, `is_color_group`, `group
 CREATE TABLE `ps_attribute_group_lang` (
   `id_attribute_group` int(11) NOT NULL,
   `id_lang` int(11) NOT NULL,
-  `name` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
-  `public_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL
+  `name` varchar(128) NOT NULL,
+  `public_name` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1485,7 +1486,7 @@ INSERT INTO `ps_attribute_group_shop` (`id_attribute_group`, `id_shop`) VALUES
 CREATE TABLE `ps_attribute_lang` (
   `id_attribute` int(11) NOT NULL,
   `id_lang` int(11) NOT NULL,
-  `name` varchar(128) COLLATE utf8_unicode_ci NOT NULL
+  `name` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1986,7 +1987,7 @@ INSERT INTO `ps_attribute_shop` (`id_attribute`, `id_shop`) VALUES
 CREATE TABLE `ps_authorization_role` (
   `id_authorization_role` int(10) UNSIGNED NOT NULL,
   `slug` varchar(191) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_authorization_role`
@@ -2049,6 +2050,10 @@ INSERT INTO `ps_authorization_role` (`id_authorization_role`, `slug`) VALUES
 (640, 'ROLE_MOD_MODULE_MBESHIPPING_DELETE'),
 (638, 'ROLE_MOD_MODULE_MBESHIPPING_READ'),
 (639, 'ROLE_MOD_MODULE_MBESHIPPING_UPDATE'),
+(981, 'ROLE_MOD_MODULE_OHM_PRODUCTSDISPLAY_CREATE'),
+(984, 'ROLE_MOD_MODULE_OHM_PRODUCTSDISPLAY_DELETE'),
+(982, 'ROLE_MOD_MODULE_OHM_PRODUCTSDISPLAY_READ'),
+(983, 'ROLE_MOD_MODULE_OHM_PRODUCTSDISPLAY_UPDATE'),
 (665, 'ROLE_MOD_MODULE_PAGESNOTFOUND_CREATE'),
 (668, 'ROLE_MOD_MODULE_PAGESNOTFOUND_DELETE'),
 (666, 'ROLE_MOD_MODULE_PAGESNOTFOUND_READ'),
@@ -2959,7 +2964,7 @@ CREATE TABLE `ps_blockwishlist_statistics` (
   `id_product_attribute` int(10) UNSIGNED NOT NULL,
   `date_add` datetime NOT NULL,
   `id_shop` int(10) UNSIGNED DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2988,7 +2993,7 @@ CREATE TABLE `ps_carrier` (
   `max_depth` int(11) DEFAULT 0,
   `max_weight` decimal(20,6) DEFAULT 0.000000,
   `grade` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_carrier`
@@ -3015,7 +3020,7 @@ INSERT INTO `ps_carrier` (`id_carrier`, `id_reference`, `name`, `url`, `active`,
 CREATE TABLE `ps_carrier_group` (
   `id_carrier` int(10) UNSIGNED NOT NULL,
   `id_group` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_carrier_group`
@@ -3076,7 +3081,7 @@ CREATE TABLE `ps_carrier_lang` (
   `id_shop` int(10) UNSIGNED NOT NULL DEFAULT 1,
   `id_lang` int(10) UNSIGNED NOT NULL,
   `delay` varchar(512) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_carrier_lang`
@@ -3103,7 +3108,7 @@ INSERT INTO `ps_carrier_lang` (`id_carrier`, `id_shop`, `id_lang`, `delay`) VALU
 CREATE TABLE `ps_carrier_shop` (
   `id_carrier` int(11) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_carrier_shop`
@@ -3131,7 +3136,7 @@ CREATE TABLE `ps_carrier_tax_rules_group_shop` (
   `id_carrier` int(10) UNSIGNED NOT NULL,
   `id_tax_rules_group` int(10) UNSIGNED NOT NULL,
   `id_shop` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_carrier_tax_rules_group_shop`
@@ -3158,7 +3163,7 @@ INSERT INTO `ps_carrier_tax_rules_group_shop` (`id_carrier`, `id_tax_rules_group
 CREATE TABLE `ps_carrier_zone` (
   `id_carrier` int(10) UNSIGNED NOT NULL,
   `id_zone` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_carrier_zone`
@@ -3208,14 +3213,15 @@ CREATE TABLE `ps_cart` (
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   `checkout_session_data` mediumtext DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_cart`
 --
 
 INSERT INTO `ps_cart` (`id_cart`, `id_shop_group`, `id_shop`, `id_carrier`, `delivery_option`, `id_lang`, `id_address_delivery`, `id_address_invoice`, `id_currency`, `id_customer`, `id_guest`, `secure_key`, `recyclable`, `gift`, `gift_message`, `mobile_theme`, `allow_seperated_package`, `date_add`, `date_upd`, `checkout_session_data`) VALUES
-(1, 1, 1, 0, '', 1, 0, 0, 1, 2, 2, 'c45a47013ac6ae4eb0a72d1202b3b6d4', 0, 0, '', 0, 0, '2023-09-26 19:24:02', '2023-09-28 14:21:12', NULL);
+(1, 1, 1, 0, '', 1, 0, 0, 1, 2, 2, 'c45a47013ac6ae4eb0a72d1202b3b6d4', 0, 0, '', 0, 0, '2023-09-26 19:24:02', '2023-09-28 14:21:12', NULL),
+(2, 1, 1, 0, '', 1, 0, 0, 1, 2, 2, 'c45a47013ac6ae4eb0a72d1202b3b6d4', 0, 0, '', 0, 0, '2023-10-01 13:16:54', '2023-10-02 21:14:33', NULL);
 
 -- --------------------------------------------------------
 
@@ -3226,7 +3232,7 @@ INSERT INTO `ps_cart` (`id_cart`, `id_shop_group`, `id_shop`, `id_carrier`, `del
 CREATE TABLE `ps_cart_cart_rule` (
   `id_cart` int(10) UNSIGNED NOT NULL,
   `id_cart_rule` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -3243,7 +3249,14 @@ CREATE TABLE `ps_cart_product` (
   `id_customization` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `quantity` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ps_cart_product`
+--
+
+INSERT INTO `ps_cart_product` (`id_cart`, `id_product`, `id_address_delivery`, `id_shop`, `id_product_attribute`, `id_customization`, `quantity`, `date_add`) VALUES
+(2, 23, 0, 1, 0, 0, 2, '2023-10-01 13:16:54');
 
 -- --------------------------------------------------------
 
@@ -3285,7 +3298,7 @@ CREATE TABLE `ps_cart_rule` (
   `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -3296,7 +3309,7 @@ CREATE TABLE `ps_cart_rule` (
 CREATE TABLE `ps_cart_rule_carrier` (
   `id_cart_rule` int(10) UNSIGNED NOT NULL,
   `id_carrier` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -3307,7 +3320,7 @@ CREATE TABLE `ps_cart_rule_carrier` (
 CREATE TABLE `ps_cart_rule_combination` (
   `id_cart_rule_1` int(10) UNSIGNED NOT NULL,
   `id_cart_rule_2` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -3318,7 +3331,7 @@ CREATE TABLE `ps_cart_rule_combination` (
 CREATE TABLE `ps_cart_rule_country` (
   `id_cart_rule` int(10) UNSIGNED NOT NULL,
   `id_country` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -3329,7 +3342,7 @@ CREATE TABLE `ps_cart_rule_country` (
 CREATE TABLE `ps_cart_rule_group` (
   `id_cart_rule` int(10) UNSIGNED NOT NULL,
   `id_group` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -3341,7 +3354,7 @@ CREATE TABLE `ps_cart_rule_lang` (
   `id_cart_rule` int(10) UNSIGNED NOT NULL,
   `id_lang` int(10) UNSIGNED NOT NULL,
   `name` varchar(254) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -3353,7 +3366,7 @@ CREATE TABLE `ps_cart_rule_product_rule` (
   `id_product_rule` int(10) UNSIGNED NOT NULL,
   `id_product_rule_group` int(10) UNSIGNED NOT NULL,
   `type` enum('products','categories','attributes','manufacturers','suppliers') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -3365,7 +3378,7 @@ CREATE TABLE `ps_cart_rule_product_rule_group` (
   `id_product_rule_group` int(10) UNSIGNED NOT NULL,
   `id_cart_rule` int(10) UNSIGNED NOT NULL,
   `quantity` int(10) UNSIGNED NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -3376,7 +3389,7 @@ CREATE TABLE `ps_cart_rule_product_rule_group` (
 CREATE TABLE `ps_cart_rule_product_rule_value` (
   `id_product_rule` int(10) UNSIGNED NOT NULL,
   `id_item` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -3387,7 +3400,7 @@ CREATE TABLE `ps_cart_rule_product_rule_value` (
 CREATE TABLE `ps_cart_rule_shop` (
   `id_cart_rule` int(10) UNSIGNED NOT NULL,
   `id_shop` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -3407,7 +3420,7 @@ CREATE TABLE `ps_category` (
   `date_upd` datetime NOT NULL,
   `position` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `is_root_category` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_category`
@@ -3530,7 +3543,7 @@ INSERT INTO `ps_category` (`id_category`, `id_parent`, `id_shop_default`, `level
 CREATE TABLE `ps_category_group` (
   `id_category` int(10) UNSIGNED NOT NULL,
   `id_group` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_category_group`
@@ -3891,7 +3904,7 @@ CREATE TABLE `ps_category_lang` (
   `meta_title` varchar(255) DEFAULT NULL,
   `meta_keywords` varchar(255) DEFAULT NULL,
   `meta_description` varchar(512) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_category_lang`
@@ -4015,7 +4028,7 @@ CREATE TABLE `ps_category_product` (
   `id_category` int(10) UNSIGNED NOT NULL,
   `id_product` int(10) UNSIGNED NOT NULL,
   `position` int(10) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_category_product`
@@ -4420,10 +4433,9 @@ INSERT INTO `ps_category_product` (`id_category`, `id_product`, `position`) VALU
 (77, 121, 15),
 (77, 219, 16),
 (77, 220, 17),
-(77, 221, 18),
-(77, 226, 19),
-(77, 231, 20),
-(77, 232, 21),
+(77, 226, 18),
+(77, 231, 19),
+(77, 232, 20),
 (78, 186, 1),
 (78, 189, 2),
 (78, 211, 3),
@@ -4514,7 +4526,13 @@ INSERT INTO `ps_category_product` (`id_category`, `id_product`, `position`) VALU
 (96, 226, 2),
 (96, 221, 3),
 (105, 225, 1),
-(105, 221, 2);
+(105, 221, 2),
+(110, 221, 1),
+(110, 220, 2),
+(110, 23, 3),
+(110, 20, 4),
+(110, 26, 5),
+(110, 231, 6);
 
 -- --------------------------------------------------------
 
@@ -4526,7 +4544,7 @@ CREATE TABLE `ps_category_shop` (
   `id_category` int(11) NOT NULL,
   `id_shop` int(11) NOT NULL,
   `position` int(10) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_category_shop`
@@ -4652,7 +4670,7 @@ CREATE TABLE `ps_cms` (
   `position` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `active` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
   `indexation` tinyint(3) UNSIGNED NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_cms`
@@ -4688,7 +4706,7 @@ CREATE TABLE `ps_cms_category` (
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   `position` int(10) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_cms_category`
@@ -4713,7 +4731,7 @@ CREATE TABLE `ps_cms_category_lang` (
   `meta_title` varchar(255) DEFAULT NULL,
   `meta_keywords` varchar(255) DEFAULT NULL,
   `meta_description` varchar(512) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_cms_category_lang`
@@ -4732,7 +4750,7 @@ INSERT INTO `ps_cms_category_lang` (`id_cms_category`, `id_lang`, `id_shop`, `na
 CREATE TABLE `ps_cms_category_shop` (
   `id_cms_category` int(10) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_cms_category_shop`
@@ -4757,7 +4775,7 @@ CREATE TABLE `ps_cms_lang` (
   `meta_keywords` varchar(255) DEFAULT NULL,
   `content` longtext DEFAULT NULL,
   `link_rewrite` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_cms_lang`
@@ -4789,7 +4807,7 @@ CREATE TABLE `ps_cms_role` (
   `id_cms_role` int(11) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL,
   `id_cms` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_cms_role`
@@ -4810,7 +4828,7 @@ CREATE TABLE `ps_cms_role_lang` (
   `id_lang` int(11) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL,
   `name` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -4821,7 +4839,7 @@ CREATE TABLE `ps_cms_role_lang` (
 CREATE TABLE `ps_cms_shop` (
   `id_cms` int(11) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_cms_shop`
@@ -4862,7 +4880,7 @@ CREATE TABLE `ps_condition` (
   `validated` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_condition`
@@ -5125,7 +5143,7 @@ CREATE TABLE `ps_condition_advice` (
   `id_condition` int(11) NOT NULL,
   `id_advice` int(11) NOT NULL,
   `display` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -5141,7 +5159,7 @@ CREATE TABLE `ps_configuration` (
   `value` text DEFAULT NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_configuration`
@@ -5295,7 +5313,7 @@ INSERT INTO `ps_configuration` (`id_configuration`, `id_shop_group`, `id_shop`, 
 (145, NULL, NULL, 'PS_VIRTUAL_PROD_FEATURE_ACTIVE', '1', '0000-00-00 00:00:00', '2023-09-25 18:54:42'),
 (146, NULL, NULL, 'PS_CUSTOMIZATION_FEATURE_ACTIVE', '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (147, NULL, NULL, 'PS_CART_RULE_FEATURE_ACTIVE', '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(148, NULL, NULL, 'PS_PACK_FEATURE_ACTIVE', NULL, '0000-00-00 00:00:00', '2023-09-25 20:44:45'),
+(148, NULL, NULL, 'PS_PACK_FEATURE_ACTIVE', NULL, '0000-00-00 00:00:00', '2023-10-02 18:36:14'),
 (149, NULL, NULL, 'PS_ALIAS_FEATURE_ACTIVE', '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (150, NULL, NULL, 'PS_TAX_ADDRESS_TYPE', 'id_address_delivery', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (151, NULL, NULL, 'PS_SHOP_DEFAULT', '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -5405,7 +5423,7 @@ INSERT INTO `ps_configuration` (`id_configuration`, `id_shop_group`, `id_shop`, 
 (255, NULL, NULL, 'PS_MAIL_DKIM_KEY', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (256, NULL, NULL, 'NW_SALT', 'qwfu11Yf9aEKGaif', '0000-00-00 00:00:00', '2023-09-25 16:42:09'),
 (257, NULL, NULL, 'PS_PAYMENT_LOGO_CMS_ID', '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(258, NULL, NULL, 'HOME_FEATURED_NBR', '8', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(258, NULL, NULL, 'HOME_FEATURED_NBR', '4', '0000-00-00 00:00:00', '2023-10-01 14:32:25'),
 (259, NULL, NULL, 'SEK_MIN_OCCURENCES', '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (260, NULL, NULL, 'SEK_FILTER_KW', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (261, NULL, NULL, 'PS_ALLOW_MOBILE_DEVICE', '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -5438,7 +5456,7 @@ INSERT INTO `ps_configuration` (`id_configuration`, `id_shop_group`, `id_shop`, 
 (288, NULL, NULL, 'PS_MAIL_THEME', 'modern', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (289, NULL, NULL, 'PS_ORDER_PRODUCTS_NB_PER_PAGE', '8', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (290, NULL, NULL, 'PS_LOGS_EMAIL_RECEIVERS', 'olivier@studioseizh.com', '0000-00-00 00:00:00', '2023-09-25 16:42:00'),
-(291, NULL, NULL, 'PS_SHOW_LABEL_OOS_LISTING_PAGES', '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(291, NULL, NULL, 'PS_SHOW_LABEL_OOS_LISTING_PAGES', '1', '0000-00-00 00:00:00', '2023-10-01 14:00:17'),
 (292, NULL, NULL, 'ADDONS_API_MODULE_CHANNEL', 'stable', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (293, NULL, NULL, 'PS_SECURITY_TOKEN', '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (294, NULL, NULL, 'PS_SECURITY_PASSWORD_POLICY_MAXIMUM_LENGTH', '72', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -5463,8 +5481,8 @@ INSERT INTO `ps_configuration` (`id_configuration`, `id_shop_group`, `id_shop`, 
 (313, NULL, NULL, 'PS_CONTACT_INFO_DISPLAY_EMAIL', '1', '2023-09-25 16:42:05', '2023-09-25 16:42:05'),
 (314, NULL, NULL, 'HOMESLIDER_PAUSE_ON_HOVER', '1', '2023-09-25 16:42:07', '2023-09-25 16:42:07'),
 (315, NULL, NULL, 'HOMESLIDER_WRAP', '1', '2023-09-25 16:42:07', '2023-09-25 16:42:07'),
-(316, NULL, NULL, 'HOME_FEATURED_CAT', '2', '2023-09-25 16:42:07', '2023-09-25 16:42:07'),
-(317, NULL, NULL, 'HOME_FEATURED_RANDOMIZE', NULL, '2023-09-25 16:42:07', '2023-09-25 16:42:07'),
+(316, NULL, NULL, 'HOME_FEATURED_CAT', '2', '2023-09-25 16:42:07', '2023-10-01 14:32:25'),
+(317, NULL, NULL, 'HOME_FEATURED_RANDOMIZE', NULL, '2023-09-25 16:42:07', '2023-10-01 14:32:25'),
 (318, NULL, NULL, 'BANNER_IMG', NULL, '2023-09-25 16:42:08', '2023-09-25 16:42:08'),
 (319, NULL, NULL, 'BANNER_LINK', NULL, '2023-09-25 16:42:08', '2023-09-25 16:42:08'),
 (320, NULL, NULL, 'BANNER_DESC', NULL, '2023-09-25 16:42:08', '2023-09-25 16:42:08'),
@@ -5490,12 +5508,12 @@ INSERT INTO `ps_configuration` (`id_configuration`, `id_shop_group`, `id_shop`, 
 (340, NULL, NULL, 'PS_LAYERED_SHOW_QTIES', '1', '2023-09-25 16:42:11', '2023-09-25 16:42:11'),
 (341, NULL, NULL, 'PS_LAYERED_FULL_TREE', '1', '2023-09-25 16:42:11', '2023-09-25 16:42:11'),
 (342, NULL, NULL, 'PS_LAYERED_FILTER_PRICE_USETAX', '1', '2023-09-25 16:42:11', '2023-09-25 16:42:11'),
-(343, NULL, NULL, 'PS_LAYERED_FILTER_CATEGORY_DEPTH', '1', '2023-09-25 16:42:11', '2023-09-25 16:42:11'),
+(343, NULL, NULL, 'PS_LAYERED_FILTER_CATEGORY_DEPTH', '3', '2023-09-25 16:42:11', '2023-10-01 19:42:28'),
 (344, NULL, NULL, 'PS_LAYERED_FILTER_PRICE_ROUNDING', '1', '2023-09-25 16:42:11', '2023-09-25 16:42:11'),
 (345, NULL, NULL, 'PS_LAYERED_FILTER_SHOW_OUT_OF_STOCK_LAST', '0', '2023-09-25 16:42:11', '2023-09-25 16:42:11'),
 (346, NULL, NULL, 'PS_LAYERED_FILTER_BY_DEFAULT_CATEGORY', '0', '2023-09-25 16:42:11', '2023-09-25 16:42:11'),
 (347, NULL, NULL, 'PS_USE_JQUERY_UI_SLIDER', '1', '2023-09-25 16:42:11', '2023-09-25 16:42:11'),
-(348, NULL, NULL, 'PS_LAYERED_DEFAULT_CATEGORY_TEMPLATE', '0', '2023-09-25 16:42:11', '2023-09-25 16:42:11'),
+(348, NULL, NULL, 'PS_LAYERED_DEFAULT_CATEGORY_TEMPLATE', '1', '2023-09-25 16:42:11', '2023-10-01 19:42:28'),
 (349, NULL, NULL, 'PS_LAYERED_INDEXED', '1', '2023-09-25 16:42:12', '2023-09-25 16:42:12'),
 (350, NULL, NULL, 'PS_SC_TWITTER', '1', '2023-09-25 16:42:13', '2023-09-25 16:42:13'),
 (351, NULL, NULL, 'PS_SC_FACEBOOK', '1', '2023-09-25 16:42:13', '2023-09-25 16:42:13'),
@@ -5647,7 +5665,15 @@ INSERT INTO `ps_configuration` (`id_configuration`, `id_shop_group`, `id_shop`, 
 (496, NULL, NULL, 'PS_SHOP_COUNTRY_ID', '8', '2023-09-27 20:39:52', '2023-09-27 20:39:52'),
 (497, NULL, NULL, 'PS_SHOP_COUNTRY', 'France', '2023-09-27 20:39:52', '2023-09-27 20:39:52'),
 (498, NULL, NULL, 'PS_SHOP_PHONE', '06 49 19 20 77', '2023-09-27 20:39:52', '2023-09-27 20:39:52'),
-(499, NULL, NULL, 'PS_SHOP_FAX', NULL, '2023-09-27 20:39:52', '2023-09-27 20:39:52');
+(499, NULL, NULL, 'PS_SHOP_FAX', NULL, '2023-09-27 20:39:52', '2023-09-27 20:39:52'),
+(500, NULL, NULL, 'PS_CCCJS_VERSION', '2', '2023-10-01 09:42:27', '2023-10-01 14:00:18'),
+(501, NULL, NULL, 'PS_CCCCSS_VERSION', '2', '2023-10-01 09:42:27', '2023-10-01 14:00:18'),
+(502, NULL, NULL, 'PS_LABEL_DELIVERY_TIME_AVAILABLE', NULL, '2023-10-01 14:00:17', '2023-10-01 14:00:17'),
+(503, NULL, NULL, 'PS_LABEL_DELIVERY_TIME_OOSBOA', NULL, '2023-10-01 14:00:17', '2023-10-01 14:00:17'),
+(504, NULL, NULL, 'OHM_PRODUCTS_NBR', '8', '2023-10-01 14:43:51', '2023-10-01 14:43:51'),
+(505, NULL, NULL, 'OHM_SELECTED_CATEGORIES', '[\\\"10\\\",\\\"11\\\",\\\"66\\\"]', '2023-10-01 14:43:51', '2023-10-01 17:05:19'),
+(506, NULL, NULL, 'PS_SHOWCASECARD_CATEGORIES_CLOSED', '1', '2023-10-01 14:58:46', '2023-10-01 14:58:46'),
+(507, NULL, NULL, 'PS_SHOWCASECARD_CMS_PAGES_CLOSED', '1', '2023-10-02 15:32:49', '2023-10-02 15:32:49');
 
 -- --------------------------------------------------------
 
@@ -5663,7 +5689,7 @@ CREATE TABLE `ps_configuration_kpi` (
   `value` text DEFAULT NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_configuration_kpi`
@@ -5726,7 +5752,7 @@ CREATE TABLE `ps_configuration_kpi_lang` (
   `id_lang` int(10) UNSIGNED NOT NULL,
   `value` text DEFAULT NULL,
   `date_upd` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_configuration_kpi_lang`
@@ -5747,7 +5773,7 @@ CREATE TABLE `ps_configuration_lang` (
   `id_lang` int(10) UNSIGNED NOT NULL,
   `value` text DEFAULT NULL,
   `date_upd` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_configuration_lang`
@@ -5772,12 +5798,12 @@ INSERT INTO `ps_configuration_lang` (`id_configuration`, `id_lang`, `value`, `da
 (215, 2, '', '2023-09-25 22:50:31'),
 (282, 1, '<p>We are currently updating our shop and will be back really soon. Thanks for your patience.</p>', '2023-09-25 22:47:47'),
 (282, 2, '<p>We are currently updating our shop and will be back really soon. Thanks for your patience.</p>', '2023-09-25 22:47:47'),
-(284, 1, '', NULL),
-(284, 2, '', NULL),
-(285, 1, '', NULL),
-(285, 2, '', NULL),
-(286, 1, 'Out-of-Stock', NULL),
-(286, 2, 'Rupture de stock', NULL),
+(284, 1, '', '2023-10-01 20:00:17'),
+(284, 2, '', '2023-10-01 20:00:17'),
+(285, 1, '', '2023-10-01 20:00:17'),
+(285, 2, '', '2023-10-01 20:00:17'),
+(286, 1, 'Sur devis', '2023-10-01 20:00:17'),
+(286, 2, 'Sur devis', '2023-10-01 20:00:17'),
 (304, 1, 'My wishlists', '2023-09-25 16:42:03'),
 (304, 2, 'My wishlists', '2023-09-25 16:42:03'),
 (305, 1, 'My wishlist', '2023-09-25 16:42:03'),
@@ -5811,7 +5837,11 @@ INSERT INTO `ps_configuration_lang` (`id_configuration`, `id_lang`, `value`, `da
 (331, 1, '', '2023-09-25 22:50:31'),
 (331, 2, '', '2023-09-25 22:50:31'),
 (432, 1, 'The personal data you provide is used to answer queries, process orders or allow access to specific information. You have the right to modify and delete all the personal information found in the \"My Account\" page.', '2023-09-25 16:43:30'),
-(432, 2, 'The personal data you provide is used to answer queries, process orders or allow access to specific information. You have the right to modify and delete all the personal information found in the \"My Account\" page.', '2023-09-25 16:43:30');
+(432, 2, 'The personal data you provide is used to answer queries, process orders or allow access to specific information. You have the right to modify and delete all the personal information found in the \"My Account\" page.', '2023-09-25 16:43:30'),
+(502, 1, '', '2023-10-01 14:00:17'),
+(502, 2, '', '2023-10-01 14:00:17'),
+(503, 1, '', '2023-10-01 14:00:17'),
+(503, 2, '', '2023-10-01 14:00:17');
 
 -- --------------------------------------------------------
 
@@ -5828,7 +5858,7 @@ CREATE TABLE `ps_connections` (
   `ip_address` bigint(20) DEFAULT NULL,
   `date_add` datetime NOT NULL,
   `http_referer` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_connections`
@@ -5861,7 +5891,43 @@ INSERT INTO `ps_connections` (`id_connections`, `id_shop_group`, `id_shop`, `id_
 (24, 1, 1, 2, 2, 0, '2023-09-27 21:49:50', ''),
 (25, 1, 1, 2, 2, 0, '2023-09-27 22:21:17', ''),
 (26, 1, 1, 2, 2, 0, '2023-09-27 22:53:46', ''),
-(27, 1, 1, 2, 2, 0, '2023-09-28 14:21:23', '');
+(27, 1, 1, 2, 2, 0, '2023-09-28 14:21:23', ''),
+(28, 1, 1, 7, 1, 0, '2023-10-01 09:51:09', ''),
+(29, 1, 1, 2, 1, 0, '2023-10-01 10:00:31', ''),
+(30, 1, 1, 2, 1, 0, '2023-10-01 10:32:54', ''),
+(31, 1, 1, 2, 1, 0, '2023-10-01 11:03:48', ''),
+(32, 1, 1, 2, 1, 0, '2023-10-01 11:34:47', ''),
+(33, 1, 1, 2, 1, 0, '2023-10-01 12:59:00', ''),
+(34, 1, 1, 2, 1, 0, '2023-10-01 13:29:43', ''),
+(35, 1, 1, 2, 1, 0, '2023-10-01 14:00:22', ''),
+(36, 1, 1, 2, 1, 0, '2023-10-01 14:33:40', ''),
+(37, 1, 1, 2, 2, 0, '2023-10-01 15:10:33', ''),
+(38, 1, 1, 2, 2, 0, '2023-10-01 15:41:30', ''),
+(39, 1, 1, 2, 2, 0, '2023-10-01 16:13:34', ''),
+(40, 1, 1, 2, 2, 0, '2023-10-01 16:44:12', ''),
+(41, 1, 1, 2, 1, 0, '2023-10-01 17:15:33', ''),
+(42, 1, 1, 2, 1, 0, '2023-10-01 17:46:24', ''),
+(43, 1, 1, 2, 2, 0, '2023-10-01 18:17:00', ''),
+(44, 1, 1, 2, 1, 0, '2023-10-01 18:47:29', ''),
+(45, 1, 1, 2, 1, 0, '2023-10-01 19:19:49', ''),
+(46, 1, 1, 8, 4, 0, '2023-10-01 19:31:52', ''),
+(47, 1, 1, 2, 2, 0, '2023-10-01 19:52:26', ''),
+(48, 1, 1, 9, 1, 0, '2023-10-02 14:38:03', ''),
+(49, 1, 1, 10, 1, 0, '2023-10-02 14:38:08', ''),
+(50, 1, 1, 11, 1, 0, '2023-10-02 14:38:18', ''),
+(51, 1, 1, 2, 2, 0, '2023-10-02 14:46:55', ''),
+(52, 1, 1, 2, 2, 0, '2023-10-02 15:18:13', ''),
+(53, 1, 1, 2, 4, 0, '2023-10-02 15:51:45', ''),
+(54, 1, 1, 2, 2, 0, '2023-10-02 16:22:02', ''),
+(55, 1, 1, 2, 4, 0, '2023-10-02 16:55:27', ''),
+(56, 1, 1, 2, 4, 0, '2023-10-02 17:26:12', ''),
+(57, 1, 1, 2, 4, 0, '2023-10-02 17:58:55', ''),
+(58, 1, 1, 2, 4, 0, '2023-10-02 18:29:14', ''),
+(59, 1, 1, 2, 2, 0, '2023-10-02 19:01:00', ''),
+(60, 1, 1, 2, 2, 0, '2023-10-02 19:36:11', ''),
+(61, 1, 1, 2, 2, 0, '2023-10-02 20:07:02', ''),
+(62, 1, 1, 2, 2, 0, '2023-10-02 20:38:00', ''),
+(63, 1, 1, 2, 2, 0, '2023-10-02 21:08:05', '');
 
 -- --------------------------------------------------------
 
@@ -5874,7 +5940,7 @@ CREATE TABLE `ps_connections_page` (
   `id_page` int(10) UNSIGNED NOT NULL,
   `time_start` datetime NOT NULL,
   `time_end` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -5889,13 +5955,14 @@ CREATE TABLE `ps_connections_source` (
   `request_uri` varchar(255) DEFAULT NULL,
   `keywords` varchar(255) DEFAULT NULL,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_connections_source`
 --
 
 INSERT INTO `ps_connections_source` (`id_connections_source`, `id_connections`, `http_referer`, `request_uri`, `keywords`, `date_add`) VALUES
+(0, 2, 'http://localhost/', 'localhost/pieces-levage/en/', '', '2023-10-01 09:40:54'),
 (1, 1, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-09-25 17:02:59'),
 (2, 1, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-09-25 17:09:12'),
 (3, 2, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-09-25 17:24:30'),
@@ -6373,9 +6440,9 @@ INSERT INTO `ps_connections_source` (`id_connections_source`, `id_connections`, 
 (475, 7, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-09-27 17:21:14'),
 (476, 7, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-09-27 17:21:16'),
 (477, 7, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-09-27 17:21:18'),
-(478, 7, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-09-27 17:21:22'),
-(479, 7, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-09-27 17:21:24');
+(478, 7, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-09-27 17:21:22');
 INSERT INTO `ps_connections_source` (`id_connections_source`, `id_connections`, `http_referer`, `request_uri`, `keywords`, `date_add`) VALUES
+(479, 7, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-09-27 17:21:24'),
 (480, 7, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-09-27 17:21:26'),
 (481, 7, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-09-27 17:22:24'),
 (482, 7, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-09-27 17:22:26'),
@@ -6847,11 +6914,1719 @@ INSERT INTO `ps_connections_source` (`id_connections_source`, `id_connections`, 
 (948, 7, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-09-27 22:57:32'),
 (949, 7, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-09-27 22:57:34'),
 (950, 27, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-09-28 14:21:23'),
-(951, 7, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-09-28 14:21:26'),
-(952, 7, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-09-28 14:21:28');
+(951, 7, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-09-28 14:21:26');
 INSERT INTO `ps_connections_source` (`id_connections_source`, `id_connections`, `http_referer`, `request_uri`, `keywords`, `date_add`) VALUES
+(952, 7, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-09-28 14:21:28'),
 (953, 2, 'http://localhost/', 'localhost/pieces-levage/en/', '', '2023-10-01 09:36:04'),
-(954, 2, 'http://localhost/', 'localhost/pieces-levage/en/', '', '2023-10-01 09:37:26');
+(954, 2, 'http://localhost/', 'localhost/pieces-levage/en/', '', '2023-10-01 09:37:26'),
+(955, 2, 'http://localhost/', 'localhost/pieces-levage/en/', '', '2023-10-01 09:42:08'),
+(956, 2, 'http://localhost/', 'localhost/pieces-levage/en/', '', '2023-10-01 09:44:37'),
+(957, 2, 'http://localhost/', 'localhost/pieces-levage/en/', '', '2023-10-01 09:49:30'),
+(958, 28, '', 'localhost/pieces-levage/en/', '', '2023-10-01 09:51:09'),
+(959, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:00:31'),
+(960, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:02:49'),
+(961, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:02:52'),
+(962, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:02:56'),
+(963, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:03:54'),
+(964, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:03:59'),
+(965, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:04:02'),
+(966, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:04:05'),
+(967, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:09:48'),
+(968, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:10:18'),
+(969, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:10:26'),
+(970, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:10:29'),
+(971, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:10:32'),
+(972, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:14:11'),
+(973, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:14:16'),
+(974, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:14:19'),
+(975, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:14:22'),
+(976, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:15:33'),
+(977, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:15:37'),
+(978, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:15:40'),
+(979, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:15:44'),
+(980, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:16:41'),
+(981, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:16:46'),
+(982, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:16:50'),
+(983, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:16:53'),
+(984, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:17:23'),
+(985, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:17:28'),
+(986, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:17:31'),
+(987, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:17:35'),
+(988, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:17:56'),
+(989, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:18:01'),
+(990, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:18:04'),
+(991, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:18:07'),
+(992, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:18:21'),
+(993, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:18:27'),
+(994, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:18:32'),
+(995, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:18:35'),
+(996, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:19:31'),
+(997, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:19:36'),
+(998, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:19:39'),
+(999, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:19:43'),
+(1000, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:19:59'),
+(1001, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:20:03'),
+(1002, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:20:06'),
+(1003, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:20:09'),
+(1004, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:21:31'),
+(1005, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:21:35'),
+(1006, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:21:38'),
+(1007, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:21:42'),
+(1008, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:25:50'),
+(1009, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:25:55'),
+(1010, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:25:58'),
+(1011, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:26:01'),
+(1012, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:26:31'),
+(1013, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:26:35'),
+(1014, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:26:39'),
+(1015, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:26:43'),
+(1016, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:26:57'),
+(1017, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:27:02'),
+(1018, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:27:05'),
+(1019, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:27:09'),
+(1020, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:27:21'),
+(1021, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:27:25'),
+(1022, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:27:28'),
+(1023, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:27:31'),
+(1024, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:28:19'),
+(1025, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:28:23'),
+(1026, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:28:26'),
+(1027, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:28:29'),
+(1028, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:28:52'),
+(1029, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:28:56'),
+(1030, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:29:00'),
+(1031, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:29:03'),
+(1032, 29, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:29:47'),
+(1033, 29, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:29:52'),
+(1034, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:29:55'),
+(1035, 29, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:29:58'),
+(1036, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:32:54'),
+(1037, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:33:00'),
+(1038, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:33:03'),
+(1039, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:33:06'),
+(1040, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:35:43'),
+(1041, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:35:50'),
+(1042, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:35:54'),
+(1043, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:35:58'),
+(1044, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:37:48'),
+(1045, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:37:52'),
+(1046, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:37:55'),
+(1047, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:37:58'),
+(1048, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:39:22'),
+(1049, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:39:27'),
+(1050, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:39:30'),
+(1051, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:39:34'),
+(1052, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:41:11'),
+(1053, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:41:15'),
+(1054, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:41:18'),
+(1055, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:41:21'),
+(1056, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:42:19'),
+(1057, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:42:24'),
+(1058, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:42:27'),
+(1059, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:42:31'),
+(1060, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:45:46'),
+(1061, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:45:51'),
+(1062, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:45:54'),
+(1063, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:45:58'),
+(1064, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:47:14'),
+(1065, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:47:19'),
+(1066, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:47:22'),
+(1067, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:47:26'),
+(1068, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:51:02'),
+(1069, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:51:07'),
+(1070, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:51:10'),
+(1071, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:51:13'),
+(1072, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:53:33'),
+(1073, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:53:37'),
+(1074, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:53:40'),
+(1075, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:53:45'),
+(1076, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:53:52'),
+(1077, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:53:57'),
+(1078, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:54:00'),
+(1079, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:54:03'),
+(1080, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:57:31'),
+(1081, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:57:45'),
+(1082, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:57:48'),
+(1083, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:57:52'),
+(1084, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:58:44'),
+(1085, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:58:48'),
+(1086, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:58:52'),
+(1087, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:58:55'),
+(1088, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:58:58'),
+(1089, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:59:03'),
+(1090, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:59:06'),
+(1091, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:59:09'),
+(1092, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 10:59:12'),
+(1093, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 10:59:17'),
+(1094, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 10:59:21'),
+(1095, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 10:59:24'),
+(1096, 30, '', 'localhost/pieces-levage/en/137-forestier', '', '2023-10-01 10:59:33'),
+(1097, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:00:54'),
+(1098, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:00:59'),
+(1099, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:01:02'),
+(1100, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:01:06'),
+(1101, 30, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:02:49'),
+(1102, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:02:54'),
+(1103, 30, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:02:57'),
+(1104, 30, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:02:59'),
+(1105, 31, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:03:48'),
+(1106, 31, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:03:52'),
+(1107, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:03:55'),
+(1108, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:04:00'),
+(1109, 31, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:04:09'),
+(1110, 31, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:04:13'),
+(1111, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:04:16'),
+(1112, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:04:19'),
+(1113, 31, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:04:55'),
+(1114, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:05:00'),
+(1115, 31, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:05:03'),
+(1116, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:05:06'),
+(1117, 31, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:07:20'),
+(1118, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:07:25'),
+(1119, 31, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:07:28'),
+(1120, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:07:31'),
+(1121, 31, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:10:34'),
+(1122, 31, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:10:39'),
+(1123, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:10:43'),
+(1124, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:10:46'),
+(1125, 31, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:11:19'),
+(1126, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:11:24'),
+(1127, 31, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:11:27'),
+(1128, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:11:30'),
+(1129, 31, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:12:12'),
+(1130, 31, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:12:17'),
+(1131, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:12:20'),
+(1132, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:12:24'),
+(1133, 31, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:14:04'),
+(1134, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:14:09'),
+(1135, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:14:12'),
+(1136, 31, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:14:16'),
+(1137, 31, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:14:24'),
+(1138, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:14:29'),
+(1139, 31, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:14:32'),
+(1140, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:14:36'),
+(1141, 31, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:15:39'),
+(1142, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:15:43'),
+(1143, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:15:47'),
+(1144, 31, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:15:50'),
+(1145, 31, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:19:17'),
+(1146, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:19:22'),
+(1147, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:19:25'),
+(1148, 31, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:19:28'),
+(1149, 31, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:21:50'),
+(1150, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:21:56'),
+(1151, 31, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:21:59'),
+(1152, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:22:03'),
+(1153, 31, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:25:53'),
+(1154, 31, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:25:58'),
+(1155, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:26:01'),
+(1156, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:26:04'),
+(1157, 31, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:29:55'),
+(1158, 31, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:30:08'),
+(1159, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:30:11'),
+(1160, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:30:15'),
+(1161, 31, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:33:31'),
+(1162, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:33:36'),
+(1163, 31, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:33:39'),
+(1164, 31, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:33:43'),
+(1165, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:34:47'),
+(1166, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:34:52'),
+(1167, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:34:55'),
+(1168, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:34:58'),
+(1169, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:36:29'),
+(1170, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:36:33'),
+(1171, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:36:36'),
+(1172, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:36:40'),
+(1173, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:37:04'),
+(1174, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:37:09'),
+(1175, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:37:12'),
+(1176, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:37:16'),
+(1177, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:40:44'),
+(1178, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:40:49'),
+(1179, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:40:53'),
+(1180, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:40:56'),
+(1181, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:43:55'),
+(1182, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:44:00'),
+(1183, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:44:03'),
+(1184, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:44:06'),
+(1185, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:44:25'),
+(1186, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:44:30'),
+(1187, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:44:33'),
+(1188, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:44:37'),
+(1189, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:47:27'),
+(1190, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:47:31'),
+(1191, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:47:34'),
+(1192, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:47:38'),
+(1193, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:48:45'),
+(1194, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:48:50'),
+(1195, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:48:53'),
+(1196, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:48:57'),
+(1197, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:49:31'),
+(1198, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:49:35'),
+(1199, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:49:40'),
+(1200, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:49:44'),
+(1201, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:50:03'),
+(1202, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:50:07'),
+(1203, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:50:11'),
+(1204, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:50:14'),
+(1205, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:55:02'),
+(1206, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:55:09'),
+(1207, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:55:12'),
+(1208, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:55:15'),
+(1209, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 11:57:27'),
+(1210, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 11:57:32'),
+(1211, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 11:57:37'),
+(1212, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 11:57:41'),
+(1213, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 12:00:26'),
+(1214, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 12:00:36'),
+(1215, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 12:00:39'),
+(1216, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 12:00:42'),
+(1217, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 12:00:54'),
+(1218, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 12:00:58'),
+(1219, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 12:01:01'),
+(1220, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 12:01:04'),
+(1221, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 12:01:10'),
+(1222, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 12:01:14'),
+(1223, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 12:01:18'),
+(1224, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 12:01:21'),
+(1225, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 12:03:05'),
+(1226, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 12:03:09'),
+(1227, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 12:03:12'),
+(1228, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 12:03:15'),
+(1229, 32, '', 'localhost/pieces-levage/en/', '', '2023-10-01 12:03:52'),
+(1230, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 12:03:56'),
+(1231, 32, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 12:03:59'),
+(1232, 32, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 12:04:02'),
+(1233, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 12:59:00'),
+(1234, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 12:59:06'),
+(1235, 33, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 12:59:09'),
+(1236, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 12:59:12'),
+(1237, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 12:59:33'),
+(1238, 33, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 12:59:37'),
+(1239, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 12:59:40'),
+(1240, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 12:59:43'),
+(1241, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:00:49'),
+(1242, 33, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:00:54'),
+(1243, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:00:57'),
+(1244, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:01:00'),
+(1245, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:02:34'),
+(1246, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:02:39'),
+(1247, 33, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:02:42'),
+(1248, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:02:45'),
+(1249, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:04:19'),
+(1250, 33, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:04:22'),
+(1251, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:04:25'),
+(1252, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:07:33'),
+(1253, 33, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:07:48'),
+(1254, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:07:52'),
+(1255, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:07:54'),
+(1256, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:07:58'),
+(1257, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:12:08'),
+(1258, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:12:13'),
+(1259, 33, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:12:21'),
+(1260, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:12:24'),
+(1261, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:14:23'),
+(1262, 33, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:14:27'),
+(1263, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:14:30'),
+(1264, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:14:33'),
+(1265, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:15:46'),
+(1266, 33, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:15:51'),
+(1267, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:15:55'),
+(1268, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:15:58'),
+(1269, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:16:03'),
+(1270, 33, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:16:07'),
+(1271, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:16:10'),
+(1272, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:16:14'),
+(1273, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:16:31'),
+(1274, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:16:35'),
+(1275, 33, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:16:38'),
+(1276, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:16:42'),
+(1277, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:18:05'),
+(1278, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:18:10'),
+(1279, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:18:12'),
+(1280, 33, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:18:15'),
+(1281, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:19:13'),
+(1282, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:19:17'),
+(1283, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:19:30'),
+(1284, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:19:34'),
+(1285, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:21:09'),
+(1286, 33, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:21:14'),
+(1287, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:21:17'),
+(1288, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:21:20'),
+(1289, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:23:35'),
+(1290, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:26:32'),
+(1291, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:26:36'),
+(1292, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:26:40'),
+(1293, 33, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:26:43'),
+(1294, 33, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:27:45'),
+(1295, 33, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:27:50'),
+(1296, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:27:53'),
+(1297, 33, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:27:56'),
+(1298, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:29:43'),
+(1299, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:29:48'),
+(1300, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:29:51'),
+(1301, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:29:55'),
+(1302, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:31:25'),
+(1303, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:31:30'),
+(1304, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:31:33'),
+(1305, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:31:36'),
+(1306, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:32:47'),
+(1307, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:32:52'),
+(1308, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:32:55'),
+(1309, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:32:58'),
+(1310, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:34:34'),
+(1311, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:34:39'),
+(1312, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:34:42'),
+(1313, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:34:45'),
+(1314, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:36:20'),
+(1315, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:36:25'),
+(1316, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:36:28'),
+(1317, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:36:32'),
+(1318, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:37:47'),
+(1319, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:37:51'),
+(1320, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:37:55'),
+(1321, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:37:58'),
+(1322, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:39:37'),
+(1323, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:39:41'),
+(1324, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:39:45'),
+(1325, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:39:48'),
+(1326, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:41:44'),
+(1327, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:41:49'),
+(1328, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:41:53'),
+(1329, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:41:56'),
+(1330, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:44:35'),
+(1331, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:44:40'),
+(1332, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:44:43'),
+(1333, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:44:47'),
+(1334, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:45:39'),
+(1335, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:45:45'),
+(1336, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:45:48'),
+(1337, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:45:51'),
+(1338, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:48:26'),
+(1339, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:48:31'),
+(1340, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:48:34'),
+(1341, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:48:37'),
+(1342, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:49:37'),
+(1343, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:49:43'),
+(1344, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:49:47'),
+(1345, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:49:50'),
+(1346, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:50:55'),
+(1347, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:51:00'),
+(1348, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:51:03'),
+(1349, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:51:07'),
+(1350, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:51:10'),
+(1351, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:51:15'),
+(1352, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:51:19'),
+(1353, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:51:22'),
+(1354, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:51:25'),
+(1355, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:51:30'),
+(1356, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:51:33'),
+(1357, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:51:36'),
+(1358, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:52:20'),
+(1359, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:52:25'),
+(1360, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:52:29'),
+(1361, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:52:33'),
+(1362, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:55:21'),
+(1363, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:55:25'),
+(1364, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:55:28'),
+(1365, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:55:31'),
+(1366, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:57:22'),
+(1367, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:57:27'),
+(1368, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:57:31'),
+(1369, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:57:35'),
+(1370, 34, '', 'localhost/pieces-levage/en/', '', '2023-10-01 13:57:41'),
+(1371, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 13:57:46'),
+(1372, 34, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 13:57:49'),
+(1373, 34, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 13:57:52'),
+(1374, 35, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:00:22'),
+(1375, 35, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:00:31'),
+(1376, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:00:35'),
+(1377, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:00:38'),
+(1378, 35, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:02:20'),
+(1379, 35, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:02:24'),
+(1380, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:02:28'),
+(1381, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:02:31'),
+(1382, 35, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:03:19'),
+(1383, 35, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:03:24'),
+(1384, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:03:27'),
+(1385, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:03:30'),
+(1386, 35, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:04:50'),
+(1387, 35, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:04:55'),
+(1388, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:04:58'),
+(1389, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:05:02'),
+(1390, 35, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:07:12'),
+(1391, 35, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:07:19'),
+(1392, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:07:23'),
+(1393, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:07:26'),
+(1394, 35, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:07:38'),
+(1395, 35, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:07:43'),
+(1396, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:07:46'),
+(1397, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:07:49'),
+(1398, 35, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:09:28'),
+(1399, 35, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:09:34'),
+(1400, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:09:37'),
+(1401, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:09:40'),
+(1402, 35, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:10:30'),
+(1403, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:10:35'),
+(1404, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:10:38'),
+(1405, 35, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:10:41'),
+(1406, 35, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:12:46'),
+(1407, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:12:51'),
+(1408, 35, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:12:54'),
+(1409, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:12:58'),
+(1410, 35, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:13:58'),
+(1411, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:14:03'),
+(1412, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:14:07'),
+(1413, 35, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:14:10'),
+(1414, 35, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:14:13'),
+(1415, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:14:23'),
+(1416, 35, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:14:26'),
+(1417, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:14:30'),
+(1418, 35, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:16:03'),
+(1419, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:16:07'),
+(1420, 35, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:16:11'),
+(1421, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:16:14'),
+(1422, 35, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:17:08'),
+(1423, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:17:13'),
+(1424, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:17:17'),
+(1425, 35, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:17:20'),
+(1426, 35, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:17:48'),
+(1427, 35, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:17:53'),
+(1428, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:17:56'),
+(1429, 35, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:17:59'),
+(1430, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:33:40'),
+(1431, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:33:45'),
+(1432, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:33:49'),
+(1433, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:34:05'),
+(1434, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:39:38'),
+(1435, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:39:45'),
+(1436, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:39:48'),
+(1437, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:39:51'),
+(1438, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:42:38'),
+(1439, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:42:43'),
+(1440, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:42:46'),
+(1441, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:42:49'),
+(1442, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:45:00'),
+(1443, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:45:05'),
+(1444, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:45:08'),
+(1445, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:45:15'),
+(1446, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:46:12'),
+(1447, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:46:17'),
+(1448, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:46:20'),
+(1449, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:46:23'),
+(1450, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:48:19'),
+(1451, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:48:24'),
+(1452, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:48:28'),
+(1453, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:48:31'),
+(1454, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:50:26'),
+(1455, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:50:31'),
+(1456, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:50:37'),
+(1457, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:50:43'),
+(1458, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:51:15'),
+(1459, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:51:23');
+INSERT INTO `ps_connections_source` (`id_connections_source`, `id_connections`, `http_referer`, `request_uri`, `keywords`, `date_add`) VALUES
+(1460, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:51:26'),
+(1461, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:51:29'),
+(1462, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:52:27'),
+(1463, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:52:32'),
+(1464, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:52:36'),
+(1465, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:52:45'),
+(1466, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:53:18'),
+(1467, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:53:24'),
+(1468, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:53:28'),
+(1469, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:53:39'),
+(1470, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:54:44'),
+(1471, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:54:48'),
+(1472, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:54:52'),
+(1473, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:55:02'),
+(1474, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 14:56:50'),
+(1475, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 14:56:55'),
+(1476, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 14:57:01'),
+(1477, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 14:57:06'),
+(1478, 37, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:10:33'),
+(1479, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:15:18'),
+(1480, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:16:04'),
+(1481, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:17:27'),
+(1482, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:18:12'),
+(1483, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:20:00'),
+(1484, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:27:44'),
+(1485, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:29:59'),
+(1486, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:31:11'),
+(1487, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:31:57'),
+(1488, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:32:19'),
+(1489, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:33:09'),
+(1490, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:33:53'),
+(1491, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:34:14'),
+(1492, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:34:33'),
+(1493, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:36:35'),
+(1494, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:37:04'),
+(1495, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:37:33'),
+(1496, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:39:17'),
+(1497, 38, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:41:30'),
+(1498, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:42:06'),
+(1499, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:43:37'),
+(1500, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:48:26'),
+(1501, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:49:06'),
+(1502, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:51:18'),
+(1503, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:54:24'),
+(1504, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:56:03'),
+(1505, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:57:09'),
+(1506, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 15:57:54'),
+(1507, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:00:07'),
+(1508, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:00:50'),
+(1509, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:01:23'),
+(1510, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:01:37'),
+(1511, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:02:06'),
+(1512, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:02:26'),
+(1513, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:02:58'),
+(1514, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:04:27'),
+(1515, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:04:43'),
+(1516, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:05:26'),
+(1517, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:06:31'),
+(1518, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:07:49'),
+(1519, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:10:12'),
+(1520, 39, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:13:34'),
+(1521, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:14:14'),
+(1522, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:14:43'),
+(1523, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:15:33'),
+(1524, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:15:49'),
+(1525, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:16:21'),
+(1526, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:17:30'),
+(1527, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:18:42'),
+(1528, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:19:27'),
+(1529, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:20:00'),
+(1530, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:20:50'),
+(1531, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:21:06'),
+(1532, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:21:19'),
+(1533, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:22:59'),
+(1534, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:23:51'),
+(1535, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 16:24:05'),
+(1536, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 16:24:10'),
+(1537, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 16:24:13'),
+(1538, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 16:24:16'),
+(1539, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:39:48'),
+(1540, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:43:35'),
+(1541, 40, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:44:12'),
+(1542, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:49:14'),
+(1543, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:49:31'),
+(1544, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:51:23'),
+(1545, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:51:49'),
+(1546, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:52:30'),
+(1547, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:52:47'),
+(1548, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 16:56:52'),
+(1549, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 16:57:37'),
+(1550, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 16:57:41'),
+(1551, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 16:57:51'),
+(1552, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 16:57:54'),
+(1553, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 16:57:57'),
+(1554, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 16:58:01'),
+(1555, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 16:58:07'),
+(1556, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 16:58:11'),
+(1557, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 16:58:14'),
+(1558, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 16:59:24'),
+(1559, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 16:59:30'),
+(1560, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 16:59:34'),
+(1561, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 16:59:38'),
+(1562, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 16:59:54'),
+(1563, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 16:59:58'),
+(1564, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:00:01'),
+(1565, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:00:06'),
+(1566, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:01:55'),
+(1567, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:02:00'),
+(1568, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:02:04'),
+(1569, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:02:07'),
+(1570, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:02:11'),
+(1571, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:02:17'),
+(1572, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:02:21'),
+(1573, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:02:25'),
+(1574, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:04:02'),
+(1575, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:04:06'),
+(1576, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:04:10'),
+(1577, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:04:13'),
+(1578, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:04:24'),
+(1579, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:04:28'),
+(1580, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:04:31'),
+(1581, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:04:34'),
+(1582, 36, '', 'localhost/pieces-levage/js/jquery/jquery-migrate.min.map', '', '2023-10-01 17:05:32'),
+(1583, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:05:38'),
+(1584, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:05:43'),
+(1585, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:05:47'),
+(1586, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:05:50'),
+(1587, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:07:37'),
+(1588, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:07:41'),
+(1589, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:07:45'),
+(1590, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:07:48'),
+(1591, 36, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:08:04'),
+(1592, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:08:09'),
+(1593, 36, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:08:12'),
+(1594, 36, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:08:15'),
+(1595, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:15:33'),
+(1596, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:15:38'),
+(1597, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:15:41'),
+(1598, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:15:45'),
+(1599, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:16:21'),
+(1600, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:16:25'),
+(1601, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:16:28'),
+(1602, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:16:31'),
+(1603, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:17:07'),
+(1604, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:17:14'),
+(1605, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:17:17'),
+(1606, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:17:20'),
+(1607, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:20:28'),
+(1608, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:20:33'),
+(1609, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:20:36'),
+(1610, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:20:39'),
+(1611, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:22:43'),
+(1612, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:23:10'),
+(1613, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:23:18'),
+(1614, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:23:22'),
+(1615, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:23:25'),
+(1616, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:23:47'),
+(1617, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:23:53'),
+(1618, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:23:59'),
+(1619, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:24:03'),
+(1620, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:24:13'),
+(1621, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:24:18'),
+(1622, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:24:22'),
+(1623, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:24:25'),
+(1624, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:28:04'),
+(1625, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:28:10'),
+(1626, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:28:13'),
+(1627, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:28:20'),
+(1628, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:29:07'),
+(1629, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:29:12'),
+(1630, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:29:16'),
+(1631, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:29:24'),
+(1632, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:29:30'),
+(1633, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:29:35'),
+(1634, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:29:40'),
+(1635, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:29:46'),
+(1636, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:30:47'),
+(1637, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:30:53'),
+(1638, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:30:59'),
+(1639, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:31:03'),
+(1640, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:32:31'),
+(1641, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:32:39'),
+(1642, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:32:42'),
+(1643, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:32:45'),
+(1644, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:33:12'),
+(1645, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:33:17'),
+(1646, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:33:20'),
+(1647, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:33:27'),
+(1648, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:34:36'),
+(1649, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:34:40'),
+(1650, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:34:46'),
+(1651, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:34:49'),
+(1652, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:35:54'),
+(1653, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:35:59'),
+(1654, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:36:07'),
+(1655, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:36:10'),
+(1656, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:36:17'),
+(1657, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:36:25'),
+(1658, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:36:29'),
+(1659, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:36:32'),
+(1660, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:38:56'),
+(1661, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:39:02'),
+(1662, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:39:05'),
+(1663, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:39:11'),
+(1664, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:41:08'),
+(1665, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:41:16'),
+(1666, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:41:20'),
+(1667, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:41:23'),
+(1668, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:42:13'),
+(1669, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:42:22'),
+(1670, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:42:26'),
+(1671, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:42:29'),
+(1672, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:42:44'),
+(1673, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:42:50'),
+(1674, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:42:55'),
+(1675, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:43:02'),
+(1676, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:43:09'),
+(1677, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:43:17'),
+(1678, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:43:20'),
+(1679, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:43:23'),
+(1680, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:44:00'),
+(1681, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:44:05'),
+(1682, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:44:08'),
+(1683, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:44:14'),
+(1684, 42, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:46:24'),
+(1685, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:46:27'),
+(1686, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:46:33'),
+(1687, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:46:36'),
+(1688, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:46:44'),
+(1689, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:49:14'),
+(1690, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:49:20'),
+(1691, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:49:24'),
+(1692, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:49:31'),
+(1693, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:49:45'),
+(1694, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:49:51'),
+(1695, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:49:55'),
+(1696, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:49:58'),
+(1697, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:50:30'),
+(1698, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:50:39'),
+(1699, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:50:42'),
+(1700, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:50:46'),
+(1701, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:51:57'),
+(1702, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:52:02'),
+(1703, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:52:06'),
+(1704, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:52:09'),
+(1705, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:56:10'),
+(1706, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:56:16'),
+(1707, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:56:19'),
+(1708, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:56:26'),
+(1709, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 17:59:20'),
+(1710, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 17:59:26'),
+(1711, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 17:59:32'),
+(1712, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 17:59:36'),
+(1713, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:01:52'),
+(1714, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:02:01'),
+(1715, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:02:05'),
+(1716, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:02:08'),
+(1717, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:03:01'),
+(1718, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:03:10'),
+(1719, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:03:13'),
+(1720, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:03:16'),
+(1721, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:10:54'),
+(1722, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:10:59'),
+(1723, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:11:02'),
+(1724, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:11:10'),
+(1725, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:11:42'),
+(1726, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:11:47'),
+(1727, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:11:51'),
+(1728, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:11:59'),
+(1729, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:13:11'),
+(1730, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:13:15'),
+(1731, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:13:22'),
+(1732, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:13:25'),
+(1733, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:14:30'),
+(1734, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:14:38'),
+(1735, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:14:42'),
+(1736, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:14:45'),
+(1737, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:16:03'),
+(1738, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:16:12'),
+(1739, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:16:16'),
+(1740, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:16:19'),
+(1741, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:16:44'),
+(1742, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:16:53'),
+(1743, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:16:56'),
+(1744, 43, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:17:00'),
+(1745, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:18:35'),
+(1746, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:18:40'),
+(1747, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:18:44'),
+(1748, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:18:51'),
+(1749, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:21:13'),
+(1750, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:21:19'),
+(1751, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:21:22'),
+(1752, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:21:25'),
+(1753, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:22:54'),
+(1754, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:23:00'),
+(1755, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:23:04'),
+(1756, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:23:11'),
+(1757, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:23:14'),
+(1758, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:23:19'),
+(1759, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:23:28'),
+(1760, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:23:32'),
+(1761, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:23:35'),
+(1762, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:23:40'),
+(1763, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:23:43'),
+(1764, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:23:50'),
+(1765, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:27:58'),
+(1766, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:28:09'),
+(1767, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:28:13'),
+(1768, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:28:16'),
+(1769, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:28:26'),
+(1770, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:28:30'),
+(1771, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:28:34'),
+(1772, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:28:41'),
+(1773, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:31:43'),
+(1774, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:31:49'),
+(1775, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:31:52'),
+(1776, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:32:00'),
+(1777, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:32:29'),
+(1778, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:32:34'),
+(1779, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:32:39'),
+(1780, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:32:46'),
+(1781, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:34:12'),
+(1782, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:34:18'),
+(1783, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:34:22'),
+(1784, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:34:25'),
+(1785, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:36:50'),
+(1786, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:36:59'),
+(1787, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:37:03'),
+(1788, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:37:07'),
+(1789, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:38:53'),
+(1790, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:39:02'),
+(1791, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:39:06'),
+(1792, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:39:09'),
+(1793, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:40:45'),
+(1794, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:40:50'),
+(1795, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:40:57'),
+(1796, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:41:01'),
+(1797, 41, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:45:00'),
+(1798, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:45:06'),
+(1799, 41, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:45:13'),
+(1800, 41, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:45:16'),
+(1801, 44, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:47:29'),
+(1802, 44, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:47:35'),
+(1803, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:47:39'),
+(1804, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:47:44'),
+(1805, 44, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:48:40'),
+(1806, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:48:46'),
+(1807, 44, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:48:54'),
+(1808, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:48:58'),
+(1809, 44, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:49:35'),
+(1810, 44, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:49:44'),
+(1811, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:49:48'),
+(1812, 44, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:50:09'),
+(1813, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:50:16'),
+(1814, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:50:20'),
+(1815, 44, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:50:23'),
+(1816, 44, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:51:28'),
+(1817, 44, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:51:34'),
+(1818, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:51:39'),
+(1819, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:51:42'),
+(1820, 44, '', 'localhost/pieces-levage/en/', '', '2023-10-01 18:54:35'),
+(1821, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 18:54:41'),
+(1822, 44, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 18:54:45'),
+(1823, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 18:54:52'),
+(1824, 44, '', 'localhost/pieces-levage/en/', '', '2023-10-01 19:00:47'),
+(1825, 44, '', 'localhost/pieces-levage/en/', '', '2023-10-01 19:00:50'),
+(1826, 44, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:00:56'),
+(1827, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:01:04'),
+(1828, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:01:08'),
+(1829, 44, '', 'localhost/pieces-levage/en/', '', '2023-10-01 19:04:07'),
+(1830, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:04:13'),
+(1831, 44, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:04:19'),
+(1832, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:04:25'),
+(1833, 44, '', 'localhost/pieces-levage/en/', '', '2023-10-01 19:05:20'),
+(1834, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:05:25'),
+(1835, 44, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:05:33'),
+(1836, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:05:37'),
+(1837, 44, '', 'localhost/pieces-levage/en/', '', '2023-10-01 19:06:01'),
+(1838, 44, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:06:07'),
+(1839, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:06:10'),
+(1840, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:06:13'),
+(1841, 44, '', 'localhost/pieces-levage/en/', '', '2023-10-01 19:09:49'),
+(1842, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:09:58'),
+(1843, 44, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:10:01'),
+(1844, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:10:05'),
+(1845, 44, '', 'localhost/pieces-levage/en/', '', '2023-10-01 19:13:20'),
+(1846, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:13:26'),
+(1847, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:13:30'),
+(1848, 44, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:13:33'),
+(1849, 44, '', 'localhost/pieces-levage/en/', '', '2023-10-01 19:13:58'),
+(1850, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:14:04'),
+(1851, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:14:07'),
+(1852, 44, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:14:10'),
+(1853, 44, '', 'localhost/pieces-levage/en/', '', '2023-10-01 19:17:33'),
+(1854, 44, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:17:44'),
+(1855, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:17:47'),
+(1856, 44, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:17:50'),
+(1857, 45, '', 'localhost/pieces-levage/en/', '', '2023-10-01 19:19:49'),
+(1858, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:19:59'),
+(1859, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:20:02'),
+(1860, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:20:06'),
+(1861, 45, '', 'localhost/pieces-levage/en/', '', '2023-10-01 19:20:28'),
+(1862, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:20:33'),
+(1863, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:20:37'),
+(1864, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:20:45'),
+(1865, 45, '', 'localhost/pieces-levage/en/', '', '2023-10-01 19:22:13'),
+(1866, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:22:19'),
+(1867, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:22:26'),
+(1868, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:22:30'),
+(1869, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:31:37'),
+(1870, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:31:40'),
+(1871, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:31:46'),
+(1872, 46, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-01 19:31:52'),
+(1873, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:34:43'),
+(1874, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:34:47'),
+(1875, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:34:50'),
+(1876, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:35:02'),
+(1877, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:35:05'),
+(1878, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:35:09'),
+(1879, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:40:54'),
+(1880, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:40:57'),
+(1881, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:41:01'),
+(1882, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:42:47'),
+(1883, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:42:51'),
+(1884, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:42:58'),
+(1885, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:44:11'),
+(1886, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:44:14'),
+(1887, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:44:17'),
+(1888, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:44:27'),
+(1889, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:44:35'),
+(1890, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:44:40'),
+(1891, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:47:50'),
+(1892, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:47:57'),
+(1893, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:48:00'),
+(1894, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:49:45'),
+(1895, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:49:53'),
+(1896, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:49:56'),
+(1897, 47, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:52:26'),
+(1898, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:52:33'),
+(1899, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:52:36'),
+(1900, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:53:58'),
+(1901, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:54:02'),
+(1902, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:54:05'),
+(1903, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:55:27'),
+(1904, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:55:31'),
+(1905, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:55:35'),
+(1906, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:56:23'),
+(1907, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:56:30'),
+(1908, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:56:34'),
+(1909, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:57:36'),
+(1910, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:57:40'),
+(1911, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:57:43'),
+(1912, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:57:58'),
+(1913, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:58:01'),
+(1914, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:58:10'),
+(1915, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:58:22'),
+(1916, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:58:30'),
+(1917, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:58:34'),
+(1918, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:58:45'),
+(1919, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:58:52'),
+(1920, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:58:55'),
+(1921, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:59:09'),
+(1922, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:59:12'),
+(1923, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:59:15'),
+(1924, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 19:59:28'),
+(1925, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 19:59:35'),
+(1926, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 19:59:38'),
+(1927, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 20:00:42'),
+(1928, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 20:00:45'),
+(1929, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 20:00:49'),
+(1930, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 20:04:47'),
+(1931, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 20:04:54'),
+(1932, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 20:04:59'),
+(1933, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-01 20:07:38'),
+(1934, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-01 20:07:44'),
+(1935, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-01 20:07:48'),
+(1936, 48, '', 'localhost/pieces-levage/en/', '', '2023-10-02 14:38:03'),
+(1937, 49, '', 'localhost/pieces-levage/en/', '', '2023-10-02 14:38:08'),
+(1938, 50, '', 'localhost/pieces-levage/en/', '', '2023-10-02 14:38:18'),
+(1939, 50, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 14:38:47'),
+(1940, 50, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 14:38:51'),
+(1941, 50, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 14:38:54'),
+(1942, 50, '', 'localhost/pieces-levage/en/', '', '2023-10-02 14:39:14'),
+(1943, 50, '', 'localhost/pieces-levage/en/', '', '2023-10-02 14:39:22'),
+(1944, 50, '', 'localhost/pieces-levage/en/', '', '2023-10-02 14:39:29'),
+(1945, 51, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 14:46:55'),
+(1946, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 14:46:58'),
+(1947, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 14:47:05'),
+(1948, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 14:48:16'),
+(1949, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 14:48:19'),
+(1950, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 14:48:23'),
+(1951, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 14:49:32'),
+(1952, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 14:49:39'),
+(1953, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 14:49:43'),
+(1954, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 14:49:50'),
+(1955, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 14:49:53'),
+(1956, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 14:55:46'),
+(1957, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 14:55:49'),
+(1958, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 14:55:56');
+INSERT INTO `ps_connections_source` (`id_connections_source`, `id_connections`, `http_referer`, `request_uri`, `keywords`, `date_add`) VALUES
+(1959, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 14:57:40'),
+(1960, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 14:57:44'),
+(1961, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 14:57:47'),
+(1962, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 14:58:13'),
+(1963, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 14:58:19'),
+(1964, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 14:58:23'),
+(1965, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 14:59:05'),
+(1966, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:00:39'),
+(1967, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:00:59'),
+(1968, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:03:09'),
+(1969, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:03:16'),
+(1970, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:03:19'),
+(1971, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:06:37'),
+(1972, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:11:45'),
+(1973, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:11:52'),
+(1974, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:11:56'),
+(1975, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:12:17'),
+(1976, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:12:21'),
+(1977, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:12:27'),
+(1978, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:12:36'),
+(1979, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:12:40'),
+(1980, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:12:44'),
+(1981, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:13:07'),
+(1982, 52, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:18:13'),
+(1983, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:18:17'),
+(1984, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:18:20'),
+(1985, 45, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 15:19:49'),
+(1986, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:20:01'),
+(1987, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:20:05'),
+(1988, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:20:08'),
+(1989, 45, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 15:24:21'),
+(1990, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:24:28'),
+(1991, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:24:35'),
+(1992, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:24:40'),
+(1993, 45, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 15:24:57'),
+(1994, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:25:03'),
+(1995, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:25:10'),
+(1996, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:25:13'),
+(1997, 45, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 15:30:19'),
+(1998, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:30:28'),
+(1999, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:30:34'),
+(2000, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:30:38'),
+(2001, 45, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 15:31:17'),
+(2002, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:31:23'),
+(2003, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:31:30'),
+(2004, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:31:33'),
+(2005, 45, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 15:33:49'),
+(2006, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:33:54'),
+(2007, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:33:58'),
+(2008, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:34:01'),
+(2009, 45, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 15:43:29'),
+(2010, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:43:35'),
+(2011, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:43:43'),
+(2012, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:43:46'),
+(2013, 45, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 15:43:50'),
+(2014, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:43:57'),
+(2015, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:44:05'),
+(2016, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:44:08'),
+(2017, 45, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 15:44:20'),
+(2018, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:44:26'),
+(2019, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:44:35'),
+(2020, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:44:38'),
+(2021, 45, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 15:45:23'),
+(2022, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:45:33'),
+(2023, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:45:36'),
+(2024, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:45:41'),
+(2025, 45, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 15:46:09'),
+(2026, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:46:15'),
+(2027, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:46:22'),
+(2028, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:46:25'),
+(2029, 45, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 15:48:36'),
+(2030, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:48:42'),
+(2031, 45, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:48:46'),
+(2032, 45, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:48:49'),
+(2033, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 15:51:45'),
+(2034, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:51:51'),
+(2035, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 15:55:25'),
+(2036, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 15:55:30'),
+(2037, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 15:55:33'),
+(2038, 53, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 15:55:37'),
+(2039, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:21:47'),
+(2040, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:21:54'),
+(2041, 54, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 16:22:02'),
+(2042, 53, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 16:22:06'),
+(2043, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:22:12'),
+(2044, 53, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 16:22:20'),
+(2045, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 16:22:28'),
+(2046, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:22:32'),
+(2047, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:23:02'),
+(2048, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:23:12'),
+(2049, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 16:23:16'),
+(2050, 53, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 16:23:20'),
+(2051, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:23:51'),
+(2052, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:24:56'),
+(2053, 53, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 16:25:02'),
+(2054, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:25:06'),
+(2055, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 16:25:11'),
+(2056, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:29:44'),
+(2057, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:29:50'),
+(2058, 53, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 16:29:54'),
+(2059, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 16:29:58'),
+(2060, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:30:42'),
+(2061, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:31:07'),
+(2062, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:31:18'),
+(2063, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:31:31'),
+(2064, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:31:43'),
+(2065, 53, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 16:31:50'),
+(2066, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 16:31:53'),
+(2067, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:31:57'),
+(2068, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:34:55'),
+(2069, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:35:01'),
+(2070, 53, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 16:35:05'),
+(2071, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 16:35:09'),
+(2072, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:36:44'),
+(2073, 53, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 16:36:54'),
+(2074, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:36:58'),
+(2075, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 16:37:04'),
+(2076, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:38:35'),
+(2077, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 16:38:43'),
+(2078, 53, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 16:38:47'),
+(2079, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:38:50'),
+(2080, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:40:16'),
+(2081, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 16:40:24'),
+(2082, 53, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 16:40:27'),
+(2083, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:40:31'),
+(2084, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:40:36'),
+(2085, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:40:46'),
+(2086, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 16:40:49'),
+(2087, 53, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 16:40:53'),
+(2088, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:41:43'),
+(2089, 53, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 16:41:49'),
+(2090, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 16:41:52'),
+(2091, 53, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 16:41:55'),
+(2092, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:44:07'),
+(2093, 55, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:55:27'),
+(2094, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:55:33'),
+(2095, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:56:03'),
+(2096, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:56:23'),
+(2097, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:56:39'),
+(2098, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:56:55'),
+(2099, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:58:38'),
+(2100, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 16:59:18'),
+(2101, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:00:18'),
+(2102, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:00:36'),
+(2103, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:01:32'),
+(2104, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:01:47'),
+(2105, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:03:31'),
+(2106, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:04:26'),
+(2107, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:05:56'),
+(2108, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:07:07'),
+(2109, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:07:33'),
+(2110, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:09:00'),
+(2111, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:14:13'),
+(2112, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:17:09'),
+(2113, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:17:37'),
+(2114, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:21:43'),
+(2115, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:22:49'),
+(2116, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:23:08'),
+(2117, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:23:53'),
+(2118, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:24:50'),
+(2119, 53, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:25:24'),
+(2120, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:26:12'),
+(2121, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:26:30'),
+(2122, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:27:36'),
+(2123, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:30:22'),
+(2124, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:31:52'),
+(2125, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:32:40'),
+(2126, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:34:32'),
+(2127, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:37:20'),
+(2128, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:38:38'),
+(2129, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:38:41'),
+(2130, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:38:45'),
+(2131, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:40:50'),
+(2132, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:41:00'),
+(2133, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:41:03'),
+(2134, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:41:06'),
+(2135, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:42:01'),
+(2136, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:42:06'),
+(2137, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:42:10'),
+(2138, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:42:13'),
+(2139, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:42:17'),
+(2140, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:42:23'),
+(2141, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:42:26'),
+(2142, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:42:30'),
+(2143, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:42:39'),
+(2144, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:42:45'),
+(2145, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:42:49'),
+(2146, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:42:52'),
+(2147, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:43:44'),
+(2148, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:43:49'),
+(2149, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:43:52'),
+(2150, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:43:56'),
+(2151, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:47:58'),
+(2152, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:48:05'),
+(2153, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:48:08'),
+(2154, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:48:14'),
+(2155, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:48:20'),
+(2156, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:48:24'),
+(2157, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:48:27'),
+(2158, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:48:31'),
+(2159, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:50:00'),
+(2160, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:50:05'),
+(2161, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:50:10'),
+(2162, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:50:13'),
+(2163, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:50:18'),
+(2164, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:50:24'),
+(2165, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:50:28'),
+(2166, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:50:31'),
+(2167, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:50:36'),
+(2168, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:50:44'),
+(2169, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:50:48'),
+(2170, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:50:51'),
+(2171, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:50:57'),
+(2172, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:51:03'),
+(2173, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:51:07'),
+(2174, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:51:16'),
+(2175, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:51:22'),
+(2176, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:51:28'),
+(2177, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:51:31'),
+(2178, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:51:35'),
+(2179, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:52:30'),
+(2180, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:52:35'),
+(2181, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:52:38'),
+(2182, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:52:49'),
+(2183, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:53:43'),
+(2184, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:53:56'),
+(2185, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:53:59'),
+(2186, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:54:06'),
+(2187, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:54:16'),
+(2188, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:54:21'),
+(2189, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:54:26'),
+(2190, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:54:29'),
+(2191, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:55:49'),
+(2192, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:55:55'),
+(2193, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:55:59'),
+(2194, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:56:02'),
+(2195, 56, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:56:08'),
+(2196, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:56:14'),
+(2197, 56, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:56:21'),
+(2198, 56, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:56:25'),
+(2199, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:58:55'),
+(2200, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:59:00'),
+(2201, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:59:05'),
+(2202, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:59:11'),
+(2203, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:59:15'),
+(2204, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:59:21'),
+(2205, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:59:25'),
+(2206, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:59:28'),
+(2207, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 17:59:45'),
+(2208, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 17:59:50'),
+(2209, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 17:59:54'),
+(2210, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 17:59:59'),
+(2211, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:00:05'),
+(2212, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:00:09'),
+(2213, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:00:14'),
+(2214, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:00:18'),
+(2215, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:00:47'),
+(2216, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:00:52'),
+(2217, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:00:55'),
+(2218, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:00:59'),
+(2219, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:01:11'),
+(2220, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:01:16'),
+(2221, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:01:20'),
+(2222, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:01:23'),
+(2223, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:02:49'),
+(2224, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:02:53'),
+(2225, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:02:57'),
+(2226, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:03:00'),
+(2227, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:04:16'),
+(2228, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:04:21'),
+(2229, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:04:24'),
+(2230, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:04:27'),
+(2231, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:04:40'),
+(2232, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:04:59'),
+(2233, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:05:05'),
+(2234, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:05:09'),
+(2235, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:05:12'),
+(2236, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:06:39'),
+(2237, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:06:43'),
+(2238, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:06:47'),
+(2239, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:06:55'),
+(2240, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:08:01'),
+(2241, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:08:09'),
+(2242, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:08:16'),
+(2243, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:08:20'),
+(2244, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:08:26'),
+(2245, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:08:30'),
+(2246, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:08:33'),
+(2247, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:08:39'),
+(2248, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:08:43'),
+(2249, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:08:49'),
+(2250, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:08:52'),
+(2251, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:08:55'),
+(2252, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:10:28'),
+(2253, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:10:34'),
+(2254, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:10:37'),
+(2255, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:10:41'),
+(2256, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:10:48'),
+(2257, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:10:53'),
+(2258, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:10:56'),
+(2259, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:11:02'),
+(2260, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:11:13'),
+(2261, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:11:18'),
+(2262, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:11:22'),
+(2263, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:11:25'),
+(2264, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:11:59'),
+(2265, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:12:05'),
+(2266, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:12:09'),
+(2267, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:12:13'),
+(2268, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:12:37'),
+(2269, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:12:41'),
+(2270, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:12:45'),
+(2271, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:12:51'),
+(2272, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:12:56'),
+(2273, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:13:03'),
+(2274, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:13:09'),
+(2275, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:13:12'),
+(2276, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:13:18'),
+(2277, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:13:23'),
+(2278, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:13:27'),
+(2279, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:13:30'),
+(2280, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:13:34'),
+(2281, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:13:40'),
+(2282, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:13:44'),
+(2283, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:13:50'),
+(2284, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:13:55'),
+(2285, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:14:01'),
+(2286, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:14:04'),
+(2287, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:14:08'),
+(2288, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:14:23'),
+(2289, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:14:30'),
+(2290, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:14:34'),
+(2291, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:14:39'),
+(2292, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:14:44'),
+(2293, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:14:50'),
+(2294, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:14:54'),
+(2295, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:14:57'),
+(2296, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:15:48'),
+(2297, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:15:54'),
+(2298, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:15:58'),
+(2299, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:16:05'),
+(2300, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:16:15'),
+(2301, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:16:21'),
+(2302, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:16:25'),
+(2303, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:16:28'),
+(2304, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:16:53'),
+(2305, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:16:59'),
+(2306, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:17:03'),
+(2307, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:17:06'),
+(2308, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:18:22'),
+(2309, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:18:27'),
+(2310, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:18:30'),
+(2311, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:18:34'),
+(2312, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:18:52'),
+(2313, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:18:58'),
+(2314, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:19:05'),
+(2315, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:19:09'),
+(2316, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:20:00'),
+(2317, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:20:05'),
+(2318, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:20:08'),
+(2319, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:20:17'),
+(2320, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:21:04'),
+(2321, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:21:15'),
+(2322, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:21:18'),
+(2323, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:21:22'),
+(2324, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:21:45'),
+(2325, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:21:51'),
+(2326, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:21:55'),
+(2327, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:22:00'),
+(2328, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:22:33'),
+(2329, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:22:39'),
+(2330, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:22:42'),
+(2331, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:22:46'),
+(2332, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:23:49'),
+(2333, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:24:00'),
+(2334, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:24:05'),
+(2335, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:24:09'),
+(2336, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:25:05'),
+(2337, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:25:09'),
+(2338, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:25:13'),
+(2339, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:25:43'),
+(2340, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:25:47'),
+(2341, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:25:51'),
+(2342, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:27:06'),
+(2343, 58, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:29:14'),
+(2344, 58, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:29:37'),
+(2345, 58, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:29:41'),
+(2346, 58, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:29:45'),
+(2347, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:33:10'),
+(2348, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:33:41'),
+(2349, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:33:44'),
+(2350, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:33:48'),
+(2351, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:35:09'),
+(2352, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:35:34'),
+(2353, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:35:37'),
+(2354, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:35:41'),
+(2355, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:35:49'),
+(2356, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:35:53'),
+(2357, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:36:01'),
+(2358, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:36:05'),
+(2359, 57, '', 'localhost/pieces-levage/en/136-transports-btp', '', '2023-10-02 18:36:45'),
+(2360, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:36:51'),
+(2361, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:37:02'),
+(2362, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:37:05'),
+(2363, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:37:34'),
+(2364, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:37:39'),
+(2365, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:37:48'),
+(2366, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:39:18'),
+(2367, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:39:26'),
+(2368, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:39:30'),
+(2369, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:41:48'),
+(2370, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:41:52'),
+(2371, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:42:01'),
+(2372, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:44:58'),
+(2373, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:45:02'),
+(2374, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:45:11'),
+(2375, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:45:22'),
+(2376, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:45:27'),
+(2377, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:45:31'),
+(2378, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:46:53'),
+(2379, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:47:02'),
+(2380, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:47:06'),
+(2381, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:47:17'),
+(2382, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:47:21'),
+(2383, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:47:29'),
+(2384, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:49:21'),
+(2385, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:49:25'),
+(2386, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:49:29'),
+(2387, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:49:50'),
+(2388, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:49:55'),
+(2389, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:50:00'),
+(2390, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:50:54'),
+(2391, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:50:59'),
+(2392, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:51:03'),
+(2393, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:52:17'),
+(2394, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:52:22'),
+(2395, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:52:31'),
+(2396, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:53:46'),
+(2397, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:53:55'),
+(2398, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:54:00'),
+(2399, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:55:07'),
+(2400, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:55:11'),
+(2401, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:55:15'),
+(2402, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 18:59:39'),
+(2403, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 18:59:43'),
+(2404, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 18:59:51'),
+(2405, 59, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:01:00'),
+(2406, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:01:04'),
+(2407, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:01:11'),
+(2408, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:04:51'),
+(2409, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:04:56'),
+(2410, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:05:03'),
+(2411, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:06:25'),
+(2412, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:06:33'),
+(2413, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:06:37'),
+(2414, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:07:09'),
+(2415, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:07:13'),
+(2416, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:07:17'),
+(2417, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:07:57'),
+(2418, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:08:01'),
+(2419, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:08:05'),
+(2420, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:10:06'),
+(2421, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:10:11'),
+(2422, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:10:21'),
+(2423, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:10:44'),
+(2424, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:10:48'),
+(2425, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:10:53'),
+(2426, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:12:11'),
+(2427, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:12:19'),
+(2428, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:14:17'),
+(2429, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:14:27'),
+(2430, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:14:31'),
+(2431, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:15:46'),
+(2432, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:15:51'),
+(2433, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:15:55'),
+(2434, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:16:18'),
+(2435, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:16:22'),
+(2436, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:16:28'),
+(2437, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:21:01'),
+(2438, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:21:08'),
+(2439, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:21:12'),
+(2440, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:25:16');
+INSERT INTO `ps_connections_source` (`id_connections_source`, `id_connections`, `http_referer`, `request_uri`, `keywords`, `date_add`) VALUES
+(2441, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:25:22'),
+(2442, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:25:26'),
+(2443, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:26:33'),
+(2444, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:26:37'),
+(2445, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:26:41'),
+(2446, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:29:09'),
+(2447, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:29:13'),
+(2448, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:29:17'),
+(2449, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:29:35'),
+(2450, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:29:40'),
+(2451, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:29:44'),
+(2452, 60, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:36:11'),
+(2453, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:36:15'),
+(2454, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:36:19'),
+(2455, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:37:00'),
+(2456, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:37:04'),
+(2457, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:37:08'),
+(2458, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:37:43'),
+(2459, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:37:48'),
+(2460, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:37:53'),
+(2461, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:38:20'),
+(2462, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:38:24'),
+(2463, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:38:30'),
+(2464, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:39:10'),
+(2465, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:39:18'),
+(2466, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:39:22'),
+(2467, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:40:31'),
+(2468, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:40:36'),
+(2469, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:40:40'),
+(2470, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:41:09'),
+(2471, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:41:14'),
+(2472, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:41:21'),
+(2473, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:41:33'),
+(2474, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:41:37'),
+(2475, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:41:41'),
+(2476, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:44:41'),
+(2477, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:44:49'),
+(2478, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:44:53'),
+(2479, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:46:54'),
+(2480, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:47:03'),
+(2481, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:47:07'),
+(2482, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:48:45'),
+(2483, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:48:50'),
+(2484, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:48:55'),
+(2485, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:50:47'),
+(2486, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:50:51'),
+(2487, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:50:58'),
+(2488, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:52:56'),
+(2489, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:53:00'),
+(2490, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:53:03'),
+(2491, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:54:09'),
+(2492, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:54:13'),
+(2493, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:54:17'),
+(2494, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:57:42'),
+(2495, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:57:46'),
+(2496, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:57:50'),
+(2497, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:58:20'),
+(2498, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:58:28'),
+(2499, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:58:32'),
+(2500, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 19:58:51'),
+(2501, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 19:58:55'),
+(2502, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 19:58:59'),
+(2503, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:00:40'),
+(2504, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:00:44'),
+(2505, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:00:53'),
+(2506, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:01:54'),
+(2507, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:01:57'),
+(2508, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:02:01'),
+(2509, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:02:15'),
+(2510, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:02:19'),
+(2511, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:02:23'),
+(2512, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:05:45'),
+(2513, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:05:53'),
+(2514, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:05:58'),
+(2515, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:06:18'),
+(2516, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:06:27'),
+(2517, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:06:31'),
+(2518, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:06:40'),
+(2519, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:06:45'),
+(2520, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:06:50'),
+(2521, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:06:55'),
+(2522, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:06:58'),
+(2523, 61, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:07:02'),
+(2524, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:10:21'),
+(2525, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:10:25'),
+(2526, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:10:34'),
+(2527, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:10:55'),
+(2528, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:10:59'),
+(2529, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:12:06'),
+(2530, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:12:09'),
+(2531, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:12:13'),
+(2532, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:13:13'),
+(2533, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:13:19'),
+(2534, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:13:23'),
+(2535, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:13:52'),
+(2536, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:13:57'),
+(2537, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:14:09'),
+(2538, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:14:14'),
+(2539, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:14:17'),
+(2540, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:14:46'),
+(2541, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:14:49'),
+(2542, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:14:58'),
+(2543, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:15:57'),
+(2544, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:16:01'),
+(2545, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:16:05'),
+(2546, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:16:13'),
+(2547, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:16:17'),
+(2548, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:21:56'),
+(2549, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:22:06'),
+(2550, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:22:11'),
+(2551, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:23:03'),
+(2552, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:23:07'),
+(2553, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:23:12'),
+(2554, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:25:14'),
+(2555, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:25:18'),
+(2556, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:25:22'),
+(2557, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:25:55'),
+(2558, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:26:09'),
+(2559, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:26:14'),
+(2560, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:27:21'),
+(2561, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:27:29'),
+(2562, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:27:33'),
+(2563, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:29:21'),
+(2564, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:29:25'),
+(2565, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:29:29'),
+(2566, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:30:02'),
+(2567, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:30:06'),
+(2568, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:30:14'),
+(2569, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:30:57'),
+(2570, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:31:06'),
+(2571, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:31:10'),
+(2572, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:31:25'),
+(2573, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:31:29'),
+(2574, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:31:33'),
+(2575, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:32:21'),
+(2576, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:32:27'),
+(2577, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:32:33'),
+(2578, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:33:01'),
+(2579, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:33:05'),
+(2580, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:33:09'),
+(2581, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:35:52'),
+(2582, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:35:56'),
+(2583, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:36:00'),
+(2584, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:37:52'),
+(2585, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:37:56'),
+(2586, 62, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:38:00'),
+(2587, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:39:18'),
+(2588, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:39:24'),
+(2589, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:39:28'),
+(2590, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:40:57'),
+(2591, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:41:01'),
+(2592, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:41:14'),
+(2593, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:42:11'),
+(2594, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:42:15'),
+(2595, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:42:25'),
+(2596, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:43:50'),
+(2597, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:43:54'),
+(2598, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:43:59'),
+(2599, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:46:02'),
+(2600, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:46:06'),
+(2601, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:46:10'),
+(2602, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:46:41'),
+(2603, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:46:45'),
+(2604, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:46:49'),
+(2605, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:47:17'),
+(2606, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:47:22'),
+(2607, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:47:25'),
+(2608, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:52:00'),
+(2609, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:52:04'),
+(2610, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:52:09'),
+(2611, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:53:06'),
+(2612, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:53:12'),
+(2613, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:53:17'),
+(2614, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:55:08'),
+(2615, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:55:16'),
+(2616, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:55:21'),
+(2617, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:55:32'),
+(2618, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:55:36'),
+(2619, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:55:40'),
+(2620, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:56:20'),
+(2621, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:56:31'),
+(2622, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:57:28'),
+(2623, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:57:32'),
+(2624, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:57:37'),
+(2625, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:57:52'),
+(2626, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:57:56'),
+(2627, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:57:59'),
+(2628, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:58:33'),
+(2629, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 20:58:36'),
+(2630, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:58:48'),
+(2631, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 20:59:50'),
+(2632, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 20:59:53'),
+(2633, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 21:01:42'),
+(2634, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 21:01:46'),
+(2635, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 21:01:54'),
+(2636, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 21:02:15'),
+(2637, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 21:02:19'),
+(2638, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 21:02:26'),
+(2639, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 21:03:58'),
+(2640, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 21:04:06'),
+(2641, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 21:04:11'),
+(2642, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 21:06:12'),
+(2643, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 21:06:20'),
+(2644, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 21:06:23'),
+(2645, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 21:07:58'),
+(2646, 63, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 21:08:05'),
+(2647, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 21:08:09'),
+(2648, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 21:11:10'),
+(2649, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 21:11:15'),
+(2650, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 21:11:23'),
+(2651, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 21:13:13'),
+(2652, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 21:13:17'),
+(2653, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 21:13:21'),
+(2654, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 21:13:54'),
+(2655, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 21:14:00'),
+(2656, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 21:14:10'),
+(2657, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.css.map', '', '2023-10-02 21:14:42'),
+(2658, 57, '', 'localhost/pieces-levage/modules/blockreassurance/views/dist/front.js.map', '', '2023-10-02 21:14:45'),
+(2659, 57, '', 'localhost/pieces-levage/themes/core.js.map', '', '2023-10-02 21:14:49');
 
 -- --------------------------------------------------------
 
@@ -6864,7 +8639,7 @@ CREATE TABLE `ps_contact` (
   `email` varchar(255) NOT NULL,
   `customer_service` tinyint(1) NOT NULL DEFAULT 0,
   `position` tinyint(2) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_contact`
@@ -6885,7 +8660,7 @@ CREATE TABLE `ps_contact_lang` (
   `id_lang` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_contact_lang`
@@ -6906,7 +8681,7 @@ INSERT INTO `ps_contact_lang` (`id_contact`, `id_lang`, `name`, `description`) V
 CREATE TABLE `ps_contact_shop` (
   `id_contact` int(11) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_contact_shop`
@@ -6934,7 +8709,7 @@ CREATE TABLE `ps_country` (
   `need_zip_code` tinyint(1) NOT NULL DEFAULT 1,
   `zip_code_format` varchar(12) NOT NULL DEFAULT '',
   `display_tax_label` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_country`
@@ -7193,7 +8968,7 @@ CREATE TABLE `ps_country_lang` (
   `id_country` int(10) UNSIGNED NOT NULL,
   `id_lang` int(10) UNSIGNED NOT NULL,
   `name` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_country_lang`
@@ -7692,7 +9467,7 @@ INSERT INTO `ps_country_lang` (`id_country`, `id_lang`, `name`) VALUES
 CREATE TABLE `ps_country_shop` (
   `id_country` int(11) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_country_shop`
@@ -7958,7 +9733,7 @@ CREATE TABLE `ps_currency` (
   `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
   `unofficial` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `modified` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_currency`
@@ -7979,7 +9754,7 @@ CREATE TABLE `ps_currency_lang` (
   `name` varchar(255) NOT NULL,
   `symbol` varchar(255) NOT NULL,
   `pattern` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_currency_lang`
@@ -7999,7 +9774,7 @@ CREATE TABLE `ps_currency_shop` (
   `id_currency` int(11) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL,
   `conversion_rate` decimal(13,6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_currency_shop`
@@ -8048,7 +9823,7 @@ CREATE TABLE `ps_customer` (
   `date_upd` datetime NOT NULL,
   `reset_password_token` varchar(40) DEFAULT NULL,
   `reset_password_validity` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_customer`
@@ -8067,7 +9842,7 @@ INSERT INTO `ps_customer` (`id_customer`, `id_shop_group`, `id_shop`, `id_gender
 CREATE TABLE `ps_customer_group` (
   `id_customer` int(10) UNSIGNED NOT NULL,
   `id_group` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_customer_group`
@@ -8095,7 +9870,7 @@ CREATE TABLE `ps_customer_message` (
   `date_upd` datetime NOT NULL,
   `private` tinyint(4) NOT NULL DEFAULT 0,
   `read` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8105,7 +9880,7 @@ CREATE TABLE `ps_customer_message` (
 
 CREATE TABLE `ps_customer_message_sync_imap` (
   `md5_header` varbinary(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8119,14 +9894,14 @@ CREATE TABLE `ps_customer_session` (
   `token` varchar(40) DEFAULT NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_customer_session`
 --
 
 INSERT INTO `ps_customer_session` (`id_customer_session`, `id_customer`, `token`, `date_add`, `date_upd`) VALUES
-(1, 2, 'acf9fa62a44b52a14939f858ff0f72e590acac46', '2023-09-25 22:44:04', '2023-10-01 09:37:26'),
+(1, 2, 'acf9fa62a44b52a14939f858ff0f72e590acac46', '2023-09-25 22:44:04', '2023-10-02 21:14:33'),
 (2, 2, '98b028cdee1a3389a4d61dd47073591c8497fa44', '2023-09-26 19:06:55', '2023-09-28 14:21:12');
 
 -- --------------------------------------------------------
@@ -8148,7 +9923,7 @@ CREATE TABLE `ps_customer_thread` (
   `token` varchar(12) DEFAULT NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8166,7 +9941,7 @@ CREATE TABLE `ps_customization` (
   `quantity_refunded` int(11) NOT NULL DEFAULT 0,
   `quantity_returned` int(11) NOT NULL DEFAULT 0,
   `in_cart` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8181,7 +9956,7 @@ CREATE TABLE `ps_customization_field` (
   `required` tinyint(1) NOT NULL,
   `is_module` tinyint(1) NOT NULL DEFAULT 0,
   `is_deleted` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8194,7 +9969,7 @@ CREATE TABLE `ps_customization_field_lang` (
   `id_lang` int(10) UNSIGNED NOT NULL,
   `id_shop` int(10) UNSIGNED NOT NULL DEFAULT 1,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8210,7 +9985,7 @@ CREATE TABLE `ps_customized_data` (
   `id_module` int(10) NOT NULL DEFAULT 0,
   `price` decimal(20,6) NOT NULL DEFAULT 0.000000,
   `weight` decimal(20,6) NOT NULL DEFAULT 0.000000
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8222,7 +9997,7 @@ CREATE TABLE `ps_date_range` (
   `id_date_range` int(10) UNSIGNED NOT NULL,
   `time_start` datetime NOT NULL,
   `time_end` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8239,7 +10014,7 @@ CREATE TABLE `ps_delivery` (
   `id_range_weight` int(10) UNSIGNED DEFAULT NULL,
   `id_zone` int(10) UNSIGNED NOT NULL,
   `price` decimal(20,6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8257,7 +10032,7 @@ CREATE TABLE `ps_emailsubscription` (
   `http_referer` varchar(255) DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT 0,
   `id_lang` int(10) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8295,14 +10070,14 @@ CREATE TABLE `ps_employee` (
   `reset_password_token` varchar(40) DEFAULT NULL,
   `reset_password_validity` datetime DEFAULT NULL,
   `has_enabled_gravatar` tinyint(3) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_employee`
 --
 
 INSERT INTO `ps_employee` (`id_employee`, `id_profile`, `id_lang`, `lastname`, `firstname`, `email`, `passwd`, `last_passwd_gen`, `stats_date_from`, `stats_date_to`, `stats_compare_from`, `stats_compare_to`, `stats_compare_option`, `preselect_date_range`, `bo_color`, `bo_theme`, `bo_css`, `default_tab`, `bo_width`, `bo_menu`, `active`, `optin`, `id_last_order`, `id_last_customer_message`, `id_last_customer`, `last_connection_date`, `reset_password_token`, `reset_password_validity`, `has_enabled_gravatar`) VALUES
-(1, 1, 1, 'Rolland', 'Olivier', 'olivier@studioseizh.com', '$2y$10$w6IuA.XHvnN9/Um6ROgpIeW/7Qvfd4fIeyuPJ1mBMUh1TeNKIZYHy', '2023-09-25 02:42:00', '2023-08-25', '2023-09-25', '0000-00-00', '0000-00-00', 1, NULL, NULL, 'default', 'theme.css', 143, 0, 1, 1, NULL, 0, 0, 1, '2023-09-28', NULL, '0000-00-00 00:00:00', 0),
+(1, 1, 1, 'Rolland', 'Olivier', 'olivier@studioseizh.com', '$2y$10$w6IuA.XHvnN9/Um6ROgpIeW/7Qvfd4fIeyuPJ1mBMUh1TeNKIZYHy', '2023-09-25 02:42:00', '2023-08-25', '2023-09-25', '0000-00-00', '0000-00-00', 1, NULL, NULL, 'default', 'theme.css', 143, 0, 1, 1, NULL, 0, 0, 1, '2023-10-03', NULL, '0000-00-00 00:00:00', 0),
 (2, 1, 1, 'Marketplace', 'Prestashop', 'mbo-06bc1cfa-0424-4ccd-9173-b2515444bd4f@prestashop.com', '$2y$10$3NcF0l32N9ITw6FvinJAYuihYPXGbuamUqtOlBfUo.e6iPL7m54UG', '2023-09-25 02:43:35', '2023-08-25', '2023-09-25', '0000-00-00', '0000-00-00', 1, NULL, NULL, NULL, 'theme.css', 0, 0, 1, 1, NULL, 0, 0, 0, NULL, NULL, '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
@@ -8314,8 +10089,8 @@ INSERT INTO `ps_employee` (`id_employee`, `id_profile`, `id_lang`, `lastname`, `
 CREATE TABLE `ps_employee_account` (
   `id_employee_account` int(11) NOT NULL,
   `id_employee` int(11) NOT NULL,
-  `email` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `uid` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `uid` varchar(64) NOT NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -8332,7 +10107,7 @@ CREATE TABLE `ps_employee_session` (
   `token` varchar(40) DEFAULT NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_employee_session`
@@ -8340,7 +10115,7 @@ CREATE TABLE `ps_employee_session` (
 
 INSERT INTO `ps_employee_session` (`id_employee_session`, `id_employee`, `token`, `date_add`, `date_upd`) VALUES
 (1, 1, '15f518be2b832b1620bee15b1beef101338d4c42', '2023-09-25 16:44:46', '2023-09-25 17:16:26'),
-(2, 1, '5cc8a2dcd4d5670dc0001c58a2dd55c48ece6e5c', '2023-09-25 17:23:00', '2023-10-01 09:36:39'),
+(2, 1, '5cc8a2dcd4d5670dc0001c58a2dd55c48ece6e5c', '2023-09-25 17:23:00', '2023-10-03 02:08:33'),
 (5, 1, '0761170c1f4279b28eaff86a354414595719b2a4', '2023-09-27 19:18:45', '2023-09-28 17:13:43');
 
 -- --------------------------------------------------------
@@ -8352,7 +10127,7 @@ INSERT INTO `ps_employee_session` (`id_employee_session`, `id_employee`, `token`
 CREATE TABLE `ps_employee_shop` (
   `id_employee` int(11) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_employee_shop`
@@ -8373,7 +10148,7 @@ CREATE TABLE `ps_eventbus_deleted_objects` (
   `id_object` int(10) UNSIGNED NOT NULL,
   `id_shop` int(10) UNSIGNED NOT NULL,
   `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8387,7 +10162,7 @@ CREATE TABLE `ps_eventbus_incremental_sync` (
   `id_shop` int(10) UNSIGNED NOT NULL,
   `lang_iso` varchar(3) NOT NULL,
   `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8398,7 +10173,7 @@ CREATE TABLE `ps_eventbus_incremental_sync` (
 CREATE TABLE `ps_eventbus_job` (
   `job_id` varchar(200) NOT NULL,
   `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8413,7 +10188,7 @@ CREATE TABLE `ps_eventbus_type_sync` (
   `lang_iso` varchar(3) DEFAULT NULL,
   `full_sync_finished` tinyint(1) NOT NULL DEFAULT 0,
   `last_sync_date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8429,7 +10204,7 @@ CREATE TABLE `ps_fb_category_match` (
   `google_category_parent_name` varchar(255) NOT NULL,
   `is_parent_category` tinyint(1) DEFAULT NULL,
   `id_shop` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8440,7 +10215,7 @@ CREATE TABLE `ps_fb_category_match` (
 CREATE TABLE `ps_feature` (
   `id_feature` int(10) UNSIGNED NOT NULL,
   `position` int(10) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_feature`
@@ -8463,13 +10238,13 @@ INSERT INTO `ps_feature` (`id_feature`, `position`) VALUES
 
 CREATE TABLE `ps_feature_flag` (
   `id_feature_flag` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) NOT NULL,
   `state` tinyint(1) DEFAULT 0,
-  `label_wording` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `label_domain` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description_wording` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description_domain` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `stability` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'beta'
+  `label_wording` varchar(512) NOT NULL DEFAULT '',
+  `label_domain` varchar(255) NOT NULL DEFAULT '',
+  `description_wording` varchar(512) NOT NULL DEFAULT '',
+  `description_domain` varchar(255) NOT NULL DEFAULT '',
+  `stability` varchar(64) NOT NULL DEFAULT 'beta'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -8490,7 +10265,7 @@ CREATE TABLE `ps_feature_lang` (
   `id_feature` int(10) UNSIGNED NOT NULL,
   `id_lang` int(10) UNSIGNED NOT NULL,
   `name` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_feature_lang`
@@ -8515,7 +10290,7 @@ CREATE TABLE `ps_feature_product` (
   `id_feature` int(10) UNSIGNED NOT NULL,
   `id_product` int(10) UNSIGNED NOT NULL,
   `id_feature_value` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_feature_product`
@@ -8534,7 +10309,7 @@ INSERT INTO `ps_feature_product` (`id_feature`, `id_product`, `id_feature_value`
 CREATE TABLE `ps_feature_shop` (
   `id_feature` int(10) UNSIGNED NOT NULL,
   `id_shop` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_feature_shop`
@@ -8559,7 +10334,7 @@ CREATE TABLE `ps_feature_value` (
   `id_feature_value` int(10) UNSIGNED NOT NULL,
   `id_feature` int(10) UNSIGNED NOT NULL,
   `custom` tinyint(3) UNSIGNED DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_feature_value`
@@ -8598,7 +10373,7 @@ CREATE TABLE `ps_feature_value_lang` (
   `id_feature_value` int(10) UNSIGNED NOT NULL,
   `id_lang` int(10) UNSIGNED NOT NULL,
   `value` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_feature_value_lang`
@@ -8641,7 +10416,7 @@ CREATE TABLE `ps_ganalytics` (
   `sent` tinyint(1) DEFAULT NULL,
   `refund_sent` tinyint(1) DEFAULT NULL,
   `date_add` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8653,7 +10428,7 @@ CREATE TABLE `ps_ganalytics_data` (
   `id_cart` int(11) NOT NULL,
   `id_shop` int(11) NOT NULL,
   `data` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8664,7 +10439,7 @@ CREATE TABLE `ps_ganalytics_data` (
 CREATE TABLE `ps_gender` (
   `id_gender` int(11) NOT NULL,
   `type` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_gender`
@@ -8684,7 +10459,7 @@ CREATE TABLE `ps_gender_lang` (
   `id_gender` int(10) UNSIGNED NOT NULL,
   `id_lang` int(10) UNSIGNED NOT NULL,
   `name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_gender_lang`
@@ -8709,7 +10484,7 @@ CREATE TABLE `ps_group` (
   `show_prices` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_group`
@@ -8732,7 +10507,7 @@ CREATE TABLE `ps_group_lang` (
   `id_group` int(10) UNSIGNED NOT NULL,
   `id_lang` int(10) UNSIGNED NOT NULL,
   `name` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_group_lang`
@@ -8756,7 +10531,7 @@ CREATE TABLE `ps_group_reduction` (
   `id_group` int(10) UNSIGNED NOT NULL,
   `id_category` int(10) UNSIGNED NOT NULL,
   `reduction` decimal(4,3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_group_reduction`
@@ -8779,7 +10554,7 @@ INSERT INTO `ps_group_reduction` (`id_group_reduction`, `id_group`, `id_category
 CREATE TABLE `ps_group_shop` (
   `id_group` int(11) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_group_shop`
@@ -8801,7 +10576,7 @@ INSERT INTO `ps_group_shop` (`id_group`, `id_shop`) VALUES
 CREATE TABLE `ps_gsitemap_sitemap` (
   `link` varchar(255) DEFAULT NULL,
   `id_shop` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -8826,7 +10601,7 @@ CREATE TABLE `ps_guest` (
   `windows_media` tinyint(1) DEFAULT NULL,
   `accept_language` varchar(8) DEFAULT NULL,
   `mobile_theme` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_guest`
@@ -8837,7 +10612,12 @@ INSERT INTO `ps_guest` (`id_guest`, `id_operating_system`, `id_web_browser`, `id
 (2, 6, 11, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'en', 0),
 (3, 6, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0),
 (5, 6, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'en', 0),
-(6, 6, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'en', 0);
+(6, 6, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'en', 0),
+(7, 6, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'en', 0),
+(8, 6, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'en', 0),
+(9, 7, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'en', 0),
+(10, 7, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'en', 0),
+(11, 7, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'en', 0);
 
 -- --------------------------------------------------------
 
@@ -8848,7 +10628,7 @@ INSERT INTO `ps_guest` (`id_guest`, `id_operating_system`, `id_web_browser`, `id
 CREATE TABLE `ps_homeslider` (
   `id_homeslider_slides` int(10) UNSIGNED NOT NULL,
   `id_shop` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_homeslider`
@@ -8869,7 +10649,7 @@ CREATE TABLE `ps_homeslider_slides` (
   `id_homeslider_slides` int(10) UNSIGNED NOT NULL,
   `position` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_homeslider_slides`
@@ -8894,19 +10674,19 @@ CREATE TABLE `ps_homeslider_slides_lang` (
   `legend` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_homeslider_slides_lang`
 --
 
 INSERT INTO `ps_homeslider_slides_lang` (`id_homeslider_slides`, `id_lang`, `title`, `description`, `legend`, `url`, `image`) VALUES
-(1, 1, 'Sample 1', '<h3>EXCEPTEUR OCCAECAT</h3>\n                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique in tortor et dignissim. Quisque non tempor leo. Maecenas egestas sem elit</p>', 'sample-1', 'https://www.prestashop-project.org?utm_source=back-office&utm_medium=v17_homeslider&utm_campaign=back-office-EN&utm_content=download', 'sample-1.jpg'),
-(1, 2, 'Sample 1', '<h3>EXCEPTEUR OCCAECAT</h3>\n                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique in tortor et dignissim. Quisque non tempor leo. Maecenas egestas sem elit</p>', 'sample-1', 'https://www.prestashop-project.org?utm_source=back-office&utm_medium=v17_homeslider&utm_campaign=back-office-EN&utm_content=download', 'sample-1.jpg'),
-(2, 1, 'Sample 2', '<h3>EXCEPTEUR OCCAECAT</h3>\n                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique in tortor et dignissim. Quisque non tempor leo. Maecenas egestas sem elit</p>', 'sample-2', 'https://www.prestashop-project.org?utm_source=back-office&utm_medium=v17_homeslider&utm_campaign=back-office-EN&utm_content=download', 'sample-2.jpg'),
-(2, 2, 'Sample 2', '<h3>EXCEPTEUR OCCAECAT</h3>\n                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique in tortor et dignissim. Quisque non tempor leo. Maecenas egestas sem elit</p>', 'sample-2', 'https://www.prestashop-project.org?utm_source=back-office&utm_medium=v17_homeslider&utm_campaign=back-office-EN&utm_content=download', 'sample-2.jpg'),
-(3, 1, 'Sample 3', '<h3>EXCEPTEUR OCCAECAT</h3>\n                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique in tortor et dignissim. Quisque non tempor leo. Maecenas egestas sem elit</p>', 'sample-3', 'https://www.prestashop-project.org?utm_source=back-office&utm_medium=v17_homeslider&utm_campaign=back-office-EN&utm_content=download', 'sample-3.jpg'),
-(3, 2, 'Sample 3', '<h3>EXCEPTEUR OCCAECAT</h3>\n                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique in tortor et dignissim. Quisque non tempor leo. Maecenas egestas sem elit</p>', 'sample-3', 'https://www.prestashop-project.org?utm_source=back-office&utm_medium=v17_homeslider&utm_campaign=back-office-EN&utm_content=download', 'sample-3.jpg');
+(1, 1, 'Top', '', '', 'http://localhost/pieces-levage/en/137-forestier', 'ef625f8b4a3bbcb752a54fbebc5de6b0c84270c4_kit-camera.jpg'),
+(1, 2, 'top', '<h3>EXCEPTEUR OCCAECAT</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique in tortor et dignissim. Quisque non tempor leo. Maecenas egestas sem elit</p>', '', 'http://localhost/pieces-levage/en/137-forestier', '550a6a1907cf554e3837aff25cabce206c730d2f_kit-camera.jpg'),
+(2, 1, 'Banner left', '', '', 'http://localhost/pieces-levage/en/138-recyclage', '70f5d836416b1d21ce61c93385841dca5154f020_banner-left.png'),
+(2, 2, 'Banner left', '<h3>EXCEPTEUR OCCAECAT</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique in tortor et dignissim. Quisque non tempor leo. Maecenas egestas sem elit</p>', '', 'http://localhost/pieces-levage/en/138-recyclage', '9099337a1592be929deada9815a3639ecd570c25_banner-left.png'),
+(3, 1, 'Banner right', '', '', 'http://localhost/pieces-levage/en/11-stabilisateurs', 'b6adbf1a16e1c67ac595d8eea90c885240842fb5_banner-right.jpg'),
+(3, 2, 'Banner right', '<h3>EXCEPTEUR OCCAECAT</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique in tortor et dignissim. Quisque non tempor leo. Maecenas egestas sem elit</p>', '', 'http://localhost/pieces-levage/en/11-stabilisateurs', 'a3288e9187b36361a7827a5f7dacd9bac7d008f6_banner-right.jpg');
 
 -- --------------------------------------------------------
 
@@ -8921,7 +10701,7 @@ CREATE TABLE `ps_hook` (
   `description` text DEFAULT NULL,
   `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
   `position` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_hook`
@@ -9899,7 +11679,10 @@ INSERT INTO `ps_hook` (`id_hook`, `name`, `title`, `description`, `active`, `pos
 (976, 'actionFeatureValueFormBuilderModifier', 'actionFeatureValueFormBuilderModifier', '', 1, 1),
 (977, 'actionAfterCreateFeatureValueFormHandler', 'actionAfterCreateFeatureValueFormHandler', '', 1, 1),
 (978, 'actionAfterUpdateFeatureValueFormHandler', 'actionAfterUpdateFeatureValueFormHandler', '', 1, 1),
-(979, 'displayContactInfo', 'displayContactInfo', '', 1, 1);
+(979, 'displayContactInfo', 'displayContactInfo', '', 1, 1),
+(980, 'backOfficeHeader', 'backOfficeHeader', '', 1, 1),
+(981, 'displayCategoryCustom', 'displayCategoryCustom', '', 1, 1),
+(982, 'displayCategoryFilter', 'displayCategoryFilter', '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -9911,7 +11694,7 @@ CREATE TABLE `ps_hook_alias` (
   `id_hook_alias` int(10) UNSIGNED NOT NULL,
   `alias` varchar(191) NOT NULL,
   `name` varchar(191) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_hook_alias`
@@ -10018,7 +11801,7 @@ CREATE TABLE `ps_hook_module` (
   `id_shop` int(11) UNSIGNED NOT NULL DEFAULT 1,
   `id_hook` int(10) UNSIGNED NOT NULL,
   `position` tinyint(2) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_hook_module`
@@ -10253,13 +12036,15 @@ INSERT INTO `ps_hook_module` (`id_module`, `id_shop`, `id_hook`, `position`) VAL
 (79, 1, 847, 1),
 (79, 1, 848, 1),
 (79, 1, 979, 1),
+(80, 1, 980, 1),
+(80, 1, 981, 1),
+(80, 1, 982, 1),
 (3, 1, 842, 2),
 (4, 1, 50, 2),
 (4, 1, 843, 2),
 (7, 1, 852, 2),
 (11, 1, 17, 2),
 (12, 1, 868, 2),
-(13, 1, 16, 2),
 (13, 1, 29, 2),
 (13, 1, 84, 2),
 (16, 1, 20, 2),
@@ -10323,10 +12108,13 @@ INSERT INTO `ps_hook_module` (`id_module`, `id_shop`, `id_hook`, `position`) VAL
 (78, 1, 887, 2),
 (79, 1, 849, 2),
 (79, 1, 850, 2),
+(80, 1, 16, 2),
+(80, 1, 870, 2),
+(80, 1, 871, 2),
 (3, 1, 42, 3),
 (11, 1, 852, 3),
 (12, 1, 17, 3),
-(14, 1, 16, 3),
+(13, 1, 16, 3),
 (15, 1, 868, 3),
 (16, 1, 29, 3),
 (17, 1, 20, 3),
@@ -10354,7 +12142,7 @@ INSERT INTO `ps_hook_module` (`id_module`, `id_shop`, `id_hook`, `position`) VAL
 (59, 1, 8, 3),
 (61, 1, 57, 3),
 (9, 1, 852, 4),
-(15, 1, 16, 4),
+(16, 1, 16, 4),
 (17, 1, 29, 4),
 (18, 1, 20, 4),
 (18, 1, 21, 4),
@@ -10372,8 +12160,9 @@ INSERT INTO `ps_hook_module` (`id_module`, `id_shop`, `id_hook`, `position`) VAL
 (59, 1, 948, 4),
 (62, 1, 57, 4),
 (79, 1, 42, 4),
+(80, 1, 84, 4),
 (8, 1, 852, 5),
-(16, 1, 16, 5),
+(17, 1, 16, 5),
 (18, 1, 29, 5),
 (30, 1, 843, 5),
 (35, 1, 842, 5),
@@ -10384,7 +12173,7 @@ INSERT INTO `ps_hook_module` (`id_module`, `id_shop`, `id_hook`, `position`) VAL
 (53, 1, 47, 5),
 (53, 1, 71, 5),
 (63, 1, 57, 5),
-(17, 1, 16, 6),
+(18, 1, 16, 6),
 (20, 1, 852, 6),
 (31, 1, 843, 6),
 (43, 1, 29, 6),
@@ -10392,7 +12181,8 @@ INSERT INTO `ps_hook_module` (`id_module`, `id_shop`, `id_hook`, `position`) VAL
 (44, 1, 842, 6),
 (52, 1, 73, 6),
 (64, 1, 57, 6),
-(18, 1, 16, 7),
+(80, 1, 20, 6),
+(80, 1, 21, 6),
 (32, 1, 843, 7),
 (50, 1, 29, 7),
 (50, 1, 842, 7),
@@ -10403,6 +12193,8 @@ INSERT INTO `ps_hook_module` (`id_module`, `id_shop`, `id_hook`, `position`) VAL
 (51, 1, 842, 8),
 (53, 1, 17, 8),
 (66, 1, 57, 8),
+(80, 1, 29, 8),
+(80, 1, 73, 8),
 (44, 1, 843, 9),
 (67, 1, 57, 9),
 (49, 1, 843, 10),
@@ -10431,7 +12223,7 @@ CREATE TABLE `ps_hook_module_exceptions` (
   `id_module` int(10) UNSIGNED NOT NULL,
   `id_hook` int(10) UNSIGNED NOT NULL,
   `file_name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -10444,7 +12236,7 @@ CREATE TABLE `ps_image` (
   `id_product` int(10) UNSIGNED NOT NULL,
   `position` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
   `cover` tinyint(3) UNSIGNED DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_image`
@@ -10728,7 +12520,7 @@ CREATE TABLE `ps_image_lang` (
   `id_image` int(10) UNSIGNED NOT NULL,
   `id_lang` int(10) UNSIGNED NOT NULL,
   `legend` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_image_lang`
@@ -11013,7 +12805,7 @@ CREATE TABLE `ps_image_shop` (
   `id_image` int(10) UNSIGNED NOT NULL,
   `id_shop` int(10) UNSIGNED NOT NULL,
   `cover` tinyint(3) UNSIGNED DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_image_shop`
@@ -11303,7 +13095,7 @@ CREATE TABLE `ps_image_type` (
   `manufacturers` tinyint(1) NOT NULL DEFAULT 1,
   `suppliers` tinyint(1) NOT NULL DEFAULT 1,
   `stores` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_image_type`
@@ -11329,7 +13121,7 @@ CREATE TABLE `ps_import_match` (
   `name` varchar(32) NOT NULL,
   `match` text NOT NULL,
   `skip` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -11339,7 +13131,7 @@ CREATE TABLE `ps_import_match` (
 
 CREATE TABLE `ps_info` (
   `id_info` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_info`
@@ -11359,7 +13151,7 @@ CREATE TABLE `ps_info_lang` (
   `id_shop` int(10) UNSIGNED NOT NULL,
   `id_lang` int(10) UNSIGNED NOT NULL,
   `text` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_info_lang`
@@ -11378,7 +13170,7 @@ INSERT INTO `ps_info_lang` (`id_info`, `id_shop`, `id_lang`, `text`) VALUES
 CREATE TABLE `ps_info_shop` (
   `id_info` int(10) UNSIGNED NOT NULL,
   `id_shop` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_info_shop`
@@ -11395,13 +13187,13 @@ INSERT INTO `ps_info_shop` (`id_info`, `id_shop`) VALUES
 
 CREATE TABLE `ps_lang` (
   `id_lang` int(11) NOT NULL,
-  `name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(32) NOT NULL,
   `active` tinyint(1) NOT NULL,
-  `iso_code` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `language_code` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `locale` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date_format_lite` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date_format_full` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `iso_code` varchar(2) NOT NULL,
+  `language_code` varchar(5) NOT NULL,
+  `locale` varchar(5) NOT NULL,
+  `date_format_lite` varchar(32) NOT NULL,
+  `date_format_full` varchar(32) NOT NULL,
   `is_rtl` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -11448,15 +13240,427 @@ CREATE TABLE `ps_layered_category` (
   `position` int(10) UNSIGNED NOT NULL,
   `filter_type` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `filter_show_limit` int(10) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_layered_category`
 --
 
 INSERT INTO `ps_layered_category` (`id_layered_category`, `id_shop`, `controller`, `id_category`, `id_value`, `type`, `position`, `filter_type`, `filter_show_limit`) VALUES
-(1, 1, '', 77, NULL, 'manufacturer', 1, 0, 0),
-(2, 1, '', 77, NULL, 'category', 2, 0, 0);
+(1, 1, 'category', 10, NULL, 'manufacturer', 1, 0, 0),
+(2, 1, 'category', 10, NULL, 'category', 2, 0, 0),
+(3, 1, 'category', 10, 3, 'id_attribute_group', 3, 0, 0),
+(4, 1, 'category', 10, 5, 'id_attribute_group', 4, 0, 0),
+(5, 1, 'category', 10, 6, 'id_attribute_group', 5, 0, 0),
+(6, 1, 'category', 10, 7, 'id_attribute_group', 6, 0, 0),
+(7, 1, 'category', 10, 9, 'id_attribute_group', 7, 0, 0),
+(8, 1, 'category', 10, 11, 'id_attribute_group', 8, 0, 0),
+(9, 1, 'category', 10, 12, 'id_attribute_group', 9, 0, 0),
+(10, 1, 'category', 10, 13, 'id_attribute_group', 10, 0, 0),
+(11, 1, 'category', 10, 14, 'id_attribute_group', 11, 0, 0),
+(12, 1, 'category', 10, 15, 'id_attribute_group', 12, 0, 0),
+(13, 1, 'category', 10, 16, 'id_attribute_group', 13, 0, 0),
+(14, 1, 'category', 10, 17, 'id_attribute_group', 14, 0, 0),
+(15, 1, 'category', 10, 18, 'id_attribute_group', 15, 0, 0),
+(16, 1, 'category', 10, 19, 'id_attribute_group', 16, 0, 0),
+(17, 1, 'category', 10, 1, 'id_feature', 17, 0, 0),
+(18, 1, 'category', 10, 2, 'id_feature', 18, 0, 0),
+(19, 1, 'category', 10, 3, 'id_feature', 19, 0, 0),
+(20, 1, 'category', 10, 4, 'id_feature', 20, 0, 0),
+(21, 1, 'category', 10, 5, 'id_feature', 21, 0, 0),
+(22, 1, 'category', 10, 6, 'id_feature', 22, 0, 0),
+(23, 1, 'category', 10, 7, 'id_feature', 23, 0, 0),
+(24, 1, 'category', 77, NULL, 'manufacturer', 1, 0, 0),
+(25, 1, 'category', 77, NULL, 'category', 2, 0, 0),
+(26, 1, 'category', 77, 3, 'id_attribute_group', 3, 0, 0),
+(27, 1, 'category', 77, 5, 'id_attribute_group', 4, 0, 0),
+(28, 1, 'category', 77, 6, 'id_attribute_group', 5, 0, 0),
+(29, 1, 'category', 77, 7, 'id_attribute_group', 6, 0, 0),
+(30, 1, 'category', 77, 9, 'id_attribute_group', 7, 0, 0),
+(31, 1, 'category', 77, 11, 'id_attribute_group', 8, 0, 0),
+(32, 1, 'category', 77, 12, 'id_attribute_group', 9, 0, 0),
+(33, 1, 'category', 77, 13, 'id_attribute_group', 10, 0, 0),
+(34, 1, 'category', 77, 14, 'id_attribute_group', 11, 0, 0),
+(35, 1, 'category', 77, 15, 'id_attribute_group', 12, 0, 0),
+(36, 1, 'category', 77, 16, 'id_attribute_group', 13, 0, 0),
+(37, 1, 'category', 77, 17, 'id_attribute_group', 14, 0, 0),
+(38, 1, 'category', 77, 18, 'id_attribute_group', 15, 0, 0),
+(39, 1, 'category', 77, 19, 'id_attribute_group', 16, 0, 0),
+(40, 1, 'category', 77, 1, 'id_feature', 17, 0, 0),
+(41, 1, 'category', 77, 2, 'id_feature', 18, 0, 0),
+(42, 1, 'category', 77, 3, 'id_feature', 19, 0, 0),
+(43, 1, 'category', 77, 4, 'id_feature', 20, 0, 0),
+(44, 1, 'category', 77, 5, 'id_feature', 21, 0, 0),
+(45, 1, 'category', 77, 6, 'id_feature', 22, 0, 0),
+(46, 1, 'category', 77, 7, 'id_feature', 23, 0, 0),
+(47, 1, 'category', 78, NULL, 'manufacturer', 1, 0, 0),
+(48, 1, 'category', 78, NULL, 'category', 2, 0, 0),
+(49, 1, 'category', 78, 3, 'id_attribute_group', 3, 0, 0),
+(50, 1, 'category', 78, 5, 'id_attribute_group', 4, 0, 0),
+(51, 1, 'category', 78, 6, 'id_attribute_group', 5, 0, 0),
+(52, 1, 'category', 78, 7, 'id_attribute_group', 6, 0, 0),
+(53, 1, 'category', 78, 9, 'id_attribute_group', 7, 0, 0),
+(54, 1, 'category', 78, 11, 'id_attribute_group', 8, 0, 0),
+(55, 1, 'category', 78, 12, 'id_attribute_group', 9, 0, 0),
+(56, 1, 'category', 78, 13, 'id_attribute_group', 10, 0, 0),
+(57, 1, 'category', 78, 14, 'id_attribute_group', 11, 0, 0),
+(58, 1, 'category', 78, 15, 'id_attribute_group', 12, 0, 0),
+(59, 1, 'category', 78, 16, 'id_attribute_group', 13, 0, 0),
+(60, 1, 'category', 78, 17, 'id_attribute_group', 14, 0, 0),
+(61, 1, 'category', 78, 18, 'id_attribute_group', 15, 0, 0),
+(62, 1, 'category', 78, 19, 'id_attribute_group', 16, 0, 0),
+(63, 1, 'category', 78, 1, 'id_feature', 17, 0, 0),
+(64, 1, 'category', 78, 2, 'id_feature', 18, 0, 0),
+(65, 1, 'category', 78, 3, 'id_feature', 19, 0, 0),
+(66, 1, 'category', 78, 4, 'id_feature', 20, 0, 0),
+(67, 1, 'category', 78, 5, 'id_feature', 21, 0, 0),
+(68, 1, 'category', 78, 6, 'id_feature', 22, 0, 0),
+(69, 1, 'category', 78, 7, 'id_feature', 23, 0, 0),
+(70, 1, 'category', 88, NULL, 'manufacturer', 1, 0, 0),
+(71, 1, 'category', 88, NULL, 'category', 2, 0, 0),
+(72, 1, 'category', 88, 3, 'id_attribute_group', 3, 0, 0),
+(73, 1, 'category', 88, 5, 'id_attribute_group', 4, 0, 0),
+(74, 1, 'category', 88, 6, 'id_attribute_group', 5, 0, 0),
+(75, 1, 'category', 88, 7, 'id_attribute_group', 6, 0, 0),
+(76, 1, 'category', 88, 9, 'id_attribute_group', 7, 0, 0),
+(77, 1, 'category', 88, 11, 'id_attribute_group', 8, 0, 0),
+(78, 1, 'category', 88, 12, 'id_attribute_group', 9, 0, 0),
+(79, 1, 'category', 88, 13, 'id_attribute_group', 10, 0, 0),
+(80, 1, 'category', 88, 14, 'id_attribute_group', 11, 0, 0),
+(81, 1, 'category', 88, 15, 'id_attribute_group', 12, 0, 0),
+(82, 1, 'category', 88, 16, 'id_attribute_group', 13, 0, 0),
+(83, 1, 'category', 88, 17, 'id_attribute_group', 14, 0, 0),
+(84, 1, 'category', 88, 18, 'id_attribute_group', 15, 0, 0),
+(85, 1, 'category', 88, 19, 'id_attribute_group', 16, 0, 0),
+(86, 1, 'category', 88, 1, 'id_feature', 17, 0, 0),
+(87, 1, 'category', 88, 2, 'id_feature', 18, 0, 0),
+(88, 1, 'category', 88, 3, 'id_feature', 19, 0, 0),
+(89, 1, 'category', 88, 4, 'id_feature', 20, 0, 0),
+(90, 1, 'category', 88, 5, 'id_feature', 21, 0, 0),
+(91, 1, 'category', 88, 6, 'id_feature', 22, 0, 0),
+(92, 1, 'category', 88, 7, 'id_feature', 23, 0, 0),
+(93, 1, 'category', 89, NULL, 'manufacturer', 1, 0, 0),
+(94, 1, 'category', 89, NULL, 'category', 2, 0, 0),
+(95, 1, 'category', 89, 3, 'id_attribute_group', 3, 0, 0),
+(96, 1, 'category', 89, 5, 'id_attribute_group', 4, 0, 0),
+(97, 1, 'category', 89, 6, 'id_attribute_group', 5, 0, 0),
+(98, 1, 'category', 89, 7, 'id_attribute_group', 6, 0, 0),
+(99, 1, 'category', 89, 9, 'id_attribute_group', 7, 0, 0),
+(100, 1, 'category', 89, 11, 'id_attribute_group', 8, 0, 0),
+(101, 1, 'category', 89, 12, 'id_attribute_group', 9, 0, 0),
+(102, 1, 'category', 89, 13, 'id_attribute_group', 10, 0, 0),
+(103, 1, 'category', 89, 14, 'id_attribute_group', 11, 0, 0),
+(104, 1, 'category', 89, 15, 'id_attribute_group', 12, 0, 0),
+(105, 1, 'category', 89, 16, 'id_attribute_group', 13, 0, 0),
+(106, 1, 'category', 89, 17, 'id_attribute_group', 14, 0, 0),
+(107, 1, 'category', 89, 18, 'id_attribute_group', 15, 0, 0),
+(108, 1, 'category', 89, 19, 'id_attribute_group', 16, 0, 0),
+(109, 1, 'category', 89, 1, 'id_feature', 17, 0, 0),
+(110, 1, 'category', 89, 2, 'id_feature', 18, 0, 0),
+(111, 1, 'category', 89, 3, 'id_feature', 19, 0, 0),
+(112, 1, 'category', 89, 4, 'id_feature', 20, 0, 0),
+(113, 1, 'category', 89, 5, 'id_feature', 21, 0, 0),
+(114, 1, 'category', 89, 6, 'id_feature', 22, 0, 0),
+(115, 1, 'category', 89, 7, 'id_feature', 23, 0, 0),
+(116, 1, 'category', 66, NULL, 'manufacturer', 1, 0, 0),
+(117, 1, 'category', 66, NULL, 'category', 2, 0, 0),
+(118, 1, 'category', 66, 3, 'id_attribute_group', 3, 0, 0),
+(119, 1, 'category', 66, 5, 'id_attribute_group', 4, 0, 0),
+(120, 1, 'category', 66, 6, 'id_attribute_group', 5, 0, 0),
+(121, 1, 'category', 66, 7, 'id_attribute_group', 6, 0, 0),
+(122, 1, 'category', 66, 9, 'id_attribute_group', 7, 0, 0),
+(123, 1, 'category', 66, 11, 'id_attribute_group', 8, 0, 0),
+(124, 1, 'category', 66, 12, 'id_attribute_group', 9, 0, 0),
+(125, 1, 'category', 66, 13, 'id_attribute_group', 10, 0, 0),
+(126, 1, 'category', 66, 14, 'id_attribute_group', 11, 0, 0),
+(127, 1, 'category', 66, 15, 'id_attribute_group', 12, 0, 0),
+(128, 1, 'category', 66, 16, 'id_attribute_group', 13, 0, 0),
+(129, 1, 'category', 66, 17, 'id_attribute_group', 14, 0, 0),
+(130, 1, 'category', 66, 18, 'id_attribute_group', 15, 0, 0),
+(131, 1, 'category', 66, 19, 'id_attribute_group', 16, 0, 0),
+(132, 1, 'category', 66, 1, 'id_feature', 17, 0, 0),
+(133, 1, 'category', 66, 2, 'id_feature', 18, 0, 0),
+(134, 1, 'category', 66, 3, 'id_feature', 19, 0, 0),
+(135, 1, 'category', 66, 4, 'id_feature', 20, 0, 0),
+(136, 1, 'category', 66, 5, 'id_feature', 21, 0, 0),
+(137, 1, 'category', 66, 6, 'id_feature', 22, 0, 0),
+(138, 1, 'category', 66, 7, 'id_feature', 23, 0, 0),
+(139, 1, 'category', 70, NULL, 'manufacturer', 1, 0, 0),
+(140, 1, 'category', 70, NULL, 'category', 2, 0, 0),
+(141, 1, 'category', 70, 3, 'id_attribute_group', 3, 0, 0),
+(142, 1, 'category', 70, 5, 'id_attribute_group', 4, 0, 0),
+(143, 1, 'category', 70, 6, 'id_attribute_group', 5, 0, 0),
+(144, 1, 'category', 70, 7, 'id_attribute_group', 6, 0, 0),
+(145, 1, 'category', 70, 9, 'id_attribute_group', 7, 0, 0),
+(146, 1, 'category', 70, 11, 'id_attribute_group', 8, 0, 0),
+(147, 1, 'category', 70, 12, 'id_attribute_group', 9, 0, 0),
+(148, 1, 'category', 70, 13, 'id_attribute_group', 10, 0, 0),
+(149, 1, 'category', 70, 14, 'id_attribute_group', 11, 0, 0),
+(150, 1, 'category', 70, 15, 'id_attribute_group', 12, 0, 0),
+(151, 1, 'category', 70, 16, 'id_attribute_group', 13, 0, 0),
+(152, 1, 'category', 70, 17, 'id_attribute_group', 14, 0, 0),
+(153, 1, 'category', 70, 18, 'id_attribute_group', 15, 0, 0),
+(154, 1, 'category', 70, 19, 'id_attribute_group', 16, 0, 0),
+(155, 1, 'category', 70, 1, 'id_feature', 17, 0, 0),
+(156, 1, 'category', 70, 2, 'id_feature', 18, 0, 0),
+(157, 1, 'category', 70, 3, 'id_feature', 19, 0, 0),
+(158, 1, 'category', 70, 4, 'id_feature', 20, 0, 0),
+(159, 1, 'category', 70, 5, 'id_feature', 21, 0, 0),
+(160, 1, 'category', 70, 6, 'id_feature', 22, 0, 0),
+(161, 1, 'category', 70, 7, 'id_feature', 23, 0, 0),
+(162, 1, 'category', 68, NULL, 'manufacturer', 1, 0, 0),
+(163, 1, 'category', 68, NULL, 'category', 2, 0, 0),
+(164, 1, 'category', 68, 3, 'id_attribute_group', 3, 0, 0),
+(165, 1, 'category', 68, 5, 'id_attribute_group', 4, 0, 0),
+(166, 1, 'category', 68, 6, 'id_attribute_group', 5, 0, 0),
+(167, 1, 'category', 68, 7, 'id_attribute_group', 6, 0, 0),
+(168, 1, 'category', 68, 9, 'id_attribute_group', 7, 0, 0),
+(169, 1, 'category', 68, 11, 'id_attribute_group', 8, 0, 0),
+(170, 1, 'category', 68, 12, 'id_attribute_group', 9, 0, 0),
+(171, 1, 'category', 68, 13, 'id_attribute_group', 10, 0, 0),
+(172, 1, 'category', 68, 14, 'id_attribute_group', 11, 0, 0),
+(173, 1, 'category', 68, 15, 'id_attribute_group', 12, 0, 0),
+(174, 1, 'category', 68, 16, 'id_attribute_group', 13, 0, 0),
+(175, 1, 'category', 68, 17, 'id_attribute_group', 14, 0, 0),
+(176, 1, 'category', 68, 18, 'id_attribute_group', 15, 0, 0),
+(177, 1, 'category', 68, 19, 'id_attribute_group', 16, 0, 0),
+(178, 1, 'category', 68, 1, 'id_feature', 17, 0, 0),
+(179, 1, 'category', 68, 2, 'id_feature', 18, 0, 0),
+(180, 1, 'category', 68, 3, 'id_feature', 19, 0, 0),
+(181, 1, 'category', 68, 4, 'id_feature', 20, 0, 0),
+(182, 1, 'category', 68, 5, 'id_feature', 21, 0, 0),
+(183, 1, 'category', 68, 6, 'id_feature', 22, 0, 0),
+(184, 1, 'category', 68, 7, 'id_feature', 23, 0, 0),
+(185, 1, 'category', 69, NULL, 'manufacturer', 1, 0, 0),
+(186, 1, 'category', 69, NULL, 'category', 2, 0, 0),
+(187, 1, 'category', 69, 3, 'id_attribute_group', 3, 0, 0),
+(188, 1, 'category', 69, 5, 'id_attribute_group', 4, 0, 0),
+(189, 1, 'category', 69, 6, 'id_attribute_group', 5, 0, 0),
+(190, 1, 'category', 69, 7, 'id_attribute_group', 6, 0, 0),
+(191, 1, 'category', 69, 9, 'id_attribute_group', 7, 0, 0),
+(192, 1, 'category', 69, 11, 'id_attribute_group', 8, 0, 0),
+(193, 1, 'category', 69, 12, 'id_attribute_group', 9, 0, 0),
+(194, 1, 'category', 69, 13, 'id_attribute_group', 10, 0, 0),
+(195, 1, 'category', 69, 14, 'id_attribute_group', 11, 0, 0),
+(196, 1, 'category', 69, 15, 'id_attribute_group', 12, 0, 0),
+(197, 1, 'category', 69, 16, 'id_attribute_group', 13, 0, 0),
+(198, 1, 'category', 69, 17, 'id_attribute_group', 14, 0, 0),
+(199, 1, 'category', 69, 18, 'id_attribute_group', 15, 0, 0),
+(200, 1, 'category', 69, 19, 'id_attribute_group', 16, 0, 0),
+(201, 1, 'category', 69, 1, 'id_feature', 17, 0, 0),
+(202, 1, 'category', 69, 2, 'id_feature', 18, 0, 0),
+(203, 1, 'category', 69, 3, 'id_feature', 19, 0, 0),
+(204, 1, 'category', 69, 4, 'id_feature', 20, 0, 0),
+(205, 1, 'category', 69, 5, 'id_feature', 21, 0, 0),
+(206, 1, 'category', 69, 6, 'id_feature', 22, 0, 0),
+(207, 1, 'category', 69, 7, 'id_feature', 23, 0, 0),
+(208, 1, 'category', 71, NULL, 'manufacturer', 1, 0, 0),
+(209, 1, 'category', 71, NULL, 'category', 2, 0, 0),
+(210, 1, 'category', 71, 3, 'id_attribute_group', 3, 0, 0),
+(211, 1, 'category', 71, 5, 'id_attribute_group', 4, 0, 0),
+(212, 1, 'category', 71, 6, 'id_attribute_group', 5, 0, 0),
+(213, 1, 'category', 71, 7, 'id_attribute_group', 6, 0, 0),
+(214, 1, 'category', 71, 9, 'id_attribute_group', 7, 0, 0),
+(215, 1, 'category', 71, 11, 'id_attribute_group', 8, 0, 0),
+(216, 1, 'category', 71, 12, 'id_attribute_group', 9, 0, 0),
+(217, 1, 'category', 71, 13, 'id_attribute_group', 10, 0, 0),
+(218, 1, 'category', 71, 14, 'id_attribute_group', 11, 0, 0),
+(219, 1, 'category', 71, 15, 'id_attribute_group', 12, 0, 0),
+(220, 1, 'category', 71, 16, 'id_attribute_group', 13, 0, 0),
+(221, 1, 'category', 71, 17, 'id_attribute_group', 14, 0, 0),
+(222, 1, 'category', 71, 18, 'id_attribute_group', 15, 0, 0),
+(223, 1, 'category', 71, 19, 'id_attribute_group', 16, 0, 0),
+(224, 1, 'category', 71, 1, 'id_feature', 17, 0, 0),
+(225, 1, 'category', 71, 2, 'id_feature', 18, 0, 0),
+(226, 1, 'category', 71, 3, 'id_feature', 19, 0, 0),
+(227, 1, 'category', 71, 4, 'id_feature', 20, 0, 0),
+(228, 1, 'category', 71, 5, 'id_feature', 21, 0, 0),
+(229, 1, 'category', 71, 6, 'id_feature', 22, 0, 0),
+(230, 1, 'category', 71, 7, 'id_feature', 23, 0, 0),
+(231, 1, 'category', 72, NULL, 'manufacturer', 1, 0, 0),
+(232, 1, 'category', 72, NULL, 'category', 2, 0, 0),
+(233, 1, 'category', 72, 3, 'id_attribute_group', 3, 0, 0),
+(234, 1, 'category', 72, 5, 'id_attribute_group', 4, 0, 0),
+(235, 1, 'category', 72, 6, 'id_attribute_group', 5, 0, 0),
+(236, 1, 'category', 72, 7, 'id_attribute_group', 6, 0, 0),
+(237, 1, 'category', 72, 9, 'id_attribute_group', 7, 0, 0),
+(238, 1, 'category', 72, 11, 'id_attribute_group', 8, 0, 0),
+(239, 1, 'category', 72, 12, 'id_attribute_group', 9, 0, 0),
+(240, 1, 'category', 72, 13, 'id_attribute_group', 10, 0, 0),
+(241, 1, 'category', 72, 14, 'id_attribute_group', 11, 0, 0),
+(242, 1, 'category', 72, 15, 'id_attribute_group', 12, 0, 0),
+(243, 1, 'category', 72, 16, 'id_attribute_group', 13, 0, 0),
+(244, 1, 'category', 72, 17, 'id_attribute_group', 14, 0, 0),
+(245, 1, 'category', 72, 18, 'id_attribute_group', 15, 0, 0),
+(246, 1, 'category', 72, 19, 'id_attribute_group', 16, 0, 0),
+(247, 1, 'category', 72, 1, 'id_feature', 17, 0, 0),
+(248, 1, 'category', 72, 2, 'id_feature', 18, 0, 0),
+(249, 1, 'category', 72, 3, 'id_feature', 19, 0, 0),
+(250, 1, 'category', 72, 4, 'id_feature', 20, 0, 0),
+(251, 1, 'category', 72, 5, 'id_feature', 21, 0, 0),
+(252, 1, 'category', 72, 6, 'id_feature', 22, 0, 0),
+(253, 1, 'category', 72, 7, 'id_feature', 23, 0, 0),
+(254, 1, 'category', 59, NULL, 'manufacturer', 1, 0, 0),
+(255, 1, 'category', 59, NULL, 'category', 2, 0, 0),
+(256, 1, 'category', 59, 3, 'id_attribute_group', 3, 0, 0),
+(257, 1, 'category', 59, 5, 'id_attribute_group', 4, 0, 0),
+(258, 1, 'category', 59, 6, 'id_attribute_group', 5, 0, 0),
+(259, 1, 'category', 59, 7, 'id_attribute_group', 6, 0, 0),
+(260, 1, 'category', 59, 9, 'id_attribute_group', 7, 0, 0),
+(261, 1, 'category', 59, 11, 'id_attribute_group', 8, 0, 0),
+(262, 1, 'category', 59, 12, 'id_attribute_group', 9, 0, 0),
+(263, 1, 'category', 59, 13, 'id_attribute_group', 10, 0, 0),
+(264, 1, 'category', 59, 14, 'id_attribute_group', 11, 0, 0),
+(265, 1, 'category', 59, 15, 'id_attribute_group', 12, 0, 0),
+(266, 1, 'category', 59, 16, 'id_attribute_group', 13, 0, 0),
+(267, 1, 'category', 59, 17, 'id_attribute_group', 14, 0, 0),
+(268, 1, 'category', 59, 18, 'id_attribute_group', 15, 0, 0),
+(269, 1, 'category', 59, 19, 'id_attribute_group', 16, 0, 0),
+(270, 1, 'category', 59, 1, 'id_feature', 17, 0, 0),
+(271, 1, 'category', 59, 2, 'id_feature', 18, 0, 0),
+(272, 1, 'category', 59, 3, 'id_feature', 19, 0, 0),
+(273, 1, 'category', 59, 4, 'id_feature', 20, 0, 0),
+(274, 1, 'category', 59, 5, 'id_feature', 21, 0, 0),
+(275, 1, 'category', 59, 6, 'id_feature', 22, 0, 0),
+(276, 1, 'category', 59, 7, 'id_feature', 23, 0, 0),
+(277, 1, 'category', 60, NULL, 'manufacturer', 1, 0, 0),
+(278, 1, 'category', 60, NULL, 'category', 2, 0, 0),
+(279, 1, 'category', 60, 3, 'id_attribute_group', 3, 0, 0),
+(280, 1, 'category', 60, 5, 'id_attribute_group', 4, 0, 0),
+(281, 1, 'category', 60, 6, 'id_attribute_group', 5, 0, 0),
+(282, 1, 'category', 60, 7, 'id_attribute_group', 6, 0, 0),
+(283, 1, 'category', 60, 9, 'id_attribute_group', 7, 0, 0),
+(284, 1, 'category', 60, 11, 'id_attribute_group', 8, 0, 0),
+(285, 1, 'category', 60, 12, 'id_attribute_group', 9, 0, 0),
+(286, 1, 'category', 60, 13, 'id_attribute_group', 10, 0, 0),
+(287, 1, 'category', 60, 14, 'id_attribute_group', 11, 0, 0),
+(288, 1, 'category', 60, 15, 'id_attribute_group', 12, 0, 0),
+(289, 1, 'category', 60, 16, 'id_attribute_group', 13, 0, 0),
+(290, 1, 'category', 60, 17, 'id_attribute_group', 14, 0, 0),
+(291, 1, 'category', 60, 18, 'id_attribute_group', 15, 0, 0),
+(292, 1, 'category', 60, 19, 'id_attribute_group', 16, 0, 0),
+(293, 1, 'category', 60, 1, 'id_feature', 17, 0, 0),
+(294, 1, 'category', 60, 2, 'id_feature', 18, 0, 0),
+(295, 1, 'category', 60, 3, 'id_feature', 19, 0, 0),
+(296, 1, 'category', 60, 4, 'id_feature', 20, 0, 0),
+(297, 1, 'category', 60, 5, 'id_feature', 21, 0, 0),
+(298, 1, 'category', 60, 6, 'id_feature', 22, 0, 0),
+(299, 1, 'category', 60, 7, 'id_feature', 23, 0, 0),
+(300, 1, 'category', 61, NULL, 'manufacturer', 1, 0, 0),
+(301, 1, 'category', 61, NULL, 'category', 2, 0, 0),
+(302, 1, 'category', 61, 3, 'id_attribute_group', 3, 0, 0),
+(303, 1, 'category', 61, 5, 'id_attribute_group', 4, 0, 0),
+(304, 1, 'category', 61, 6, 'id_attribute_group', 5, 0, 0),
+(305, 1, 'category', 61, 7, 'id_attribute_group', 6, 0, 0),
+(306, 1, 'category', 61, 9, 'id_attribute_group', 7, 0, 0),
+(307, 1, 'category', 61, 11, 'id_attribute_group', 8, 0, 0),
+(308, 1, 'category', 61, 12, 'id_attribute_group', 9, 0, 0),
+(309, 1, 'category', 61, 13, 'id_attribute_group', 10, 0, 0),
+(310, 1, 'category', 61, 14, 'id_attribute_group', 11, 0, 0),
+(311, 1, 'category', 61, 15, 'id_attribute_group', 12, 0, 0),
+(312, 1, 'category', 61, 16, 'id_attribute_group', 13, 0, 0),
+(313, 1, 'category', 61, 17, 'id_attribute_group', 14, 0, 0),
+(314, 1, 'category', 61, 18, 'id_attribute_group', 15, 0, 0),
+(315, 1, 'category', 61, 19, 'id_attribute_group', 16, 0, 0),
+(316, 1, 'category', 61, 1, 'id_feature', 17, 0, 0),
+(317, 1, 'category', 61, 2, 'id_feature', 18, 0, 0),
+(318, 1, 'category', 61, 3, 'id_feature', 19, 0, 0),
+(319, 1, 'category', 61, 4, 'id_feature', 20, 0, 0),
+(320, 1, 'category', 61, 5, 'id_feature', 21, 0, 0),
+(321, 1, 'category', 61, 6, 'id_feature', 22, 0, 0),
+(322, 1, 'category', 61, 7, 'id_feature', 23, 0, 0),
+(323, 1, 'category', 83, NULL, 'manufacturer', 1, 0, 0),
+(324, 1, 'category', 83, NULL, 'category', 2, 0, 0),
+(325, 1, 'category', 83, 3, 'id_attribute_group', 3, 0, 0),
+(326, 1, 'category', 83, 5, 'id_attribute_group', 4, 0, 0),
+(327, 1, 'category', 83, 6, 'id_attribute_group', 5, 0, 0),
+(328, 1, 'category', 83, 7, 'id_attribute_group', 6, 0, 0),
+(329, 1, 'category', 83, 9, 'id_attribute_group', 7, 0, 0),
+(330, 1, 'category', 83, 11, 'id_attribute_group', 8, 0, 0),
+(331, 1, 'category', 83, 12, 'id_attribute_group', 9, 0, 0),
+(332, 1, 'category', 83, 13, 'id_attribute_group', 10, 0, 0),
+(333, 1, 'category', 83, 14, 'id_attribute_group', 11, 0, 0),
+(334, 1, 'category', 83, 15, 'id_attribute_group', 12, 0, 0),
+(335, 1, 'category', 83, 16, 'id_attribute_group', 13, 0, 0),
+(336, 1, 'category', 83, 17, 'id_attribute_group', 14, 0, 0),
+(337, 1, 'category', 83, 18, 'id_attribute_group', 15, 0, 0),
+(338, 1, 'category', 83, 19, 'id_attribute_group', 16, 0, 0),
+(339, 1, 'category', 83, 1, 'id_feature', 17, 0, 0),
+(340, 1, 'category', 83, 2, 'id_feature', 18, 0, 0),
+(341, 1, 'category', 83, 3, 'id_feature', 19, 0, 0),
+(342, 1, 'category', 83, 4, 'id_feature', 20, 0, 0),
+(343, 1, 'category', 83, 5, 'id_feature', 21, 0, 0),
+(344, 1, 'category', 83, 6, 'id_feature', 22, 0, 0),
+(345, 1, 'category', 83, 7, 'id_feature', 23, 0, 0),
+(346, 1, 'category', 53, NULL, 'manufacturer', 1, 0, 0),
+(347, 1, 'category', 53, NULL, 'category', 2, 0, 0),
+(348, 1, 'category', 53, 3, 'id_attribute_group', 3, 0, 0),
+(349, 1, 'category', 53, 5, 'id_attribute_group', 4, 0, 0),
+(350, 1, 'category', 53, 6, 'id_attribute_group', 5, 0, 0),
+(351, 1, 'category', 53, 7, 'id_attribute_group', 6, 0, 0),
+(352, 1, 'category', 53, 9, 'id_attribute_group', 7, 0, 0),
+(353, 1, 'category', 53, 11, 'id_attribute_group', 8, 0, 0),
+(354, 1, 'category', 53, 12, 'id_attribute_group', 9, 0, 0),
+(355, 1, 'category', 53, 13, 'id_attribute_group', 10, 0, 0),
+(356, 1, 'category', 53, 14, 'id_attribute_group', 11, 0, 0),
+(357, 1, 'category', 53, 15, 'id_attribute_group', 12, 0, 0),
+(358, 1, 'category', 53, 16, 'id_attribute_group', 13, 0, 0),
+(359, 1, 'category', 53, 17, 'id_attribute_group', 14, 0, 0),
+(360, 1, 'category', 53, 18, 'id_attribute_group', 15, 0, 0),
+(361, 1, 'category', 53, 19, 'id_attribute_group', 16, 0, 0),
+(362, 1, 'category', 53, 1, 'id_feature', 17, 0, 0),
+(363, 1, 'category', 53, 2, 'id_feature', 18, 0, 0),
+(364, 1, 'category', 53, 3, 'id_feature', 19, 0, 0),
+(365, 1, 'category', 53, 4, 'id_feature', 20, 0, 0),
+(366, 1, 'category', 53, 5, 'id_feature', 21, 0, 0),
+(367, 1, 'category', 53, 6, 'id_feature', 22, 0, 0),
+(368, 1, 'category', 53, 7, 'id_feature', 23, 0, 0),
+(369, 1, 'category', 84, NULL, 'manufacturer', 1, 0, 0),
+(370, 1, 'category', 84, NULL, 'category', 2, 0, 0),
+(371, 1, 'category', 84, 3, 'id_attribute_group', 3, 0, 0),
+(372, 1, 'category', 84, 5, 'id_attribute_group', 4, 0, 0),
+(373, 1, 'category', 84, 6, 'id_attribute_group', 5, 0, 0),
+(374, 1, 'category', 84, 7, 'id_attribute_group', 6, 0, 0),
+(375, 1, 'category', 84, 9, 'id_attribute_group', 7, 0, 0),
+(376, 1, 'category', 84, 11, 'id_attribute_group', 8, 0, 0),
+(377, 1, 'category', 84, 12, 'id_attribute_group', 9, 0, 0),
+(378, 1, 'category', 84, 13, 'id_attribute_group', 10, 0, 0),
+(379, 1, 'category', 84, 14, 'id_attribute_group', 11, 0, 0),
+(380, 1, 'category', 84, 15, 'id_attribute_group', 12, 0, 0),
+(381, 1, 'category', 84, 16, 'id_attribute_group', 13, 0, 0),
+(382, 1, 'category', 84, 17, 'id_attribute_group', 14, 0, 0),
+(383, 1, 'category', 84, 18, 'id_attribute_group', 15, 0, 0),
+(384, 1, 'category', 84, 19, 'id_attribute_group', 16, 0, 0),
+(385, 1, 'category', 84, 1, 'id_feature', 17, 0, 0),
+(386, 1, 'category', 84, 2, 'id_feature', 18, 0, 0),
+(387, 1, 'category', 84, 3, 'id_feature', 19, 0, 0),
+(388, 1, 'category', 84, 4, 'id_feature', 20, 0, 0),
+(389, 1, 'category', 84, 5, 'id_feature', 21, 0, 0),
+(390, 1, 'category', 84, 6, 'id_feature', 22, 0, 0),
+(391, 1, 'category', 84, 7, 'id_feature', 23, 0, 0),
+(392, 1, 'category', 30, NULL, 'manufacturer', 1, 0, 0),
+(393, 1, 'category', 30, NULL, 'category', 2, 0, 0),
+(394, 1, 'category', 30, 3, 'id_attribute_group', 3, 0, 0),
+(395, 1, 'category', 30, 5, 'id_attribute_group', 4, 0, 0),
+(396, 1, 'category', 30, 6, 'id_attribute_group', 5, 0, 0),
+(397, 1, 'category', 30, 7, 'id_attribute_group', 6, 0, 0),
+(398, 1, 'category', 30, 9, 'id_attribute_group', 7, 0, 0),
+(399, 1, 'category', 30, 11, 'id_attribute_group', 8, 0, 0),
+(400, 1, 'category', 30, 12, 'id_attribute_group', 9, 0, 0),
+(401, 1, 'category', 30, 13, 'id_attribute_group', 10, 0, 0),
+(402, 1, 'category', 30, 14, 'id_attribute_group', 11, 0, 0),
+(403, 1, 'category', 30, 15, 'id_attribute_group', 12, 0, 0),
+(404, 1, 'category', 30, 16, 'id_attribute_group', 13, 0, 0),
+(405, 1, 'category', 30, 17, 'id_attribute_group', 14, 0, 0),
+(406, 1, 'category', 30, 18, 'id_attribute_group', 15, 0, 0),
+(407, 1, 'category', 30, 19, 'id_attribute_group', 16, 0, 0),
+(408, 1, 'category', 30, 1, 'id_feature', 17, 0, 0),
+(409, 1, 'category', 30, 2, 'id_feature', 18, 0, 0),
+(410, 1, 'category', 30, 3, 'id_feature', 19, 0, 0),
+(411, 1, 'category', 30, 4, 'id_feature', 20, 0, 0),
+(412, 1, 'category', 30, 5, 'id_feature', 21, 0, 0),
+(413, 1, 'category', 30, 6, 'id_feature', 22, 0, 0),
+(414, 1, 'category', 30, 7, 'id_feature', 23, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -11470,14 +13674,14 @@ CREATE TABLE `ps_layered_filter` (
   `filters` longtext DEFAULT NULL,
   `n_categories` int(10) UNSIGNED NOT NULL,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_layered_filter`
 --
 
 INSERT INTO `ps_layered_filter` (`id_layered_filter`, `name`, `filters`, `n_categories`, `date_add`) VALUES
-(1, 'levage', 'a:4:{s:9:\"shop_list\";a:1:{i:0;i:1;}s:10:\"categories\";a:5:{i:0;i:10;i:1;i:77;i:2;i:78;i:3;i:88;i:4;i:89;}s:30:\"layered_selection_manufacturer\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:31:\"layered_selection_subcategories\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}}', 5, '2023-09-25 19:17:37'),
+(1, 'levage', 'a:26:{s:9:\"shop_list\";a:1:{i:0;i:1;}s:10:\"categories\";a:18:{i:0;i:10;i:1;i:77;i:2;i:78;i:3;i:88;i:4;i:89;i:5;i:66;i:6;i:70;i:7;i:68;i:8;i:69;i:9;i:71;i:10;i:72;i:11;i:59;i:12;i:60;i:13;i:61;i:14;i:83;i:15;i:53;i:16;i:84;i:17;i:30;}s:11:\"controllers\";a:1:{i:0;s:8:\"category\";}s:30:\"layered_selection_manufacturer\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:31:\"layered_selection_subcategories\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:22:\"layered_selection_ag_3\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:22:\"layered_selection_ag_5\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:22:\"layered_selection_ag_6\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:22:\"layered_selection_ag_7\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:22:\"layered_selection_ag_9\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:23:\"layered_selection_ag_11\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:23:\"layered_selection_ag_12\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:23:\"layered_selection_ag_13\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:23:\"layered_selection_ag_14\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:23:\"layered_selection_ag_15\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:23:\"layered_selection_ag_16\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:23:\"layered_selection_ag_17\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:23:\"layered_selection_ag_18\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:23:\"layered_selection_ag_19\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:24:\"layered_selection_feat_1\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:24:\"layered_selection_feat_2\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:24:\"layered_selection_feat_3\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:24:\"layered_selection_feat_4\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:24:\"layered_selection_feat_5\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:24:\"layered_selection_feat_6\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}s:24:\"layered_selection_feat_7\";a:2:{s:11:\"filter_type\";i:0;s:17:\"filter_show_limit\";i:0;}}', 18, '2023-09-25 19:17:37'),
 (2, 'Mon modèle 2020-03-16', 'a:2:{s:9:\"shop_list\";a:1:{i:0;i:1;}s:10:\"categories\";a:8:{i:0;i:10;i:1;i:78;i:2;i:80;i:3;i:19;i:4;i:82;i:5;i:92;i:6;i:88;i:7;i:89;}}', 8, '2023-09-25 19:18:13');
 
 -- --------------------------------------------------------
@@ -11489,16 +13693,19 @@ INSERT INTO `ps_layered_filter` (`id_layered_filter`, `name`, `filters`, `n_cate
 CREATE TABLE `ps_layered_filter_block` (
   `hash` char(32) NOT NULL DEFAULT '',
   `data` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_layered_filter_block`
 --
 
 INSERT INTO `ps_layered_filter_block` (`hash`, `data`) VALUES
+('06caa1d52271e70041d41ee33fe39a14', 'a:1:{s:7:\"filters\";a:0:{}}'),
 ('5572cf360d9c36c7192d95a4f98126c6', 'a:1:{s:7:\"filters\";a:0:{}}'),
+('62e4fbcd29bd65c81e603c7983ac6c71', 'a:1:{s:7:\"filters\";a:0:{}}'),
 ('69f307f14bf241f3370032d9c1a08183', 'a:1:{s:7:\"filters\";a:0:{}}'),
-('91dd95ec656a584afa87c72bf1be49ec', 'a:1:{s:7:\"filters\";a:0:{}}');
+('8c17d6a56ff9c082aa9bdc68649f30af', 'a:1:{s:7:\"filters\";a:0:{}}'),
+('e88604e4c42930d0f0bbfa5825efd8a0', 'a:1:{s:7:\"filters\";a:0:{}}');
 
 -- --------------------------------------------------------
 
@@ -11509,7 +13716,14 @@ INSERT INTO `ps_layered_filter_block` (`hash`, `data`) VALUES
 CREATE TABLE `ps_layered_filter_shop` (
   `id_layered_filter` int(10) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `ps_layered_filter_shop`
+--
+
+INSERT INTO `ps_layered_filter_shop` (`id_layered_filter`, `id_shop`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -11520,7 +13734,7 @@ CREATE TABLE `ps_layered_filter_shop` (
 CREATE TABLE `ps_layered_indexable_attribute_group` (
   `id_attribute_group` int(11) NOT NULL,
   `indexable` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_layered_indexable_attribute_group`
@@ -11546,7 +13760,7 @@ CREATE TABLE `ps_layered_indexable_attribute_group_lang_value` (
   `id_lang` int(11) NOT NULL,
   `url_name` varchar(128) DEFAULT NULL,
   `meta_title` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -11559,7 +13773,7 @@ CREATE TABLE `ps_layered_indexable_attribute_lang_value` (
   `id_lang` int(11) NOT NULL,
   `url_name` varchar(128) DEFAULT NULL,
   `meta_title` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_layered_indexable_attribute_lang_value`
@@ -11672,7 +13886,7 @@ INSERT INTO `ps_layered_indexable_attribute_lang_value` (`id_attribute`, `id_lan
 CREATE TABLE `ps_layered_indexable_feature` (
   `id_feature` int(11) NOT NULL,
   `indexable` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_layered_indexable_feature`
@@ -11698,7 +13912,7 @@ CREATE TABLE `ps_layered_indexable_feature_lang_value` (
   `id_lang` int(11) NOT NULL,
   `url_name` varchar(128) NOT NULL,
   `meta_title` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_layered_indexable_feature_lang_value`
@@ -11721,7 +13935,7 @@ CREATE TABLE `ps_layered_indexable_feature_value_lang_value` (
   `id_lang` int(11) NOT NULL,
   `url_name` varchar(128) DEFAULT NULL,
   `meta_title` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -11736,7 +13950,7 @@ CREATE TABLE `ps_layered_price_index` (
   `price_min` decimal(11,5) NOT NULL,
   `price_max` decimal(11,5) NOT NULL,
   `id_country` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_layered_price_index`
@@ -11744,12 +13958,12 @@ CREATE TABLE `ps_layered_price_index` (
 
 INSERT INTO `ps_layered_price_index` (`id_product`, `id_currency`, `id_shop`, `price_min`, `price_max`, `id_country`) VALUES
 (0, 1, 1, 0.00000, 0.00000, 8),
-(20, 1, 1, 0.00000, 0.00000, 8),
+(20, 1, 1, 154.50000, 154.50000, 8),
 (22, 1, 1, 47.50000, 47.50000, 8),
-(23, 1, 1, 245.40000, 245.40000, 8),
+(23, 1, 1, 294.48000, 294.48000, 8),
 (24, 1, 1, 199.20000, 199.20000, 8),
 (25, 1, 1, 154.76000, 154.76000, 8),
-(26, 1, 1, 85.70000, 85.70000, 8),
+(26, 1, 1, 102.84000, 102.84000, 8),
 (26, 1, 2, 85.70000, 85.70000, 8),
 (27, 1, 1, 105.11000, 105.11000, 8),
 (28, 1, 1, 162.44000, 162.44000, 8),
@@ -11931,13 +14145,13 @@ INSERT INTO `ps_layered_price_index` (`id_product`, `id_currency`, `id_shop`, `p
 (208, 1, 1, 13950.00000, 13950.00000, 8),
 (209, 1, 1, 1890.00000, 1890.00000, 8),
 (210, 1, 1, 3980.00000, 3980.00000, 8),
-(211, 1, 1, 10310.00000, 10310.00000, 8),
+(211, 1, 1, 9279.00000, 12372.00000, 8),
 (212, 1, 1, 2015.00000, 2015.00000, 8),
 (213, 1, 1, 0.00000, 0.00000, 8),
 (214, 1, 1, 2796.00000, 2796.00000, 8),
 (215, 1, 1, 2200.00000, 2200.00000, 8),
 (216, 1, 1, 3902.00000, 3902.00000, 8),
-(217, 1, 1, 2690.00000, 2690.00000, 8),
+(217, 1, 1, 3228.00000, 3228.00000, 8),
 (218, 1, 1, 0.00000, 0.00000, 8),
 (219, 1, 1, 0.00000, 0.00000, 8),
 (220, 1, 1, 0.00000, 0.00000, 8),
@@ -11945,18 +14159,18 @@ INSERT INTO `ps_layered_price_index` (`id_product`, `id_currency`, `id_shop`, `p
 (222, 1, 1, 0.00000, 0.00000, 8),
 (223, 1, 1, 0.00000, 0.00000, 8),
 (224, 1, 1, 0.00000, 0.00000, 8),
-(225, 1, 1, 3120.00000, 4160.00000, 8),
+(225, 1, 1, 3744.00000, 4992.00000, 8),
 (226, 1, 1, 3975.00000, 5300.00000, 8),
-(227, 1, 1, 228.50000, 228.50000, 8),
+(227, 1, 1, 274.20000, 274.20000, 8),
 (227, 1, 2, 228.50000, 228.50000, 8),
 (228, 1, 1, 0.00000, 0.00000, 8),
 (229, 1, 1, 0.00000, 0.00000, 8),
 (230, 1, 1, 4460.00000, 4460.00000, 8),
-(231, 1, 1, 3306.00000, 4408.00000, 8),
+(231, 1, 1, 3967.20000, 5289.60000, 8),
 (232, 1, 1, 0.00000, 0.00000, 8),
 (233, 1, 1, 0.00000, 0.00000, 8),
 (233, 1, 2, 0.00000, 0.00000, 8),
-(234, 1, 1, 2337.60000, 2337.60000, 8),
+(234, 1, 1, 1753.20000, 2337.60000, 8),
 (234, 1, 2, 1948.00000, 1948.00000, 8);
 
 -- --------------------------------------------------------
@@ -11970,7 +14184,7 @@ CREATE TABLE `ps_layered_product_attribute` (
   `id_product` int(10) UNSIGNED NOT NULL,
   `id_attribute_group` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `id_shop` int(10) UNSIGNED NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_layered_product_attribute`
@@ -12264,7 +14478,7 @@ CREATE TABLE `ps_linksmenutop` (
   `id_linksmenutop` int(10) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL,
   `new_window` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_linksmenutop`
@@ -12287,7 +14501,7 @@ CREATE TABLE `ps_linksmenutop_lang` (
   `id_shop` int(11) UNSIGNED NOT NULL,
   `label` varchar(128) NOT NULL,
   `link` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_linksmenutop_lang`
@@ -12312,7 +14526,7 @@ CREATE TABLE `ps_link_block` (
   `id_hook` int(1) UNSIGNED DEFAULT NULL,
   `position` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `content` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_link_block`
@@ -12333,7 +14547,7 @@ CREATE TABLE `ps_link_block_lang` (
   `id_lang` int(10) UNSIGNED NOT NULL,
   `name` varchar(40) NOT NULL DEFAULT '',
   `custom_content` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_link_block_lang`
@@ -12355,7 +14569,7 @@ CREATE TABLE `ps_link_block_shop` (
   `id_link_block` int(10) UNSIGNED NOT NULL,
   `id_shop` int(10) UNSIGNED NOT NULL,
   `position` int(10) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_link_block_shop`
@@ -12385,13 +14599,14 @@ CREATE TABLE `ps_log` (
   `id_employee` int(10) UNSIGNED DEFAULT NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_log`
 --
 
 INSERT INTO `ps_log` (`id_log`, `severity`, `error_code`, `message`, `object_type`, `object_id`, `id_shop`, `id_shop_group`, `id_lang`, `in_all_shops`, `id_employee`, `date_add`, `date_upd`) VALUES
+(0, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 09:41:15', '2023-10-01 09:41:15'),
 (1, 1, 0, 'Exporting mail with theme modern for language English (English)', '', 0, NULL, NULL, 0, 0, 0, '2023-09-25 16:41:33', '2023-09-25 16:41:33'),
 (2, 1, 0, 'Core output folder: C:\\xampp8.0\\htdocs\\pieces-levage/mails', '', 0, NULL, NULL, 0, 0, 0, '2023-09-25 16:41:33', '2023-09-25 16:41:33'),
 (3, 1, 0, 'Modules output folder: C:\\xampp8.0\\htdocs\\pieces-levage/modules/', '', 0, NULL, NULL, 0, 0, 0, '2023-09-25 16:41:33', '2023-09-25 16:41:33'),
@@ -12654,9 +14869,9 @@ INSERT INTO `ps_log` (`id_log`, `severity`, `error_code`, `message`, `object_typ
 (260, 1, 0, 'Module ps_emailsubscription has no vendor folder', '', 0, 1, NULL, 1, 0, 1, '2023-09-25 16:42:09', '2023-09-25 16:42:09'),
 (261, 1, 0, 'Protect vendor folder in module ps_socialfollow', '', 0, 1, NULL, 1, 0, 1, '2023-09-25 16:42:10', '2023-09-25 16:42:10'),
 (262, 1, 0, 'Module ps_socialfollow has no vendor folder', '', 0, 1, NULL, 1, 0, 1, '2023-09-25 16:42:10', '2023-09-25 16:42:10'),
-(263, 1, 0, 'Protect vendor folder in module ps_customeraccountlinks', '', 0, 1, NULL, 1, 0, 1, '2023-09-25 16:42:10', '2023-09-25 16:42:10'),
-(264, 1, 0, 'Module ps_customeraccountlinks has no vendor folder', '', 0, 1, NULL, 1, 0, 1, '2023-09-25 16:42:10', '2023-09-25 16:42:10');
+(263, 1, 0, 'Protect vendor folder in module ps_customeraccountlinks', '', 0, 1, NULL, 1, 0, 1, '2023-09-25 16:42:10', '2023-09-25 16:42:10');
 INSERT INTO `ps_log` (`id_log`, `severity`, `error_code`, `message`, `object_type`, `object_id`, `id_shop`, `id_shop_group`, `id_lang`, `in_all_shops`, `id_employee`, `date_add`, `date_upd`) VALUES
+(264, 1, 0, 'Module ps_customeraccountlinks has no vendor folder', '', 0, 1, NULL, 1, 0, 1, '2023-09-25 16:42:10', '2023-09-25 16:42:10'),
 (265, 1, 0, 'Protect vendor folder in module productcomments', '', 0, 1, NULL, 1, 0, 1, '2023-09-25 16:42:11', '2023-09-25 16:42:11'),
 (266, 1, 0, 'Module productcomments has no vendor folder', '', 0, 1, NULL, 1, 0, 1, '2023-09-25 16:42:11', '2023-09-25 16:42:11'),
 (267, 1, 0, 'Protect vendor folder in module ps_categorytree', '', 0, 1, NULL, 1, 0, 1, '2023-09-25 16:42:11', '2023-09-25 16:42:11'),
@@ -13443,7 +15658,633 @@ INSERT INTO `ps_log` (`id_log`, `severity`, `error_code`, `message`, `object_typ
 (1046, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-09-28 14:21:12', '2023-09-28 14:21:12'),
 (1047, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-09-28 14:21:12', '2023-09-28 14:21:12'),
 (1048, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-09-28 14:21:17', '2023-09-28 14:21:17'),
-(1049, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-09-28 14:21:17', '2023-09-28 14:21:17');
+(1049, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-09-28 14:21:17', '2023-09-28 14:21:17'),
+(1050, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 09:41:54', '2023-10-01 09:41:54'),
+(1051, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 09:41:54', '2023-10-01 09:41:54'),
+(1052, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 09:43:19', '2023-10-01 09:43:19'),
+(1053, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 09:43:19', '2023-10-01 09:43:19'),
+(1054, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 09:49:10', '2023-10-01 09:49:10'),
+(1055, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 09:49:10', '2023-10-01 09:49:10'),
+(1056, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 09:49:21', '2023-10-01 09:49:21'),
+(1057, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 09:49:21', '2023-10-01 09:49:21'),
+(1058, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:00:32', '2023-10-01 10:00:32'),
+(1059, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:00:32', '2023-10-01 10:00:32'),
+(1060, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:01:53', '2023-10-01 10:01:53'),
+(1061, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:01:53', '2023-10-01 10:01:53'),
+(1062, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:54:30', '2023-10-01 10:54:30'),
+(1063, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:54:30', '2023-10-01 10:54:30'),
+(1064, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:54:35', '2023-10-01 10:54:35'),
+(1065, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:54:35', '2023-10-01 10:54:35'),
+(1066, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:54:55', '2023-10-01 10:54:55'),
+(1067, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:54:55', '2023-10-01 10:54:55'),
+(1068, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:55:02', '2023-10-01 10:55:02'),
+(1069, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:55:02', '2023-10-01 10:55:02'),
+(1070, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:55:09', '2023-10-01 10:55:09'),
+(1071, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:55:09', '2023-10-01 10:55:09'),
+(1072, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:55:12', '2023-10-01 10:55:12'),
+(1073, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:55:12', '2023-10-01 10:55:12'),
+(1074, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:55:14', '2023-10-01 10:55:14'),
+(1075, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:55:15', '2023-10-01 10:55:15'),
+(1076, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:55:17', '2023-10-01 10:55:17'),
+(1077, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:55:17', '2023-10-01 10:55:17'),
+(1078, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:57:24', '2023-10-01 10:57:24'),
+(1079, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:57:24', '2023-10-01 10:57:24'),
+(1080, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:57:32', '2023-10-01 10:57:32'),
+(1081, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:57:32', '2023-10-01 10:57:32'),
+(1082, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:57:38', '2023-10-01 10:57:38'),
+(1083, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:57:38', '2023-10-01 10:57:38'),
+(1084, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:57:52', '2023-10-01 10:57:52'),
+(1085, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:57:52', '2023-10-01 10:57:52'),
+(1086, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:58:00', '2023-10-01 10:58:00'),
+(1087, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:58:00', '2023-10-01 10:58:00'),
+(1088, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:58:05', '2023-10-01 10:58:05'),
+(1089, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:58:05', '2023-10-01 10:58:05'),
+(1090, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:59:54', '2023-10-01 10:59:54'),
+(1091, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:59:54', '2023-10-01 10:59:54'),
+(1092, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:59:59', '2023-10-01 10:59:59'),
+(1093, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 10:59:59', '2023-10-01 10:59:59'),
+(1094, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:00:18', '2023-10-01 11:00:18'),
+(1095, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:00:18', '2023-10-01 11:00:18'),
+(1096, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:00:23', '2023-10-01 11:00:23'),
+(1097, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:00:23', '2023-10-01 11:00:23'),
+(1098, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:27:55', '2023-10-01 11:27:55'),
+(1099, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:27:55', '2023-10-01 11:27:55'),
+(1100, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:28:00', '2023-10-01 11:28:00'),
+(1101, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:28:00', '2023-10-01 11:28:00'),
+(1102, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:29:47', '2023-10-01 11:29:47'),
+(1103, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:29:47', '2023-10-01 11:29:47'),
+(1104, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:29:59', '2023-10-01 11:29:59'),
+(1105, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:29:59', '2023-10-01 11:29:59'),
+(1106, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:30:03', '2023-10-01 11:30:03'),
+(1107, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:30:03', '2023-10-01 11:30:03'),
+(1108, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:30:15', '2023-10-01 11:30:15'),
+(1109, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:30:15', '2023-10-01 11:30:15'),
+(1110, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:31:58', '2023-10-01 11:31:58'),
+(1111, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:31:58', '2023-10-01 11:31:58'),
+(1112, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:32:03', '2023-10-01 11:32:03'),
+(1113, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:32:03', '2023-10-01 11:32:03'),
+(1114, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:54:56', '2023-10-01 11:54:56'),
+(1115, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:54:56', '2023-10-01 11:54:56'),
+(1116, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:55:04', '2023-10-01 11:55:04'),
+(1117, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:55:04', '2023-10-01 11:55:04'),
+(1118, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:55:35', '2023-10-01 11:55:35'),
+(1119, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:55:35', '2023-10-01 11:55:35'),
+(1120, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:55:54', '2023-10-01 11:55:54'),
+(1121, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:55:54', '2023-10-01 11:55:54'),
+(1122, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:56:44', '2023-10-01 11:56:44'),
+(1123, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:56:44', '2023-10-01 11:56:44'),
+(1124, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:56:57', '2023-10-01 11:56:57'),
+(1125, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:56:57', '2023-10-01 11:56:57'),
+(1126, 1, 0, 'Product modification', 'Product', 211, 1, NULL, 1, 0, 1, '2023-10-01 11:57:12', '2023-10-01 11:57:12'),
+(1127, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:57:17', '2023-10-01 11:57:17'),
+(1128, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:57:17', '2023-10-01 11:57:17'),
+(1129, 1, 0, 'Product modification', 'Product', 211, 1, NULL, 1, 0, 1, '2023-10-01 11:57:58', '2023-10-01 11:57:58'),
+(1130, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:58:00', '2023-10-01 11:58:00'),
+(1131, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:58:00', '2023-10-01 11:58:00'),
+(1132, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:58:10', '2023-10-01 11:58:10'),
+(1133, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:58:10', '2023-10-01 11:58:10'),
+(1134, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:58:33', '2023-10-01 11:58:33'),
+(1135, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:58:33', '2023-10-01 11:58:33'),
+(1136, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:58:37', '2023-10-01 11:58:37'),
+(1137, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:58:38', '2023-10-01 11:58:38'),
+(1138, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:58:42', '2023-10-01 11:58:42'),
+(1139, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:58:42', '2023-10-01 11:58:42'),
+(1140, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:58:46', '2023-10-01 11:58:46'),
+(1141, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:58:46', '2023-10-01 11:58:46'),
+(1142, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:58:53', '2023-10-01 11:58:53'),
+(1143, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:58:53', '2023-10-01 11:58:53'),
+(1144, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:59:18', '2023-10-01 11:59:18'),
+(1145, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 11:59:18', '2023-10-01 11:59:18'),
+(1146, 1, 0, 'Product modification', 'Product', 231, 1, NULL, 1, 0, 1, '2023-10-01 11:59:23', '2023-10-01 11:59:23'),
+(1147, 1, 0, 'Product modification', 'Product', 227, 1, NULL, 1, 0, 1, '2023-10-01 11:59:38', '2023-10-01 11:59:38'),
+(1148, 1, 0, 'Product modification', 'Product', 225, 1, NULL, 1, 0, 1, '2023-10-01 11:59:55', '2023-10-01 11:59:55'),
+(1149, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 12:00:19', '2023-10-01 12:00:19'),
+(1150, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 12:00:19', '2023-10-01 12:00:19'),
+(1151, 1, 0, 'Product modification', 'Product', 221, 1, NULL, 1, 0, 1, '2023-10-01 12:00:44', '2023-10-01 12:00:44'),
+(1152, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 12:01:36', '2023-10-01 12:01:36'),
+(1153, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 12:01:37', '2023-10-01 12:01:37'),
+(1154, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 12:02:26', '2023-10-01 12:02:26'),
+(1155, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 12:02:26', '2023-10-01 12:02:26'),
+(1156, 1, 0, 'Product modification', 'Product', 220, 1, NULL, 1, 0, 1, '2023-10-01 12:02:52', '2023-10-01 12:02:52'),
+(1157, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 12:57:46', '2023-10-01 12:57:46'),
+(1158, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 12:57:46', '2023-10-01 12:57:46'),
+(1159, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 12:58:00', '2023-10-01 12:58:00'),
+(1160, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 12:58:00', '2023-10-01 12:58:00'),
+(1161, 1, 0, 'Product modification', 'Product', 217, 1, NULL, 1, 0, 1, '2023-10-01 12:59:22', '2023-10-01 12:59:22'),
+(1162, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 12:59:23', '2023-10-01 12:59:23'),
+(1163, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 12:59:23', '2023-10-01 12:59:23'),
+(1164, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:08:12', '2023-10-01 13:08:12'),
+(1165, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:08:12', '2023-10-01 13:08:12'),
+(1166, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:08:25', '2023-10-01 13:08:25'),
+(1167, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:08:25', '2023-10-01 13:08:25'),
+(1168, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:08:47', '2023-10-01 13:08:47'),
+(1169, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:08:47', '2023-10-01 13:08:47'),
+(1170, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:08:52', '2023-10-01 13:08:52'),
+(1171, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:08:52', '2023-10-01 13:08:52'),
+(1172, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:09:01', '2023-10-01 13:09:01'),
+(1173, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:09:01', '2023-10-01 13:09:01'),
+(1174, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:09:06', '2023-10-01 13:09:06'),
+(1175, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:09:06', '2023-10-01 13:09:06'),
+(1176, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:09:12', '2023-10-01 13:09:12'),
+(1177, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:09:12', '2023-10-01 13:09:12'),
+(1178, 1, 0, 'Product modification', 'Product', 231, 1, NULL, 1, 0, 1, '2023-10-01 13:09:35', '2023-10-01 13:09:35'),
+(1179, 1, 0, 'Product modification', 'Product', 227, 1, NULL, 1, 0, 1, '2023-10-01 13:09:42', '2023-10-01 13:09:42'),
+(1180, 1, 0, 'Product modification', 'Product', 225, 1, NULL, 1, 0, 1, '2023-10-01 13:09:49', '2023-10-01 13:09:49'),
+(1181, 1, 0, 'Product modification', 'Product', 217, 1, NULL, 1, 0, 1, '2023-10-01 13:09:58', '2023-10-01 13:09:58'),
+(1182, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:10:10', '2023-10-01 13:10:10'),
+(1183, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:10:10', '2023-10-01 13:10:10'),
+(1184, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:10:15', '2023-10-01 13:10:15'),
+(1185, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:10:15', '2023-10-01 13:10:15'),
+(1186, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:10:19', '2023-10-01 13:10:19'),
+(1187, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:10:19', '2023-10-01 13:10:19'),
+(1188, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:10:23', '2023-10-01 13:10:23'),
+(1189, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:10:23', '2023-10-01 13:10:23'),
+(1190, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:10:27', '2023-10-01 13:10:27'),
+(1191, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:10:27', '2023-10-01 13:10:27'),
+(1192, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:10:32', '2023-10-01 13:10:32'),
+(1193, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:10:32', '2023-10-01 13:10:32'),
+(1194, 1, 0, 'Product modification', 'Product', 23, 1, NULL, 1, 0, 1, '2023-10-01 13:11:24', '2023-10-01 13:11:24'),
+(1195, 1, 0, 'Product modification', 'Product', 20, 1, NULL, 1, 0, 1, '2023-10-01 13:11:42', '2023-10-01 13:11:42'),
+(1196, 1, 0, 'Product modification', 'Product', 26, 1, NULL, 1, 0, 1, '2023-10-01 13:11:52', '2023-10-01 13:11:52'),
+(1197, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:12:00', '2023-10-01 13:12:00'),
+(1198, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:12:00', '2023-10-01 13:12:00'),
+(1199, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:12:14', '2023-10-01 13:12:14'),
+(1200, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:12:14', '2023-10-01 13:12:14'),
+(1201, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:12:45', '2023-10-01 13:12:45'),
+(1202, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:12:45', '2023-10-01 13:12:45'),
+(1203, 1, 0, 'Product modification', 'Product', 231, 1, NULL, 1, 0, 1, '2023-10-01 13:14:08', '2023-10-01 13:14:08'),
+(1204, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:14:44', '2023-10-01 13:14:44'),
+(1205, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:14:44', '2023-10-01 13:14:44'),
+(1206, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:47:45', '2023-10-01 13:47:45'),
+(1207, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:47:45', '2023-10-01 13:47:45'),
+(1208, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:48:14', '2023-10-01 13:48:14'),
+(1209, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:48:14', '2023-10-01 13:48:14'),
+(1210, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:59:43', '2023-10-01 13:59:43'),
+(1211, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 13:59:43', '2023-10-01 13:59:43'),
+(1212, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:00:24', '2023-10-01 14:00:24'),
+(1213, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:00:24', '2023-10-01 14:00:24'),
+(1214, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:32:14', '2023-10-01 14:32:14'),
+(1215, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:32:14', '2023-10-01 14:32:14'),
+(1216, 1, 0, 'Protect vendor folder in module ohm_productsdisplay', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:32:26', '2023-10-01 14:32:26'),
+(1217, 1, 0, 'Module ohm_productsdisplay has no vendor folder', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:32:26', '2023-10-01 14:32:26'),
+(1218, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:34:23', '2023-10-01 14:34:23');
+INSERT INTO `ps_log` (`id_log`, `severity`, `error_code`, `message`, `object_type`, `object_id`, `id_shop`, `id_shop_group`, `id_lang`, `in_all_shops`, `id_employee`, `date_add`, `date_upd`) VALUES
+(1219, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:34:23', '2023-10-01 14:34:23'),
+(1220, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:34:31', '2023-10-01 14:34:31'),
+(1221, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:34:31', '2023-10-01 14:34:31'),
+(1222, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:34:37', '2023-10-01 14:34:37'),
+(1223, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:34:37', '2023-10-01 14:34:37'),
+(1224, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:39:31', '2023-10-01 14:39:31'),
+(1225, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:39:31', '2023-10-01 14:39:31'),
+(1226, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:39:40', '2023-10-01 14:39:40'),
+(1227, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:39:40', '2023-10-01 14:39:40'),
+(1228, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:42:28', '2023-10-01 14:42:28'),
+(1229, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:42:28', '2023-10-01 14:42:28'),
+(1230, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:42:33', '2023-10-01 14:42:33'),
+(1231, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:42:33', '2023-10-01 14:42:33'),
+(1232, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:43:37', '2023-10-01 14:43:37'),
+(1233, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:43:37', '2023-10-01 14:43:37'),
+(1234, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:43:42', '2023-10-01 14:43:42'),
+(1235, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:43:42', '2023-10-01 14:43:42'),
+(1236, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:44:01', '2023-10-01 14:44:01'),
+(1237, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:44:01', '2023-10-01 14:44:01'),
+(1238, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:44:06', '2023-10-01 14:44:06'),
+(1239, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:44:06', '2023-10-01 14:44:06'),
+(1240, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:44:29', '2023-10-01 14:44:29'),
+(1241, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:44:29', '2023-10-01 14:44:29'),
+(1242, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:44:33', '2023-10-01 14:44:33'),
+(1243, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:44:33', '2023-10-01 14:44:33'),
+(1244, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:50:45', '2023-10-01 14:50:45'),
+(1245, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:50:45', '2023-10-01 14:50:45'),
+(1246, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:50:54', '2023-10-01 14:50:54'),
+(1247, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:50:54', '2023-10-01 14:50:54'),
+(1248, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:58:26', '2023-10-01 14:58:26'),
+(1249, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:58:26', '2023-10-01 14:58:26'),
+(1250, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:58:35', '2023-10-01 14:58:35'),
+(1251, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:58:35', '2023-10-01 14:58:35'),
+(1252, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:58:36', '2023-10-01 14:58:36'),
+(1253, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:58:36', '2023-10-01 14:58:36'),
+(1254, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:58:36', '2023-10-01 14:58:36'),
+(1255, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:58:36', '2023-10-01 14:58:36'),
+(1256, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:58:37', '2023-10-01 14:58:37'),
+(1257, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 14:58:37', '2023-10-01 14:58:37'),
+(1258, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:05:46', '2023-10-01 15:05:46'),
+(1259, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:05:47', '2023-10-01 15:05:47'),
+(1260, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:05:52', '2023-10-01 15:05:52'),
+(1261, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:05:52', '2023-10-01 15:05:52'),
+(1262, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:10:21', '2023-10-01 15:10:21'),
+(1263, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:10:21', '2023-10-01 15:10:21'),
+(1264, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:10:27', '2023-10-01 15:10:27'),
+(1265, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:10:27', '2023-10-01 15:10:27'),
+(1266, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:15:09', '2023-10-01 15:15:09'),
+(1267, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:15:09', '2023-10-01 15:15:09'),
+(1268, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:15:19', '2023-10-01 15:15:19'),
+(1269, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:15:19', '2023-10-01 15:15:19'),
+(1270, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:15:55', '2023-10-01 15:15:55'),
+(1271, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:15:55', '2023-10-01 15:15:55'),
+(1272, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:16:05', '2023-10-01 15:16:05'),
+(1273, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:16:05', '2023-10-01 15:16:05'),
+(1274, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:17:19', '2023-10-01 15:17:19'),
+(1275, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:17:19', '2023-10-01 15:17:19'),
+(1276, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:17:28', '2023-10-01 15:17:28'),
+(1277, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:17:28', '2023-10-01 15:17:28'),
+(1278, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:18:04', '2023-10-01 15:18:04'),
+(1279, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:18:04', '2023-10-01 15:18:04'),
+(1280, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:18:13', '2023-10-01 15:18:13'),
+(1281, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:18:13', '2023-10-01 15:18:13'),
+(1282, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:19:53', '2023-10-01 15:19:53'),
+(1283, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:19:53', '2023-10-01 15:19:53'),
+(1284, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:20:01', '2023-10-01 15:20:01'),
+(1285, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:20:01', '2023-10-01 15:20:01'),
+(1286, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:27:37', '2023-10-01 15:27:37'),
+(1287, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:27:37', '2023-10-01 15:27:37'),
+(1288, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:27:45', '2023-10-01 15:27:45'),
+(1289, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:27:45', '2023-10-01 15:27:45'),
+(1290, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:28:04', '2023-10-01 15:28:04'),
+(1291, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:28:04', '2023-10-01 15:28:04'),
+(1292, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:29:11', '2023-10-01 15:29:11'),
+(1293, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:29:11', '2023-10-01 15:29:11'),
+(1294, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:29:50', '2023-10-01 15:29:50'),
+(1295, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:29:50', '2023-10-01 15:29:50'),
+(1296, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:29:59', '2023-10-01 15:29:59'),
+(1297, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:29:59', '2023-10-01 15:29:59'),
+(1298, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:31:04', '2023-10-01 15:31:04'),
+(1299, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:31:04', '2023-10-01 15:31:04'),
+(1300, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:31:12', '2023-10-01 15:31:12'),
+(1301, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:31:12', '2023-10-01 15:31:12'),
+(1302, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:31:50', '2023-10-01 15:31:50'),
+(1303, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:31:51', '2023-10-01 15:31:51'),
+(1304, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:31:58', '2023-10-01 15:31:58'),
+(1305, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:31:58', '2023-10-01 15:31:58'),
+(1306, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:32:11', '2023-10-01 15:32:11'),
+(1307, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:32:11', '2023-10-01 15:32:11'),
+(1308, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:32:20', '2023-10-01 15:32:20'),
+(1309, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:32:20', '2023-10-01 15:32:20'),
+(1310, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:33:02', '2023-10-01 15:33:02'),
+(1311, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:33:02', '2023-10-01 15:33:02'),
+(1312, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:33:10', '2023-10-01 15:33:10'),
+(1313, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:33:10', '2023-10-01 15:33:10'),
+(1314, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:33:44', '2023-10-01 15:33:44'),
+(1315, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:33:44', '2023-10-01 15:33:44'),
+(1316, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:33:54', '2023-10-01 15:33:54'),
+(1317, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:33:54', '2023-10-01 15:33:54'),
+(1318, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:34:05', '2023-10-01 15:34:05'),
+(1319, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:34:05', '2023-10-01 15:34:05'),
+(1320, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:34:14', '2023-10-01 15:34:14'),
+(1321, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:34:14', '2023-10-01 15:34:14'),
+(1322, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:34:26', '2023-10-01 15:34:26'),
+(1323, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:34:26', '2023-10-01 15:34:26'),
+(1324, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:34:34', '2023-10-01 15:34:34'),
+(1325, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:34:34', '2023-10-01 15:34:34'),
+(1326, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:36:28', '2023-10-01 15:36:28'),
+(1327, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:36:28', '2023-10-01 15:36:28'),
+(1328, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:36:36', '2023-10-01 15:36:36'),
+(1329, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:36:36', '2023-10-01 15:36:36'),
+(1330, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:36:57', '2023-10-01 15:36:57'),
+(1331, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:36:57', '2023-10-01 15:36:57'),
+(1332, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:37:04', '2023-10-01 15:37:04'),
+(1333, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:37:04', '2023-10-01 15:37:04'),
+(1334, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:37:25', '2023-10-01 15:37:25'),
+(1335, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:37:25', '2023-10-01 15:37:25'),
+(1336, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:37:34', '2023-10-01 15:37:34'),
+(1337, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:37:34', '2023-10-01 15:37:34'),
+(1338, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:39:10', '2023-10-01 15:39:10'),
+(1339, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:39:10', '2023-10-01 15:39:10'),
+(1340, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:39:18', '2023-10-01 15:39:18'),
+(1341, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:39:18', '2023-10-01 15:39:18'),
+(1342, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:41:22', '2023-10-01 15:41:22'),
+(1343, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:41:22', '2023-10-01 15:41:22'),
+(1344, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:41:31', '2023-10-01 15:41:31'),
+(1345, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:41:31', '2023-10-01 15:41:31'),
+(1346, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:41:58', '2023-10-01 15:41:58'),
+(1347, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:41:58', '2023-10-01 15:41:58'),
+(1348, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:42:07', '2023-10-01 15:42:07'),
+(1349, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:42:07', '2023-10-01 15:42:07'),
+(1350, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:43:26', '2023-10-01 15:43:26'),
+(1351, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:43:26', '2023-10-01 15:43:26'),
+(1352, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:43:39', '2023-10-01 15:43:39'),
+(1353, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:43:39', '2023-10-01 15:43:39'),
+(1354, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:48:18', '2023-10-01 15:48:18'),
+(1355, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:48:18', '2023-10-01 15:48:18'),
+(1356, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:48:26', '2023-10-01 15:48:26'),
+(1357, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:48:26', '2023-10-01 15:48:26'),
+(1358, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:48:58', '2023-10-01 15:48:58'),
+(1359, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:48:58', '2023-10-01 15:48:58'),
+(1360, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:49:07', '2023-10-01 15:49:07'),
+(1361, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:49:07', '2023-10-01 15:49:07'),
+(1362, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:51:10', '2023-10-01 15:51:10'),
+(1363, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:51:10', '2023-10-01 15:51:10'),
+(1364, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:51:19', '2023-10-01 15:51:19'),
+(1365, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:51:19', '2023-10-01 15:51:19'),
+(1366, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:54:17', '2023-10-01 15:54:17'),
+(1367, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:54:17', '2023-10-01 15:54:17'),
+(1368, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:54:25', '2023-10-01 15:54:25'),
+(1369, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:54:25', '2023-10-01 15:54:25'),
+(1370, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:55:53', '2023-10-01 15:55:53'),
+(1371, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:55:53', '2023-10-01 15:55:53'),
+(1372, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:56:04', '2023-10-01 15:56:04'),
+(1373, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:56:04', '2023-10-01 15:56:04'),
+(1374, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:56:59', '2023-10-01 15:56:59'),
+(1375, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:56:59', '2023-10-01 15:56:59'),
+(1376, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:57:09', '2023-10-01 15:57:09'),
+(1377, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:57:09', '2023-10-01 15:57:09'),
+(1378, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:57:39', '2023-10-01 15:57:39'),
+(1379, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:57:40', '2023-10-01 15:57:40'),
+(1380, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:57:46', '2023-10-01 15:57:46'),
+(1381, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:57:46', '2023-10-01 15:57:46'),
+(1382, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:57:55', '2023-10-01 15:57:55'),
+(1383, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 15:57:55', '2023-10-01 15:57:55'),
+(1384, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:00:00', '2023-10-01 16:00:00'),
+(1385, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:00:00', '2023-10-01 16:00:00'),
+(1386, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:00:07', '2023-10-01 16:00:07'),
+(1387, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:00:07', '2023-10-01 16:00:07'),
+(1388, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:00:42', '2023-10-01 16:00:42'),
+(1389, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:00:42', '2023-10-01 16:00:42'),
+(1390, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:00:51', '2023-10-01 16:00:51'),
+(1391, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:00:51', '2023-10-01 16:00:51'),
+(1392, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:01:15', '2023-10-01 16:01:15'),
+(1393, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:01:15', '2023-10-01 16:01:15'),
+(1394, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:01:24', '2023-10-01 16:01:24'),
+(1395, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:01:24', '2023-10-01 16:01:24'),
+(1396, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:01:30', '2023-10-01 16:01:30'),
+(1397, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:01:30', '2023-10-01 16:01:30'),
+(1398, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:01:38', '2023-10-01 16:01:38'),
+(1399, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:01:38', '2023-10-01 16:01:38'),
+(1400, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:01:59', '2023-10-01 16:01:59'),
+(1401, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:01:59', '2023-10-01 16:01:59'),
+(1402, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:02:07', '2023-10-01 16:02:07'),
+(1403, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:02:07', '2023-10-01 16:02:07'),
+(1404, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:02:18', '2023-10-01 16:02:18'),
+(1405, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:02:18', '2023-10-01 16:02:18'),
+(1406, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:02:27', '2023-10-01 16:02:27'),
+(1407, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:02:27', '2023-10-01 16:02:27'),
+(1408, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:02:49', '2023-10-01 16:02:49'),
+(1409, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:02:49', '2023-10-01 16:02:49'),
+(1410, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:02:59', '2023-10-01 16:02:59'),
+(1411, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:02:59', '2023-10-01 16:02:59'),
+(1412, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:04:18', '2023-10-01 16:04:18'),
+(1413, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:04:18', '2023-10-01 16:04:18'),
+(1414, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:04:28', '2023-10-01 16:04:28'),
+(1415, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:04:28', '2023-10-01 16:04:28'),
+(1416, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:04:35', '2023-10-01 16:04:35'),
+(1417, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:04:35', '2023-10-01 16:04:35'),
+(1418, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:04:44', '2023-10-01 16:04:44'),
+(1419, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:04:44', '2023-10-01 16:04:44'),
+(1420, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:05:17', '2023-10-01 16:05:17'),
+(1421, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:05:17', '2023-10-01 16:05:17'),
+(1422, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:05:27', '2023-10-01 16:05:27'),
+(1423, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:05:27', '2023-10-01 16:05:27'),
+(1424, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:06:22', '2023-10-01 16:06:22'),
+(1425, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:06:22', '2023-10-01 16:06:22'),
+(1426, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:06:34', '2023-10-01 16:06:34'),
+(1427, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:06:34', '2023-10-01 16:06:34'),
+(1428, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:07:41', '2023-10-01 16:07:41'),
+(1429, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:07:41', '2023-10-01 16:07:41'),
+(1430, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:07:50', '2023-10-01 16:07:50'),
+(1431, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:07:50', '2023-10-01 16:07:50'),
+(1432, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:10:05', '2023-10-01 16:10:05'),
+(1433, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:10:05', '2023-10-01 16:10:05'),
+(1434, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:10:13', '2023-10-01 16:10:13'),
+(1435, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:10:13', '2023-10-01 16:10:13'),
+(1436, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:13:25', '2023-10-01 16:13:25'),
+(1437, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:13:25', '2023-10-01 16:13:25'),
+(1438, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:13:35', '2023-10-01 16:13:35'),
+(1439, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:13:35', '2023-10-01 16:13:35'),
+(1440, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:14:07', '2023-10-01 16:14:07'),
+(1441, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:14:07', '2023-10-01 16:14:07'),
+(1442, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:14:16', '2023-10-01 16:14:16'),
+(1443, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:14:16', '2023-10-01 16:14:16'),
+(1444, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:14:36', '2023-10-01 16:14:36'),
+(1445, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:14:36', '2023-10-01 16:14:36'),
+(1446, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:14:44', '2023-10-01 16:14:44'),
+(1447, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:14:44', '2023-10-01 16:14:44'),
+(1448, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:15:23', '2023-10-01 16:15:23'),
+(1449, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:15:23', '2023-10-01 16:15:23'),
+(1450, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:15:34', '2023-10-01 16:15:34'),
+(1451, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:15:34', '2023-10-01 16:15:34'),
+(1452, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:15:40', '2023-10-01 16:15:40'),
+(1453, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:15:40', '2023-10-01 16:15:40'),
+(1454, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:15:50', '2023-10-01 16:15:50'),
+(1455, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:15:50', '2023-10-01 16:15:50'),
+(1456, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:16:12', '2023-10-01 16:16:12'),
+(1457, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:16:12', '2023-10-01 16:16:12'),
+(1458, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:16:22', '2023-10-01 16:16:22'),
+(1459, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:16:22', '2023-10-01 16:16:22'),
+(1460, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:17:22', '2023-10-01 16:17:22'),
+(1461, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:17:22', '2023-10-01 16:17:22'),
+(1462, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:17:31', '2023-10-01 16:17:31'),
+(1463, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:17:31', '2023-10-01 16:17:31'),
+(1464, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:18:34', '2023-10-01 16:18:34'),
+(1465, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:18:34', '2023-10-01 16:18:34'),
+(1466, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:18:43', '2023-10-01 16:18:43'),
+(1467, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:18:43', '2023-10-01 16:18:43'),
+(1468, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:19:19', '2023-10-01 16:19:19'),
+(1469, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:19:19', '2023-10-01 16:19:19'),
+(1470, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:19:27', '2023-10-01 16:19:27'),
+(1471, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:19:27', '2023-10-01 16:19:27'),
+(1472, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:19:51', '2023-10-01 16:19:51'),
+(1473, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:19:51', '2023-10-01 16:19:51'),
+(1474, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:20:01', '2023-10-01 16:20:01'),
+(1475, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:20:01', '2023-10-01 16:20:01'),
+(1476, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:20:41', '2023-10-01 16:20:41'),
+(1477, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:20:41', '2023-10-01 16:20:41'),
+(1478, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:20:51', '2023-10-01 16:20:51'),
+(1479, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:20:51', '2023-10-01 16:20:51'),
+(1480, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:20:58', '2023-10-01 16:20:58'),
+(1481, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:20:58', '2023-10-01 16:20:58'),
+(1482, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:21:07', '2023-10-01 16:21:07'),
+(1483, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:21:07', '2023-10-01 16:21:07'),
+(1484, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:21:12', '2023-10-01 16:21:12'),
+(1485, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:21:12', '2023-10-01 16:21:12'),
+(1486, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:21:20', '2023-10-01 16:21:20'),
+(1487, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:21:20', '2023-10-01 16:21:20'),
+(1488, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:22:52', '2023-10-01 16:22:52'),
+(1489, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:22:52', '2023-10-01 16:22:52'),
+(1490, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:22:59', '2023-10-01 16:22:59'),
+(1491, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:22:59', '2023-10-01 16:22:59'),
+(1492, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:23:44', '2023-10-01 16:23:44'),
+(1493, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:23:44', '2023-10-01 16:23:44'),
+(1494, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:23:52', '2023-10-01 16:23:52'),
+(1495, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:23:52', '2023-10-01 16:23:52'),
+(1496, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:39:39', '2023-10-01 16:39:39'),
+(1497, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:39:39', '2023-10-01 16:39:39'),
+(1498, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:39:48', '2023-10-01 16:39:48'),
+(1499, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:39:48', '2023-10-01 16:39:48'),
+(1500, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:43:25', '2023-10-01 16:43:25'),
+(1501, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:43:25', '2023-10-01 16:43:25'),
+(1502, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:43:36', '2023-10-01 16:43:36'),
+(1503, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:43:36', '2023-10-01 16:43:36'),
+(1504, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:44:03', '2023-10-01 16:44:03'),
+(1505, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:44:03', '2023-10-01 16:44:03'),
+(1506, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:44:13', '2023-10-01 16:44:13'),
+(1507, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:44:13', '2023-10-01 16:44:13'),
+(1508, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:49:07', '2023-10-01 16:49:07'),
+(1509, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:49:07', '2023-10-01 16:49:07'),
+(1510, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:49:15', '2023-10-01 16:49:15'),
+(1511, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:49:15', '2023-10-01 16:49:15'),
+(1512, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:49:23', '2023-10-01 16:49:23'),
+(1513, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:49:23', '2023-10-01 16:49:23'),
+(1514, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:49:32', '2023-10-01 16:49:32'),
+(1515, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:49:32', '2023-10-01 16:49:32'),
+(1516, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:51:13', '2023-10-01 16:51:13'),
+(1517, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:51:13', '2023-10-01 16:51:13'),
+(1518, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:51:23', '2023-10-01 16:51:23'),
+(1519, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:51:23', '2023-10-01 16:51:23'),
+(1520, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:51:38', '2023-10-01 16:51:38'),
+(1521, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:51:38', '2023-10-01 16:51:38'),
+(1522, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:51:50', '2023-10-01 16:51:50'),
+(1523, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:51:50', '2023-10-01 16:51:50'),
+(1524, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:52:20', '2023-10-01 16:52:20'),
+(1525, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:52:20', '2023-10-01 16:52:20'),
+(1526, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:52:31', '2023-10-01 16:52:31'),
+(1527, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:52:31', '2023-10-01 16:52:31'),
+(1528, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:52:40', '2023-10-01 16:52:40'),
+(1529, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:52:40', '2023-10-01 16:52:40'),
+(1530, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:52:48', '2023-10-01 16:52:48'),
+(1531, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:52:48', '2023-10-01 16:52:48'),
+(1532, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:56:44', '2023-10-01 16:56:44'),
+(1533, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:56:44', '2023-10-01 16:56:44'),
+(1534, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:56:53', '2023-10-01 16:56:53'),
+(1535, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 16:56:53', '2023-10-01 16:56:53'),
+(1536, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 17:05:23', '2023-10-01 17:05:23'),
+(1537, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 17:05:23', '2023-10-01 17:05:23'),
+(1538, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 17:05:33', '2023-10-01 17:05:33'),
+(1539, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 17:05:33', '2023-10-01 17:05:33'),
+(1540, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 19:36:40', '2023-10-01 19:36:40'),
+(1541, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 19:36:40', '2023-10-01 19:36:40'),
+(1542, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 19:37:18', '2023-10-01 19:37:18'),
+(1543, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 19:37:18', '2023-10-01 19:37:18'),
+(1544, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 19:37:34', '2023-10-01 19:37:34'),
+(1545, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 19:37:34', '2023-10-01 19:37:34'),
+(1546, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 19:38:22', '2023-10-01 19:38:22'),
+(1547, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 19:38:22', '2023-10-01 19:38:22'),
+(1548, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 19:40:39', '2023-10-01 19:40:39'),
+(1549, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 19:40:39', '2023-10-01 19:40:39'),
+(1550, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 19:42:29', '2023-10-01 19:42:29'),
+(1551, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-01 19:42:29', '2023-10-01 19:42:29'),
+(1552, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:25:54', '2023-10-02 15:25:54'),
+(1553, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:25:54', '2023-10-02 15:25:54'),
+(1554, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:26:13', '2023-10-02 15:26:13'),
+(1555, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:26:13', '2023-10-02 15:26:13'),
+(1556, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:27:04', '2023-10-02 15:27:04'),
+(1557, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:27:04', '2023-10-02 15:27:04'),
+(1558, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:27:58', '2023-10-02 15:27:58'),
+(1559, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:27:58', '2023-10-02 15:27:58');
+INSERT INTO `ps_log` (`id_log`, `severity`, `error_code`, `message`, `object_type`, `object_id`, `id_shop`, `id_shop_group`, `id_lang`, `in_all_shops`, `id_employee`, `date_add`, `date_upd`) VALUES
+(1560, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:29:16', '2023-10-02 15:29:16'),
+(1561, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:29:16', '2023-10-02 15:29:16'),
+(1562, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:30:09', '2023-10-02 15:30:09'),
+(1563, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:30:09', '2023-10-02 15:30:09'),
+(1564, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:30:20', '2023-10-02 15:30:20'),
+(1565, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:30:20', '2023-10-02 15:30:20'),
+(1566, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:31:52', '2023-10-02 15:31:52'),
+(1567, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:31:52', '2023-10-02 15:31:52'),
+(1568, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:32:10', '2023-10-02 15:32:10'),
+(1569, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:32:10', '2023-10-02 15:32:10'),
+(1570, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:32:25', '2023-10-02 15:32:25'),
+(1571, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:32:25', '2023-10-02 15:32:25'),
+(1572, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:32:40', '2023-10-02 15:32:40'),
+(1573, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:32:41', '2023-10-02 15:32:41'),
+(1574, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:33:07', '2023-10-02 15:33:07'),
+(1575, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:33:08', '2023-10-02 15:33:08'),
+(1576, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:33:40', '2023-10-02 15:33:40'),
+(1577, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:33:40', '2023-10-02 15:33:40'),
+(1578, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:44:41', '2023-10-02 15:44:41'),
+(1579, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:44:41', '2023-10-02 15:44:41'),
+(1580, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:45:11', '2023-10-02 15:45:11'),
+(1581, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:45:11', '2023-10-02 15:45:11'),
+(1582, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:46:37', '2023-10-02 15:46:37'),
+(1583, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:46:37', '2023-10-02 15:46:37'),
+(1584, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:46:42', '2023-10-02 15:46:42'),
+(1585, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 15:46:42', '2023-10-02 15:46:42'),
+(1586, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:22:49', '2023-10-02 16:22:49'),
+(1587, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:22:49', '2023-10-02 16:22:49'),
+(1588, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:23:04', '2023-10-02 16:23:04'),
+(1589, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:23:04', '2023-10-02 16:23:04'),
+(1590, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:45:20', '2023-10-02 16:45:20'),
+(1591, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:45:20', '2023-10-02 16:45:20'),
+(1592, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:45:32', '2023-10-02 16:45:32'),
+(1593, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:45:32', '2023-10-02 16:45:32'),
+(1594, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:45:44', '2023-10-02 16:45:44'),
+(1595, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:45:44', '2023-10-02 16:45:44'),
+(1596, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:46:58', '2023-10-02 16:46:58'),
+(1597, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:46:58', '2023-10-02 16:46:58'),
+(1598, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:47:08', '2023-10-02 16:47:08'),
+(1599, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:47:08', '2023-10-02 16:47:08'),
+(1600, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:47:08', '2023-10-02 16:47:08'),
+(1601, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:47:08', '2023-10-02 16:47:08'),
+(1602, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:47:10', '2023-10-02 16:47:10'),
+(1603, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:47:10', '2023-10-02 16:47:10'),
+(1604, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:47:10', '2023-10-02 16:47:10'),
+(1605, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:47:10', '2023-10-02 16:47:10'),
+(1606, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:48:33', '2023-10-02 16:48:33'),
+(1607, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:48:33', '2023-10-02 16:48:33'),
+(1608, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:48:44', '2023-10-02 16:48:44'),
+(1609, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:48:44', '2023-10-02 16:48:44'),
+(1610, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:48:44', '2023-10-02 16:48:44'),
+(1611, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:48:44', '2023-10-02 16:48:44'),
+(1612, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:48:44', '2023-10-02 16:48:44'),
+(1613, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:48:44', '2023-10-02 16:48:44'),
+(1614, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:48:46', '2023-10-02 16:48:46'),
+(1615, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:48:46', '2023-10-02 16:48:46'),
+(1616, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:50:49', '2023-10-02 16:50:49'),
+(1617, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:50:49', '2023-10-02 16:50:49'),
+(1618, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:50:59', '2023-10-02 16:50:59'),
+(1619, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:50:59', '2023-10-02 16:50:59'),
+(1620, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:51:00', '2023-10-02 16:51:00'),
+(1621, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:51:00', '2023-10-02 16:51:00'),
+(1622, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:51:01', '2023-10-02 16:51:01'),
+(1623, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:51:01', '2023-10-02 16:51:01'),
+(1624, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:51:01', '2023-10-02 16:51:01'),
+(1625, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:51:01', '2023-10-02 16:51:01'),
+(1626, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:52:04', '2023-10-02 16:52:04'),
+(1627, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:52:04', '2023-10-02 16:52:04'),
+(1628, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:52:23', '2023-10-02 16:52:23'),
+(1629, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 16:52:23', '2023-10-02 16:52:23'),
+(1630, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:00', '2023-10-02 17:02:00'),
+(1631, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:00', '2023-10-02 17:02:00'),
+(1632, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:07', '2023-10-02 17:02:07'),
+(1633, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:07', '2023-10-02 17:02:07'),
+(1634, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:07', '2023-10-02 17:02:07'),
+(1635, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:07', '2023-10-02 17:02:07'),
+(1636, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:09', '2023-10-02 17:02:09'),
+(1637, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:09', '2023-10-02 17:02:09'),
+(1638, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:09', '2023-10-02 17:02:09'),
+(1639, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:09', '2023-10-02 17:02:09'),
+(1640, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:21', '2023-10-02 17:02:21'),
+(1641, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:21', '2023-10-02 17:02:21'),
+(1642, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:29', '2023-10-02 17:02:29'),
+(1643, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:29', '2023-10-02 17:02:29'),
+(1644, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:30', '2023-10-02 17:02:30'),
+(1645, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:30', '2023-10-02 17:02:30'),
+(1646, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:30', '2023-10-02 17:02:30'),
+(1647, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:30', '2023-10-02 17:02:30'),
+(1648, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:32', '2023-10-02 17:02:32'),
+(1649, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:02:32', '2023-10-02 17:02:32'),
+(1650, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:03:45', '2023-10-02 17:03:45'),
+(1651, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:03:45', '2023-10-02 17:03:45'),
+(1652, 1, 0, 'Product modification', 'Product', 234, 1, NULL, 1, 0, 1, '2023-10-02 17:04:13', '2023-10-02 17:04:13'),
+(1653, 1, 0, 'Product modification', 'Product', 234, 1, NULL, 1, 0, 1, '2023-10-02 17:25:17', '2023-10-02 17:25:17'),
+(1654, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:27:18', '2023-10-02 17:27:18'),
+(1655, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 17:27:18', '2023-10-02 17:27:18'),
+(1656, 1, 0, 'Product modification', 'Product', 234, 1, NULL, 1, 0, 1, '2023-10-02 18:35:43', '2023-10-02 18:35:43'),
+(1657, 1, 0, 'Product modification', 'Product', 234, 1, NULL, 1, 0, 1, '2023-10-02 18:36:14', '2023-10-02 18:36:14'),
+(1658, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 18:38:57', '2023-10-02 18:38:57'),
+(1659, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 18:38:57', '2023-10-02 18:38:57'),
+(1660, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 18:42:40', '2023-10-02 18:42:40'),
+(1661, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 18:42:40', '2023-10-02 18:42:40'),
+(1662, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 18:42:48', '2023-10-02 18:42:48'),
+(1663, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 18:42:48', '2023-10-02 18:42:48'),
+(1664, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 18:42:49', '2023-10-02 18:42:49'),
+(1665, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 18:42:49', '2023-10-02 18:42:49'),
+(1666, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 18:42:52', '2023-10-02 18:42:52'),
+(1667, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 18:42:52', '2023-10-02 18:42:52'),
+(1668, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 18:42:52', '2023-10-02 18:42:52'),
+(1669, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 18:42:52', '2023-10-02 18:42:52'),
+(1670, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 19:04:23', '2023-10-02 19:04:23'),
+(1671, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 19:04:23', '2023-10-02 19:04:23'),
+(1672, 2, 0, 'Route not found in one of the Tab ps_edition_basic_homepage', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 19:04:32', '2023-10-02 19:04:32'),
+(1673, 2, 0, 'Route not found in one of the Tab ps_edition_basic_settings', '', 0, 1, NULL, 1, 0, 1, '2023-10-02 19:04:32', '2023-10-02 19:04:32');
 
 -- --------------------------------------------------------
 
@@ -13458,7 +16299,7 @@ CREATE TABLE `ps_mail` (
   `subject` varchar(254) NOT NULL,
   `id_lang` int(11) UNSIGNED NOT NULL,
   `date_add` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -13473,7 +16314,7 @@ CREATE TABLE `ps_mailalert_customer_oos` (
   `id_product_attribute` int(10) UNSIGNED NOT NULL,
   `id_shop` int(10) UNSIGNED NOT NULL,
   `id_lang` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -13487,7 +16328,7 @@ CREATE TABLE `ps_manufacturer` (
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_manufacturer`
@@ -13524,7 +16365,7 @@ CREATE TABLE `ps_manufacturer_lang` (
   `meta_title` varchar(255) DEFAULT NULL,
   `meta_keywords` varchar(255) DEFAULT NULL,
   `meta_description` varchar(512) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_manufacturer_lang`
@@ -13556,7 +16397,7 @@ INSERT INTO `ps_manufacturer_lang` (`id_manufacturer`, `id_lang`, `description`,
 CREATE TABLE `ps_manufacturer_shop` (
   `id_manufacturer` int(10) UNSIGNED NOT NULL,
   `id_shop` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_manufacturer_shop`
@@ -13596,7 +16437,7 @@ CREATE TABLE `ps_mbeshippingrate` (
   `weight_to` decimal(12,4) NOT NULL DEFAULT 0.0000,
   `price` decimal(12,4) DEFAULT 0.0000,
   `delivery_type` varchar(255) DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -13608,7 +16449,7 @@ CREATE TABLE `ps_mbe_shipping_mdp` (
   `id_mbeshippingmdp` int(10) UNSIGNED NOT NULL,
   `mdp` longtext NOT NULL DEFAULT '',
   `id_cart` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -13621,7 +16462,7 @@ CREATE TABLE `ps_mbe_shipping_order` (
   `id_order` int(10) NOT NULL DEFAULT 0,
   `is_download_available` int(10) NOT NULL DEFAULT 0,
   `is_pickup_mode` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -13651,7 +16492,7 @@ CREATE TABLE `ps_mbe_shipping_pickup_address` (
   `ltz` tinyint(1) NOT NULL DEFAULT 0,
   `is_default` tinyint(1) NOT NULL DEFAULT 0,
   `deleted` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -13667,7 +16508,7 @@ CREATE TABLE `ps_mbe_shipping_standard_packages` (
   `height` decimal(12,4) NOT NULL DEFAULT 0.0000,
   `package_label` varchar(255) NOT NULL,
   `package_code` varchar(55) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -13681,7 +16522,7 @@ CREATE TABLE `ps_mbe_shipping_standard_package_product` (
   `single_parcel` tinyint(1) DEFAULT NULL,
   `product_sku` varchar(64) NOT NULL DEFAULT '',
   `package_code` varchar(50) NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -13697,7 +16538,7 @@ CREATE TABLE `ps_mbo_api_config` (
   `mbo_version` varchar(255) DEFAULT NULL,
   `applied` tinyint(1) NOT NULL DEFAULT 0,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -13710,7 +16551,7 @@ CREATE TABLE `ps_memcached_servers` (
   `ip` varchar(254) NOT NULL,
   `port` int(11) UNSIGNED NOT NULL,
   `weight` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -13727,7 +16568,7 @@ CREATE TABLE `ps_message` (
   `message` text NOT NULL,
   `private` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -13739,7 +16580,7 @@ CREATE TABLE `ps_message_readed` (
   `id_message` int(10) UNSIGNED NOT NULL,
   `id_employee` int(10) UNSIGNED NOT NULL,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -13751,7 +16592,7 @@ CREATE TABLE `ps_meta` (
   `id_meta` int(10) UNSIGNED NOT NULL,
   `page` varchar(64) NOT NULL,
   `configurable` tinyint(1) UNSIGNED NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_meta`
@@ -13816,7 +16657,7 @@ CREATE TABLE `ps_meta_lang` (
   `description` varchar(255) DEFAULT NULL,
   `keywords` varchar(255) DEFAULT NULL,
   `url_rewrite` varchar(254) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_meta_lang`
@@ -13905,7 +16746,7 @@ CREATE TABLE `ps_module` (
   `name` varchar(64) NOT NULL,
   `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `version` varchar(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_module`
@@ -13914,7 +16755,7 @@ CREATE TABLE `ps_module` (
 INSERT INTO `ps_module` (`id_module`, `name`, `active`, `version`) VALUES
 (1, 'ps_linklist', 1, '5.0.5'),
 (2, 'blockreassurance', 1, '5.1.2'),
-(3, 'blockwishlist', 1, '3.0.1'),
+(3, 'blockwishlist', 0, '3.0.1'),
 (4, 'psgdpr', 1, '1.4.3'),
 (6, 'ps_languageselector', 0, '2.1.3'),
 (7, 'ps_currencyselector', 1, '2.1.1'),
@@ -13989,7 +16830,8 @@ INSERT INTO `ps_module` (`id_module`, `name`, `active`, `version`) VALUES
 (76, 'statssearch', 1, '2.0.2'),
 (77, 'statsstock', 1, '2.0.1'),
 (78, 'autoupgrade', 1, '4.16.4'),
-(79, 'ps_contactinfo', 1, '3.3.2');
+(79, 'ps_contactinfo', 1, '3.3.2'),
+(80, 'ohm_productsdisplay', 1, '2.1.4');
 
 -- --------------------------------------------------------
 
@@ -14000,7 +16842,7 @@ INSERT INTO `ps_module` (`id_module`, `name`, `active`, `version`) VALUES
 CREATE TABLE `ps_module_access` (
   `id_profile` int(10) UNSIGNED NOT NULL,
   `id_authorization_role` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_module_access`
@@ -14318,7 +17160,11 @@ INSERT INTO `ps_module_access` (`id_profile`, `id_authorization_role`) VALUES
 (1, 977),
 (1, 978),
 (1, 979),
-(1, 980);
+(1, 980),
+(1, 981),
+(1, 982),
+(1, 983),
+(1, 984);
 
 -- --------------------------------------------------------
 
@@ -14330,7 +17176,7 @@ CREATE TABLE `ps_module_carrier` (
   `id_module` int(10) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL DEFAULT 1,
   `id_reference` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_module_carrier`
@@ -14352,7 +17198,7 @@ CREATE TABLE `ps_module_country` (
   `id_module` int(10) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL DEFAULT 1,
   `id_country` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_module_country`
@@ -14573,7 +17419,7 @@ CREATE TABLE `ps_module_currency` (
   `id_module` int(10) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL DEFAULT 1,
   `id_currency` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_module_currency`
@@ -14595,7 +17441,7 @@ CREATE TABLE `ps_module_group` (
   `id_module` int(10) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL DEFAULT 1,
   `id_group` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_module_group`
@@ -14837,7 +17683,12 @@ INSERT INTO `ps_module_group` (`id_module`, `id_shop`, `id_group`) VALUES
 (79, 1, 2),
 (79, 1, 3),
 (79, 1, 4),
-(79, 1, 5);
+(79, 1, 5),
+(80, 1, 1),
+(80, 1, 2),
+(80, 1, 3),
+(80, 1, 4),
+(80, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -14863,7 +17714,11 @@ INSERT INTO `ps_module_history` (`id`, `id_employee`, `id_module`, `date_add`, `
 (3, 1, 20, '2023-09-25 22:47:44', '2023-09-25 22:47:44'),
 (4, 1, 1, '2023-09-27 19:44:45', '2023-09-27 19:44:45'),
 (5, 1, 79, '2023-09-27 20:38:01', '2023-09-27 20:38:01'),
-(6, 1, 2, '2023-09-27 21:21:45', '2023-09-27 21:21:45');
+(6, 1, 2, '2023-09-27 21:21:45', '2023-09-27 21:21:45'),
+(7, 1, 12, '2023-10-01 10:54:22', '2023-10-01 10:54:22'),
+(8, 1, 13, '2023-10-01 11:31:46', '2023-10-01 11:31:46'),
+(9, 1, 80, '2023-10-01 14:34:10', '2023-10-02 16:22:37'),
+(10, 1, 24, '2023-10-01 19:37:30', '2023-10-01 19:37:30');
 
 -- --------------------------------------------------------
 
@@ -14877,7 +17732,7 @@ CREATE TABLE `ps_module_preference` (
   `module` varchar(191) NOT NULL,
   `interest` tinyint(1) DEFAULT NULL,
   `favorite` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -14889,7 +17744,7 @@ CREATE TABLE `ps_module_shop` (
   `id_module` int(11) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL,
   `enable_device` tinyint(1) NOT NULL DEFAULT 7
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_module_shop`
@@ -14898,7 +17753,6 @@ CREATE TABLE `ps_module_shop` (
 INSERT INTO `ps_module_shop` (`id_module`, `id_shop`, `enable_device`) VALUES
 (1, 1, 7),
 (2, 1, 7),
-(3, 1, 7),
 (4, 1, 7),
 (7, 1, 7),
 (8, 1, 7),
@@ -14961,7 +17815,8 @@ INSERT INTO `ps_module_shop` (`id_module`, `id_shop`, `enable_device`) VALUES
 (76, 1, 7),
 (77, 1, 7),
 (78, 1, 7),
-(79, 1, 7);
+(79, 1, 7),
+(80, 1, 7);
 
 -- --------------------------------------------------------
 
@@ -14972,7 +17827,7 @@ INSERT INTO `ps_module_shop` (`id_module`, `id_shop`, `enable_device`) VALUES
 CREATE TABLE `ps_operating_system` (
   `id_operating_system` int(10) UNSIGNED NOT NULL,
   `name` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_operating_system`
@@ -15042,7 +17897,7 @@ CREATE TABLE `ps_orders` (
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   `note` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15060,7 +17915,7 @@ CREATE TABLE `ps_order_carrier` (
   `shipping_cost_tax_incl` decimal(20,6) DEFAULT NULL,
   `tracking_number` varchar(64) DEFAULT NULL,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15078,7 +17933,7 @@ CREATE TABLE `ps_order_cart_rule` (
   `value_tax_excl` decimal(20,6) NOT NULL DEFAULT 0.000000,
   `free_shipping` tinyint(1) NOT NULL DEFAULT 0,
   `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15136,7 +17991,7 @@ CREATE TABLE `ps_order_detail` (
   `original_wholesale_price` decimal(20,6) NOT NULL DEFAULT 0.000000,
   `total_refunded_tax_excl` decimal(20,6) NOT NULL DEFAULT 0.000000,
   `total_refunded_tax_incl` decimal(20,6) NOT NULL DEFAULT 0.000000
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15149,7 +18004,7 @@ CREATE TABLE `ps_order_detail_tax` (
   `id_tax` int(11) NOT NULL,
   `unit_amount` decimal(16,6) NOT NULL DEFAULT 0.000000,
   `total_amount` decimal(16,6) NOT NULL DEFAULT 0.000000
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15163,7 +18018,7 @@ CREATE TABLE `ps_order_history` (
   `id_order` int(10) UNSIGNED NOT NULL,
   `id_order_state` int(10) UNSIGNED NOT NULL,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15191,7 +18046,7 @@ CREATE TABLE `ps_order_invoice` (
   `shop_address` text DEFAULT NULL,
   `note` text DEFAULT NULL,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15203,7 +18058,7 @@ CREATE TABLE `ps_order_invoice_payment` (
   `id_order_invoice` int(11) UNSIGNED NOT NULL,
   `id_order_payment` int(11) UNSIGNED NOT NULL,
   `id_order` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15216,7 +18071,7 @@ CREATE TABLE `ps_order_invoice_tax` (
   `type` varchar(15) NOT NULL,
   `id_tax` int(11) NOT NULL,
   `amount` decimal(10,6) NOT NULL DEFAULT 0.000000
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15227,7 +18082,7 @@ CREATE TABLE `ps_order_invoice_tax` (
 CREATE TABLE `ps_order_message` (
   `id_order_message` int(10) UNSIGNED NOT NULL,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15240,7 +18095,7 @@ CREATE TABLE `ps_order_message_lang` (
   `id_lang` int(10) UNSIGNED NOT NULL,
   `name` varchar(128) NOT NULL,
   `message` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15261,7 +18116,7 @@ CREATE TABLE `ps_order_payment` (
   `card_expiration` char(7) DEFAULT NULL,
   `card_holder` varchar(254) DEFAULT NULL,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15277,7 +18132,7 @@ CREATE TABLE `ps_order_return` (
   `question` text NOT NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15290,7 +18145,7 @@ CREATE TABLE `ps_order_return_detail` (
   `id_order_detail` int(10) UNSIGNED NOT NULL,
   `id_customization` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `product_quantity` int(10) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15301,7 +18156,7 @@ CREATE TABLE `ps_order_return_detail` (
 CREATE TABLE `ps_order_return_state` (
   `id_order_return_state` int(10) UNSIGNED NOT NULL,
   `color` varchar(32) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_order_return_state`
@@ -15324,7 +18179,7 @@ CREATE TABLE `ps_order_return_state_lang` (
   `id_order_return_state` int(10) UNSIGNED NOT NULL,
   `id_lang` int(10) UNSIGNED NOT NULL,
   `name` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_order_return_state_lang`
@@ -15364,7 +18219,7 @@ CREATE TABLE `ps_order_slip` (
   `order_slip_type` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15382,7 +18237,7 @@ CREATE TABLE `ps_order_slip_detail` (
   `total_price_tax_incl` decimal(20,6) DEFAULT NULL,
   `amount_tax_excl` decimal(20,6) DEFAULT NULL,
   `amount_tax_incl` decimal(20,6) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15405,7 +18260,7 @@ CREATE TABLE `ps_order_state` (
   `pdf_invoice` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `pdf_delivery` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_order_state`
@@ -15445,7 +18300,7 @@ CREATE TABLE `ps_order_state_lang` (
   `id_lang` int(10) UNSIGNED NOT NULL,
   `name` varchar(64) NOT NULL,
   `template` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_order_state_lang`
@@ -15506,7 +18361,7 @@ CREATE TABLE `ps_pack` (
   `id_product_item` int(10) UNSIGNED NOT NULL,
   `id_product_attribute_item` int(10) UNSIGNED NOT NULL,
   `quantity` int(10) UNSIGNED NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15518,7 +18373,7 @@ CREATE TABLE `ps_page` (
   `id_page` int(10) UNSIGNED NOT NULL,
   `id_page_type` int(10) UNSIGNED NOT NULL,
   `id_object` int(10) UNSIGNED DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_page`
@@ -15527,7 +18382,8 @@ CREATE TABLE `ps_page` (
 INSERT INTO `ps_page` (`id_page`, `id_page_type`, `id_object`) VALUES
 (1, 1, NULL),
 (2, 2, NULL),
-(3, 3, NULL);
+(3, 3, NULL),
+(4, 4, 136);
 
 -- --------------------------------------------------------
 
@@ -15542,7 +18398,7 @@ CREATE TABLE `ps_pagenotfound` (
   `request_uri` varchar(256) NOT NULL,
   `http_referer` varchar(256) NOT NULL,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_pagenotfound`
@@ -15580,13 +18436,14 @@ INSERT INTO `ps_pagenotfound` (`id_pagenotfound`, `id_shop`, `id_shop_group`, `r
 CREATE TABLE `ps_page_type` (
   `id_page_type` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_page_type`
 --
 
 INSERT INTO `ps_page_type` (`id_page_type`, `name`) VALUES
+(4, 'category'),
 (1, 'index'),
 (2, 'pagenotfound'),
 (3, 'search');
@@ -15603,7 +18460,7 @@ CREATE TABLE `ps_page_viewed` (
   `id_shop` int(10) UNSIGNED NOT NULL DEFAULT 1,
   `id_date_range` int(10) UNSIGNED NOT NULL,
   `counter` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -15668,19 +18525,19 @@ CREATE TABLE `ps_product` (
   `pack_stock_type` int(10) UNSIGNED NOT NULL DEFAULT 3,
   `state` int(10) UNSIGNED NOT NULL DEFAULT 1,
   `product_type` enum('standard','pack','virtual','combinations','') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_product`
 --
 
 INSERT INTO `ps_product` (`id_product`, `id_supplier`, `id_manufacturer`, `id_category_default`, `id_shop_default`, `id_tax_rules_group`, `on_sale`, `online_only`, `ean13`, `isbn`, `upc`, `mpn`, `ecotax`, `quantity`, `minimal_quantity`, `low_stock_threshold`, `low_stock_alert`, `price`, `wholesale_price`, `unity`, `unit_price`, `unit_price_ratio`, `additional_shipping_cost`, `reference`, `supplier_reference`, `location`, `width`, `height`, `depth`, `weight`, `out_of_stock`, `additional_delivery_times`, `quantity_discount`, `customizable`, `uploadable_files`, `text_fields`, `active`, `redirect_type`, `id_type_redirected`, `available_for_order`, `available_date`, `show_condition`, `condition`, `show_price`, `indexed`, `visibility`, `cache_is_pack`, `cache_has_attachments`, `is_virtual`, `cache_default_attribute`, `date_add`, `date_upd`, `advanced_stock_management`, `pack_stock_type`, `state`, `product_type`) VALUES
-(20, 0, 0, 2, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, '151.SPP400', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 403, '2019-10-09 09:52:17', '2020-03-16 11:56:19', 0, 3, 1, 'standard'),
+(20, 0, 0, 2, 1, 1, 0, 0, '', '', '', '', 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, '151.SPP400', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 403, '2019-10-09 09:52:17', '2023-10-01 13:11:42', 0, 3, 1, 'combinations'),
 (22, 0, 0, 2, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 43, '2019-10-09 16:39:09', '2020-02-21 11:56:30', 0, 3, 1, 'standard'),
-(23, 0, 0, 2, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 245.400000, 159.510000, '', 0.000000, 0.000000, 0.00, '151.SPPR580280', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 0, '2019-10-10 14:36:09', '2020-02-21 11:56:39', 0, 3, 1, 'standard'),
+(23, 0, 0, 2, 1, 1, 0, 0, '', '', '', '', 0.000000, 0, 1, NULL, 0, 245.400000, 0.000000, '', 0.000000, 0.000000, 0.00, '151.SPPR580280', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 0, '2019-10-10 14:36:09', '2023-10-01 13:11:23', 0, 3, 1, 'standard'),
 (24, 0, 0, 2, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 51, '2019-10-10 14:56:24', '2020-02-21 11:56:47', 0, 3, 1, 'standard'),
 (25, 0, 0, 2, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 154.760000, 100.590000, '', 0.000000, 0.000000, 0.00, '151.C505040', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 0, '2019-10-10 16:27:58', '2020-02-21 11:56:52', 0, 3, 1, 'standard'),
-(26, 0, 0, 2, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, '151.10/50R', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 52, '2019-10-11 09:32:11', '2020-04-07 14:32:42', 0, 3, 1, 'standard'),
+(26, 0, 0, 2, 1, 1, 0, 0, '', '', '', '', 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, '151.10/50R', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 52, '2019-10-11 09:32:11', '2023-10-01 13:11:52', 0, 3, 1, 'combinations'),
 (27, 0, 13, 2, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 61, '2019-10-31 08:57:58', '2020-02-21 14:31:27', 0, 3, 1, 'standard'),
 (28, 0, 13, 2, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 1, 0, 76, '2019-10-31 09:22:18', '2020-02-21 14:31:18', 0, 3, 1, 'standard'),
 (29, 0, 0, 2, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 4.990000, 2.740000, '', 0.000000, 0.000000, 0.00, '19398', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 1, 0, 0, '2019-10-31 09:56:50', '2020-03-09 10:06:58', 0, 3, 1, 'standard'),
@@ -15836,21 +18693,21 @@ INSERT INTO `ps_product` (`id_product`, `id_supplier`, `id_manufacturer`, `id_ca
 (208, 0, 16, 2, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 1, 0, 370, '2020-02-20 14:08:02', '2020-03-23 11:22:38', 0, 3, 1, 'standard'),
 (209, 0, 16, 2, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 1, 2, 1, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 1, 0, 377, '2020-02-27 17:12:03', '2020-03-23 11:22:22', 0, 3, 1, 'standard'),
 (210, 0, 16, 2, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 1, 0, 384, '2020-03-02 15:19:30', '2020-03-23 11:18:21', 0, 3, 1, 'standard'),
-(211, 0, 16, 2, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 10310.000000, 6701.500000, '', 0.000000, 0.000000, 150.00, 'GZP6', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 1, 0, 0, '2020-03-02 17:09:35', '2020-03-23 11:16:02', 0, 3, 1, 'standard'),
+(211, 0, 16, 2, 1, 1, 0, 0, '', '', '', '', 0.000000, 0, 1, NULL, 0, 10310.000000, 0.000000, '', 0.000000, 0.000000, 150.00, 'GZP6', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 0, '2020-03-02 17:09:35', '2023-10-01 11:57:57', 0, 3, 1, 'standard'),
 (212, 0, 17, 54, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 2015.000000, 1309.750000, '', 0.000000, 0.000000, 0.00, 'GV4k', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 1, 0, 0, '2020-03-03 09:26:33', '2020-03-05 16:08:02', 0, 3, 1, 'standard'),
 (214, 0, 17, 54, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 2796.000000, 1817.400000, '', 0.000000, 0.000000, 0.00, 'GV6', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 1, 0, 0, '2020-03-03 09:36:23', '2020-03-03 10:35:00', 0, 3, 1, 'standard'),
 (215, 0, 17, 54, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 2200.000000, 1430.000000, '', 0.000000, 0.000000, 0.00, 'GV12', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 1, 0, 0, '2020-03-03 09:51:09', '2020-03-05 16:07:57', 0, 3, 1, 'standard'),
 (216, 0, 17, 54, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 3902.000000, 2536.300000, '', 0.000000, 0.000000, 0.00, 'GV14S', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 1, 0, 0, '2020-03-03 10:04:11', '2020-03-05 16:07:42', 0, 3, 1, 'standard'),
-(217, 0, 17, 54, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 2690.000000, 1748.500000, '', 0.000000, 0.000000, 0.00, 'GV17S', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 1, 0, 0, '2020-03-03 10:25:37', '2020-03-05 15:58:39', 0, 3, 1, 'standard'),
+(217, 0, 17, 54, 1, 1, 0, 0, '', '', '', '', 0.000000, 0, 1, NULL, 0, 2690.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 'GV17S', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 0, '2020-03-03 10:25:37', '2023-10-01 13:09:58', 0, 3, 1, 'standard'),
 (219, 0, 16, 77, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 0, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 0, 'both', 0, 0, 0, 0, '2020-03-06 10:16:16', '2020-03-23 10:52:46', 0, 3, 1, 'standard'),
-(220, 0, 16, 2, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 0, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 0, 'both', 0, 0, 0, 0, '2020-03-06 11:20:13', '2020-03-23 10:52:46', 0, 3, 1, 'standard'),
-(221, 0, 16, 10, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 0, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 0, 'both', 0, 0, 0, 0, '2020-03-06 11:38:31', '2023-06-28 10:28:43', 0, 3, 1, 'standard'),
-(225, 0, 16, 10, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 2, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 1, 0, 388, '2020-03-12 15:00:06', '2023-06-24 11:19:30', 0, 3, 1, 'standard'),
-(226, 0, 16, 2, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 1, 2, 1, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 1, 0, 389, '2020-03-13 09:13:14', '2023-06-28 10:27:00', 0, 3, 1, 'standard'),
-(227, 0, 5, 11, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 393, '2020-03-16 10:51:07', '2020-04-07 14:16:45', 0, 3, 1, 'standard'),
-(231, 0, 16, 10, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 2, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 413, '2020-03-20 17:32:04', '2023-09-18 17:49:22', 0, 3, 1, 'standard'),
-(232, 0, 16, 87, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 0, NULL, 0, 5735.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 'SHT255', 'myndkcustomprod', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 1, 99, 99, 1, '', 0, 1, '0000-00-00', 0, 'new', 1, 0, 'none', 1, 0, 0, 0, '2020-03-20 18:08:49', '2020-03-23 10:52:46', 0, 0, 1, 'standard'),
-(234, 0, 0, 10, 1, 1, 0, 0, '', '', '', '', 0.000000, 0, 1, NULL, 0, 1948.000000, 0.000000, '', 0.000000, 0.000000, 150.00, 'LHH-4500', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 0, '2020-04-07 09:34:38', '2023-09-25 20:44:45', 0, 3, 1, 'standard');
+(220, 0, 16, 2, 1, 1, 0, 0, '', '', '', '', 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 0, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 0, 'both', 0, 0, 0, 0, '2020-03-06 11:20:13', '2023-10-01 13:09:49', 0, 3, 1, 'standard'),
+(221, 0, 16, 10, 1, 1, 0, 0, '', '', '', '', 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 0, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 0, 'both', 0, 0, 0, 0, '2020-03-06 11:38:31', '2023-10-01 13:09:49', 0, 3, 1, 'standard'),
+(225, 0, 16, 10, 1, 1, 0, 0, '', '', '', '', 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 2, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 388, '2020-03-12 15:00:06', '2023-10-01 13:09:49', 0, 3, 1, 'combinations'),
+(226, 0, 16, 2, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 1, 2, 1, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 1, 0, 389, '2020-03-13 09:13:14', '2023-10-01 12:00:44', 0, 3, 1, 'standard'),
+(227, 0, 5, 11, 1, 1, 0, 0, '', '', '', '', 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 393, '2020-03-16 10:51:07', '2023-10-01 13:09:42', 0, 3, 1, 'combinations'),
+(231, 0, 16, 10, 1, 1, 0, 0, '', '', '', '', 0.000000, 0, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, '', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 2, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 413, '2020-03-20 17:32:04', '2023-10-01 13:14:07', 0, 3, 1, 'combinations'),
+(232, 0, 16, 87, 1, 1, 0, 0, '', '', '', NULL, 0.000000, 0, 0, NULL, 0, 5735.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 'SHT255', 'myndkcustomprod', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 1, 99, 99, 1, '', 0, 1, '0000-00-00', 0, 'new', 1, 0, 'none', 1, 0, 0, 0, '2020-03-20 18:08:49', '2023-10-01 12:00:44', 0, 0, 1, 'standard'),
+(234, 0, 0, 10, 1, 1, 0, 0, '', '', '', '', 0.000000, 0, 1, NULL, 0, 1948.000000, 0.000000, '', 0.000000, 0.000000, 150.00, 'LHH-4500', '', '', 0.000000, 0.000000, 0.000000, 0.000000, 2, 1, 0, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, 0, 0, '2020-04-07 09:34:38', '2023-10-02 18:36:14', 0, 3, 1, 'standard');
 
 -- --------------------------------------------------------
 
@@ -15861,7 +18718,7 @@ INSERT INTO `ps_product` (`id_product`, `id_supplier`, `id_manufacturer`, `id_ca
 CREATE TABLE `ps_product_attachment` (
   `id_product` int(10) UNSIGNED NOT NULL,
   `id_attachment` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_product_attachment`
@@ -15933,13 +18790,10 @@ INSERT INTO `ps_product_attachment` (`id_product`, `id_attachment`) VALUES
 (208, 25),
 (209, 24),
 (210, 26),
-(211, 27),
 (212, 29),
 (214, 30),
 (215, 31),
 (216, 32),
-(217, 33),
-(225, 34),
 (226, 35);
 
 -- --------------------------------------------------------
@@ -15967,7 +18821,7 @@ CREATE TABLE `ps_product_attribute` (
   `low_stock_threshold` int(11) DEFAULT NULL,
   `low_stock_alert` tinyint(1) NOT NULL DEFAULT 0,
   `available_date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_product_attribute`
@@ -15983,7 +18837,7 @@ INSERT INTO `ps_product_attribute` (`id_product_attribute`, `id_product`, `refer
 (49, 22, '151.BAS.12/80', '', '', '', '', NULL, 153.000000, 235.450000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
 (50, 24, '151.15/80I', '', '', '', '', NULL, 185.000000, 286.100000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
 (51, 24, '151.10/80I', '', '', '', '', NULL, 129.000000, 199.200000, 0.000000, 0.000000, 0.000000, 1, 1, NULL, 0, '0000-00-00'),
-(52, 26, '151.10/50R', '', '', '', '', NULL, 55.000000, 85.700000, 0.000000, 0.000000, 0.000000, 1, 1, NULL, 0, '0000-00-00'),
+(52, 26, '151.10/50R', '', '', '', '', '', 55.000000, 85.700000, 0.000000, 0.000000, 0.000000, 1, 1, NULL, 0, '0000-00-00'),
 (61, 27, '18522', '', '', '18522', '', NULL, 57.000000, 105.110000, 0.000000, 0.000000, 0.000000, 1, 1, NULL, 0, '0000-00-00'),
 (64, 27, '18524', '', '', '18524', '', NULL, 68.000000, 124.220000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
 (67, 27, '18526', '', '', '18526', '', NULL, 68.000000, 124.220000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
@@ -16041,7 +18895,7 @@ INSERT INTO `ps_product_attribute` (`id_product_attribute`, `id_product`, `refer
 (144, 55, '15348', '', '', '', '', NULL, 89.000000, 161.980000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
 (145, 56, '15355', '', '', '', '', NULL, 59.000000, 107.380000, 0.000000, 0.000000, 0.000000, 1, 1, NULL, 0, '0000-00-00'),
 (146, 56, '15402', '', '', '', '', NULL, 75.000000, 136.500000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
-(147, 26, '151.15/50R', '', '', '', '', NULL, 89.000000, 137.500000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
+(147, 26, '151.15/50R', '', '', '', '', '', 89.000000, 137.500000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
 (148, 100, '151.05/30', '', '', '', '', NULL, 13.000000, 21.350000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
 (149, 100, '151.08/30', '', '', '', '', NULL, 20.000000, 30.850000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
 (150, 100, '151.10/40', '', '', '', '', NULL, 25.000000, 39.900000, 0.000000, 0.000000, 0.000000, 1, 1, NULL, 0, '0000-00-00'),
@@ -16219,29 +19073,29 @@ INSERT INTO `ps_product_attribute` (`id_product_attribute`, `id_product`, `refer
 (384, 210, 'SHMZ204', '', '', '', '', NULL, 2587.000000, 3980.000000, 0.000000, 0.000000, 0.000000, 1, 1, NULL, 0, '0000-00-00'),
 (385, 210, 'SHMZ304', '', '', '', '', NULL, 2600.000000, 4000.000000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
 (386, 210, 'SHMZ306', '', '', '', '', NULL, 3640.000000, 5600.000000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
-(387, 225, 'GFC1100', '', '', '', '', NULL, 2197.000000, 3380.000000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
-(388, 225, 'GFC1300', '', '', '', '', NULL, 2704.000000, 4160.000000, 0.000000, 0.000000, 0.000000, 1, 1, NULL, 0, '0000-00-00'),
+(387, 225, 'GFC1100', '', '', '', '', '', 2197.000000, 3380.000000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
+(388, 225, 'GFC1300', '', '', '', '', '', 2704.000000, 4160.000000, 0.000000, 0.000000, 0.000000, 1, 1, NULL, 0, '0000-00-00'),
 (389, 226, 'SHT255', '', '', '', '', NULL, 3445.000000, 5300.000000, 0.000000, 0.000000, 0.000000, 1, 1, NULL, 0, '0000-00-00'),
 (390, 226, 'SHT256', '', '', '', '', NULL, 3874.000000, 5960.000000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
 (391, 226, 'SHT305', '', '', '', '', NULL, 3588.000000, 5520.000000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
 (392, 226, 'SHT306', '', '', '', '', NULL, 4134.000000, 6360.000000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
-(393, 227, '151.30/RO', '', '', '', '', NULL, 148.000000, 228.500000, 0.000000, 0.000000, 0.000000, 1, 1, NULL, 0, '0000-00-00'),
-(394, 227, '151.35/RO', '', '', '', '', NULL, 209.000000, 312.250000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
-(395, 227, '151.35/RO1', '', '', '', '', NULL, 204.000000, 315.100000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
-(396, 227, '151.40/RO', '', '', '', '', NULL, 231.000000, 356.050000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
-(397, 227, '151.50/RO', '', '', '', '', NULL, 311.000000, 478.650000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
-(398, 227, '151.50/RO1', '', '', '', '', NULL, 325.000000, 501.100000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
-(399, 227, '151.70/RO', '', '', '', '', NULL, 443.000000, 682.950000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
-(403, 20, '151.SPP400', '', '', '', '', NULL, 83.690000, 128.750000, 0.000000, 0.000000, 0.000000, 1, 1, NULL, 0, '0000-00-00'),
-(404, 20, '151.SPP400PAL', '', '', '', '', NULL, 83.690000, 128.750000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
-(405, 20, '151.SPPMAX', '', '', '', '', NULL, 88.330000, 135.900000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
-(406, 20, '151.SPP500', '', '', '', '', NULL, 120.770000, 185.800000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
-(407, 20, '151.SPP600', '', '', '', '', NULL, 167.890000, 258.300000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
-(413, 231, '', '', '', '', '', NULL, 2865.000000, 4408.000000, 0.000000, 0.000000, 0.000000, 1, 0, NULL, 0, '0000-00-00'),
-(414, 231, '', '', '', '', '', NULL, 2899.000000, 4460.000000, 0.000000, 0.000000, 0.000000, NULL, 0, NULL, 0, '0000-00-00'),
-(415, 231, '', '', '', '', '', NULL, 2938.000000, 4520.000000, 0.000000, 0.000000, 0.000000, NULL, 0, NULL, 0, '0000-00-00'),
-(416, 231, '', '', '', '', '', NULL, 3003.000000, 4621.000000, 0.000000, 0.000000, 0.000000, NULL, 0, NULL, 0, '0000-00-00'),
-(417, 231, '', '', '', '', '', NULL, 3127.000000, 4821.000000, 0.000000, 0.000000, 0.000000, NULL, 0, NULL, 0, '0000-00-00');
+(393, 227, '151.30/RO', '', '', '', '', '', 148.000000, 228.500000, 0.000000, 0.000000, 0.000000, 1, 1, NULL, 0, '0000-00-00'),
+(394, 227, '151.35/RO', '', '', '', '', '', 209.000000, 312.250000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
+(395, 227, '151.35/RO1', '', '', '', '', '', 204.000000, 315.100000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
+(396, 227, '151.40/RO', '', '', '', '', '', 231.000000, 356.050000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
+(397, 227, '151.50/RO', '', '', '', '', '', 311.000000, 478.650000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
+(398, 227, '151.50/RO1', '', '', '', '', '', 325.000000, 501.100000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
+(399, 227, '151.70/RO', '', '', '', '', '', 443.000000, 682.950000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
+(403, 20, '151.SPP400', '', '', '', '', '', 83.690000, 128.750000, 0.000000, 0.000000, 0.000000, 1, 1, NULL, 0, '0000-00-00'),
+(404, 20, '151.SPP400PAL', '', '', '', '', '', 83.690000, 128.750000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
+(405, 20, '151.SPPMAX', '', '', '', '', '', 88.330000, 135.900000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
+(406, 20, '151.SPP500', '', '', '', '', '', 120.770000, 185.800000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
+(407, 20, '151.SPP600', '', '', '', '', '', 167.890000, 258.300000, 0.000000, 0.000000, 0.000000, NULL, 1, NULL, 0, '0000-00-00'),
+(413, 231, '', '', '', '', '', '', 2865.000000, 4408.000000, 0.000000, 0.000000, 0.000000, 1, 0, NULL, 0, '0000-00-00'),
+(414, 231, '', '', '', '', '', '', 2899.000000, 4460.000000, 0.000000, 0.000000, 0.000000, NULL, 0, NULL, 0, '0000-00-00'),
+(415, 231, '', '', '', '', '', '', 2938.000000, 4520.000000, 0.000000, 0.000000, 0.000000, NULL, 0, NULL, 0, '0000-00-00'),
+(416, 231, '', '', '', '', '', '', 3003.000000, 4621.000000, 0.000000, 0.000000, 0.000000, NULL, 0, NULL, 0, '0000-00-00'),
+(417, 231, '', '', '', '', '', '', 3127.000000, 4821.000000, 0.000000, 0.000000, 0.000000, NULL, 0, NULL, 0, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -16252,7 +19106,7 @@ INSERT INTO `ps_product_attribute` (`id_product_attribute`, `id_product`, `refer
 CREATE TABLE `ps_product_attribute_combination` (
   `id_attribute` int(10) UNSIGNED NOT NULL,
   `id_product_attribute` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_product_attribute_combination`
@@ -16519,7 +19373,7 @@ INSERT INTO `ps_product_attribute_combination` (`id_attribute`, `id_product_attr
 CREATE TABLE `ps_product_attribute_image` (
   `id_product_attribute` int(10) UNSIGNED NOT NULL,
   `id_image` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_product_attribute_image`
@@ -16573,7 +19427,7 @@ CREATE TABLE `ps_product_attribute_shop` (
   `low_stock_threshold` int(11) DEFAULT NULL,
   `low_stock_alert` tinyint(1) NOT NULL DEFAULT 0,
   `available_date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_product_attribute_shop`
@@ -16859,7 +19713,7 @@ CREATE TABLE `ps_product_carrier` (
   `id_product` int(10) UNSIGNED NOT NULL,
   `id_carrier_reference` int(10) UNSIGNED NOT NULL,
   `id_shop` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_product_carrier`
@@ -16900,7 +19754,7 @@ CREATE TABLE `ps_product_comment` (
   `validate` tinyint(1) NOT NULL,
   `deleted` tinyint(1) NOT NULL,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -16912,7 +19766,7 @@ CREATE TABLE `ps_product_comment_criterion` (
   `id_product_comment_criterion` int(11) NOT NULL,
   `id_product_comment_criterion_type` int(11) NOT NULL,
   `active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_product_comment_criterion`
@@ -16930,7 +19784,7 @@ INSERT INTO `ps_product_comment_criterion` (`id_product_comment_criterion`, `id_
 CREATE TABLE `ps_product_comment_criterion_category` (
   `id_product_comment_criterion` int(10) UNSIGNED NOT NULL,
   `id_category` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -16942,7 +19796,7 @@ CREATE TABLE `ps_product_comment_criterion_lang` (
   `id_product_comment_criterion` int(11) UNSIGNED NOT NULL,
   `id_lang` int(11) UNSIGNED NOT NULL,
   `name` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_product_comment_criterion_lang`
@@ -16961,7 +19815,7 @@ INSERT INTO `ps_product_comment_criterion_lang` (`id_product_comment_criterion`,
 CREATE TABLE `ps_product_comment_criterion_product` (
   `id_product` int(10) UNSIGNED NOT NULL,
   `id_product_comment_criterion` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -16973,7 +19827,7 @@ CREATE TABLE `ps_product_comment_grade` (
   `id_product_comment` int(11) NOT NULL,
   `id_product_comment_criterion` int(11) NOT NULL,
   `grade` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -16984,7 +19838,7 @@ CREATE TABLE `ps_product_comment_grade` (
 CREATE TABLE `ps_product_comment_report` (
   `id_product_comment` int(11) NOT NULL,
   `id_customer` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -16996,7 +19850,7 @@ CREATE TABLE `ps_product_comment_usefulness` (
   `id_product_comment` int(11) NOT NULL,
   `id_customer` int(11) NOT NULL,
   `usefulness` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -17008,7 +19862,7 @@ CREATE TABLE `ps_product_country_tax` (
   `id_product` int(11) NOT NULL,
   `id_country` int(11) NOT NULL,
   `id_tax` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -17027,7 +19881,7 @@ CREATE TABLE `ps_product_download` (
   `nb_downloadable` int(10) UNSIGNED DEFAULT 1,
   `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
   `is_shareable` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -17039,7 +19893,7 @@ CREATE TABLE `ps_product_group_reduction_cache` (
   `id_product` int(10) UNSIGNED NOT NULL,
   `id_group` int(10) UNSIGNED NOT NULL,
   `reduction` decimal(4,3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_product_group_reduction_cache`
@@ -17066,7 +19920,8 @@ INSERT INTO `ps_product_group_reduction_cache` (`id_product`, `id_group`, `reduc
 (225, 5, 0.250),
 (226, 5, 0.250),
 (231, 5, 0.250),
-(232, 5, 0.250);
+(232, 5, 0.250),
+(234, 5, 0.250);
 
 -- --------------------------------------------------------
 
@@ -17089,7 +19944,7 @@ CREATE TABLE `ps_product_lang` (
   `available_later` varchar(255) DEFAULT NULL,
   `delivery_in_stock` varchar(255) DEFAULT NULL,
   `delivery_out_stock` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_product_lang`
@@ -17097,11 +19952,14 @@ CREATE TABLE `ps_product_lang` (
 
 INSERT INTO `ps_product_lang` (`id_product`, `id_shop`, `id_lang`, `description`, `description_short`, `link_rewrite`, `meta_description`, `meta_keywords`, `meta_title`, `name`, `available_now`, `available_later`, `delivery_in_stock`, `delivery_out_stock`) VALUES
 (20, 1, 1, '', '<p><img src=\"https://www.pieceslevage.com/img/cms/shoes-rond.PNG\" alt=\"\" width=\"640\" height=\"231\" /></p>', 'patin-de-calage-rond', '', '', '', 'Patin de calage rond', '', '', '', ''),
+(20, 1, 2, '', '', '', '', '', '', 'Patin de calage rond', '', '', '', ''),
 (22, 1, 1, '', '<p><img src=\"https://www.pieceslevage.com/img/cms/BASTAINGS.PNG\" alt=\"\" width=\"641\" height=\"357\" /></p>', 'bastaing', '', '', '', 'Bastaing', '', '', '', ''),
 (23, 1, 1, '', '<p><img src=\"https://www.pieceslevage.com/img/cms/Capture.PNG\" alt=\"\" width=\"643\" height=\"134\" /></p>', 'shoes-rectangulaire-', '', '', '', 'Shoes rectangulaire', '', '', '', ''),
+(23, 1, 2, '', '', '', '', '', '', 'Shoes rectangulaire', '', '', '', ''),
 (24, 1, 1, '', '<p><img src=\"https://www.pieceslevage.com/img/cms/pas-incline.PNG\" alt=\"\" width=\"644\" height=\"184\" /></p>', 'pad-incline', '', '', '', 'Pad incliné', '', '', '', ''),
 (25, 1, 1, '', '<p><img src=\"https://www.pieceslevage.com/img/cms/pad-condctif.PNG\" alt=\"\" width=\"640\" height=\"127\" /></p>', 'pad-conductif', '', '', '', 'Pad conductif', '', '', '', ''),
 (26, 1, 1, '', '<p><img src=\"https://www.pieceslevage.com/img/cms/pads-face-caoutchouc.PNG\" alt=\"\" width=\"640\" height=\"145\" /></p>', 'pads-face-caoutchouc', 'La nouvelle gamme Lodax est arrivée chez pieceslevage.com. Retrouvez directement leurs pads caoutchouc pour vos travaux à risque électrique', '', 'Pieceslevage.com|Patin caoutchouc', 'Pads face caoutchouc', '', '', '', ''),
+(26, 1, 2, '', '', '', '', '', '', 'Pads face caoutchouc', '', '', '', ''),
 (27, 1, 1, '', '', 'elingue-chaine-avec-crochet-et-raccourcisseur', '', '', '', 'Elingue Chaine 1 BRIN', '', '', '', ''),
 (28, 1, 1, '', '', 'elingue-chaine-2-brin', '', '', '', 'ELINGUE CHAINE 2 BRIN', '', '', '', ''),
 (29, 1, 1, '', '<p>Charge Max d\'Utilisation 1000Kg</p>', 'elingues-plates-avec-boucles', '', '', '', 'Élingues plates avec boucles 1t', '', '', '', ''),
@@ -17258,21 +20116,28 @@ INSERT INTO `ps_product_lang` (`id_product`, `id_shop`, `id_lang`, `description`
 (209, 1, 1, '', '', 'benne-preneuse-goa', '', '', '', 'Benne preneuse GOA', '', '', '', ''),
 (210, 1, 1, '', '', 'grappin-shmz', '', '', '', 'Grappin SHMZ', '', '', '', ''),
 (211, 1, 1, '<p>Polidemo est une pièce innovante et multifonctionnelle de</p>\r\n<p>équipement spécialement conçu par Gusella-Bakker</p>\r\n<p></p>\r\n<p>pour un recyclage simple et efficace de la voiture.</p>', '', 'pince-demolition-gzp', '', '', '', 'Pince démolition GZP', '', '', '', ''),
+(211, 1, 2, '', '', 'pince-demolition-gzp', '', '', '', 'Pince démolition GZP', '', '', '', ''),
 (212, 1, 1, '', '', 'gv-3-49525', '', '', '', 'Indexator GV4K', '', '', '', ''),
 (214, 1, 1, '', '', 'indexator-gv6', '', '', '', 'Indexator GV6', '', '', '', ''),
 (215, 1, 1, '', '', 'indexator-gv12', '', '', '', 'Indexator GV12', '', '', '', ''),
 (216, 1, 1, '', '', 'indexator-gv14s', '', '', '', 'Indexator GV14S', '', '', '', ''),
 (217, 1, 1, '', '', 'indexator-gv17s', '', '', '', 'Indexator GV17S', '', '', '', ''),
+(217, 1, 2, '', '', 'indexator-gv17s', '', '', '', 'Indexator GV17S', '', '', '', ''),
 (219, 1, 1, '<p class=\"MsoNormal\" style=\"tab-stops: 9.0cm;\"><b style=\"mso-bidi-font-weight: normal;\"><span style=\"font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\'; mso-ansi-language: FR;\">- Conforme à la norme CE <o:p></o:p></span></b></p>\r\n<p class=\"MsoNormal\"><b style=\"mso-bidi-font-weight: normal;\"><span style=\"font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\'; mso-ansi-language: FR;\">-</span></b><b style=\"mso-bidi-font-weight: normal;\"><span style=\"font-size: 8.0pt; mso-bidi-font-size: 10.0pt; font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\'; mso-ansi-language: FR;\"> </span></b><b style=\"mso-bidi-font-weight: normal;\"><span style=\"font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\'; mso-ansi-language: FR;\">Pression de travail: 180 Bar<o:p></o:p></span></b></p>\r\n<p class=\"MsoNormal\"><b style=\"mso-bidi-font-weight: normal;\"><span style=\"font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\'; mso-ansi-language: FR;\">- Perçage étrier de tête 140mm cc (<st1:date ls=\"trans\" month=\"10\" day=\"4\" year=\"17\" w:st=\"on\">4xø17</st1:date>mm)</span></b><b style=\"mso-bidi-font-weight: normal;\"><span style=\"font-size: 12.0pt; mso-bidi-font-size: 10.0pt; font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\'; color: red; mso-ansi-language: FR;\"><o:p></o:p></span></b></p>\r\n<p class=\"MsoNormal\"><b style=\"mso-bidi-font-weight: normal;\"><span style=\"font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\'; mso-ansi-language: FR;\"><o:p> </o:p></span></b></p>', '', 'benne-immergeable-ggeg', '', '', '', 'Benne immergeable GGEG', '', '', '', ''),
-(220, 1, 1, '<p></p>\r\n<p class=\"MsoNormal\" style=\"tab-stops:9.0cm 306.0pt\"><b style=\"mso-bidi-font-weight:\r\nnormal\"><span style=\"font-family:&quot;Arial&quot;,sans-serif;mso-bidi-font-family:&quot;Times New Roman&quot;\">- Conforme à la norme C</span></b></p>\r\n<p class=\"MsoNormal\" style=\"tab-stops:9.0cm 306.0pt\"><b style=\"mso-bidi-font-weight:\r\nnormal\"><span style=\"font-family:&quot;Arial&quot;,sans-serif;mso-bidi-font-family:&quot;Times New Roman&quot;\">-</span></b><b style=\"mso-bidi-font-weight:normal\"><span style=\"font-size:8.0pt;mso-bidi-font-size:\r\n10.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-bidi-font-family:&quot;Times New Roman&quot;\"> </span></b><b style=\"mso-bidi-font-weight:normal\"><span style=\"font-family:&quot;Arial&quot;,sans-serif;\r\nmso-bidi-font-family:&quot;Times New Roman&quot;\">Pression de travail : 250 bars</span></b></p>\r\n<p class=\"MsoNormal\" style=\"tab-stops:9.0cm 306.0pt\"><b style=\"mso-bidi-font-weight:\r\nnormal\"><span style=\"font-family:&quot;Arial&quot;,sans-serif;mso-bidi-font-family:&quot;Times New Roman&quot;\">- Effort de serrage : 30 kN.</span></b></p>\r\n<p class=\"MsoNormal\" style=\"tab-stops:9.0cm 306.0pt\"><b style=\"mso-bidi-font-weight:normal\"><span style=\"font-family:&quot;Arial&quot;,sans-serif;\r\nmso-bidi-font-family:&quot;Times New Roman&quot;\">- Vérin horizontal hydraulique</span></b></p>\r\n<p class=\"MsoNormal\" style=\"tab-stops:9.0cm 306.0pt\"><b style=\"mso-bidi-font-weight:normal\"><span style=\"font-family:&quot;Arial&quot;,sans-serif;\r\nmso-bidi-font-family:&quot;Times New Roman&quot;\">- Crochets soudées (2 pièces)</span></b></p>\r\n<p class=\"MsoNormal\" style=\"tab-stops:9.0cm 306.0pt\"><b style=\"mso-bidi-font-weight:\r\nnormal\"><span style=\"font-family:&quot;Arial&quot;,sans-serif;mso-bidi-font-family:&quot;Times New Roman&quot;\">- Dents forgées (boulonnées)</span></b></p>\r\n<p class=\"MsoNormal\" style=\"tab-stops:9.0cm 306.0pt\"><b style=\"mso-bidi-font-weight:normal\"><span style=\"font-family:&quot;Arial&quot;,sans-serif;\r\nmso-bidi-font-family:&quot;Times New Roman&quot;\">- Clapet piloté en option</span></b></p>\r\n<p class=\"MsoNormal\" style=\"tab-stops:9.0cm 306.0pt\"><b style=\"mso-bidi-font-weight:normal\"><span style=\"font-family:&quot;Arial&quot;,sans-serif;\r\nmso-bidi-font-family:&quot;Times New Roman&quot;\">- Perçage étrier de tête d=180mm (4xØ18mm)</span></b><b style=\"mso-bidi-font-weight:normal\"><span style=\"font-family:&quot;Arial&quot;,sans-serif;\r\nmso-bidi-font-family:&quot;Times New Roman&quot;\"><span style=\"mso-spacerun:yes\"> </span>et 140mm cc (<st1:date ls=\"trans\" month=\"10\" day=\"4\" year=\"17\" w:st=\"on\">4xø17</st1:date>mm)<span style=\"color:red\"> *</span></span></b></p>\r\n<p></p>', '', 'benne-kst', '', '', '', 'Benne KST', '', '', '', ''),
+(220, 1, 1, '<p></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family:Arial, sans-serif;\">- Conforme à la norme C</span></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family:Arial, sans-serif;\">-</span></b><b><span style=\"font-size:8pt;font-family:Arial, sans-serif;\"> </span></b><b><span style=\"font-family:Arial, sans-serif;\">Pression de travail : 250 bars</span></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family:Arial, sans-serif;\">- Effort de serrage : 30 kN.</span></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family:Arial, sans-serif;\">- Vérin horizontal hydraulique</span></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family:Arial, sans-serif;\">- Crochets soudées (2 pièces)</span></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family:Arial, sans-serif;\">- Dents forgées (boulonnées)</span></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family:Arial, sans-serif;\">- Clapet piloté en option</span></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family:Arial, sans-serif;\">- Perçage étrier de tête d=180mm (4xØ18mm)</span></b><b><span style=\"font-family:Arial, sans-serif;\"><span> </span>et 140mm cc (4xø17mm)<span style=\"color:#FF0000;\"> *</span></span></b></p>\r\n<p></p>', '', 'benne-kst', '', '', '', 'Benne KST', '', '', '', ''),
+(220, 1, 2, '', '', '', '', '', '', 'Benne KST', '', '', '', ''),
 (221, 1, 1, '', '', 'benne-de-reprise-kb', '', '', '', 'Benne de reprise KB', '', '', '', ''),
+(221, 1, 2, '', '', '', '', '', '', 'Benne de reprise KB', '', '', '', ''),
 (225, 1, 1, '', '', 'pince-parpaings-gfc', '', '', '', 'Pince parpaings GFC', '', '', '', ''),
+(225, 1, 2, '', '', 'pince-parpaings-gfc', '', '', '', 'Pince parpaings GFC', '', '', '', ''),
 (226, 1, 1, '<p><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/DNMODVIXVDo\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"allowfullscreen\"></iframe></p>', '', 'grappin-sht', 'Voici un grappin polyvalent, compatible grue auxiliaire et pelle. La SpiderKing de Bakker Hydraulic est une valeur sûre!', '', 'Pieceslevage.com| Le grappin SHT de Bakker hydraulic', 'Grappin SHT', '', '', '', ''),
 (227, 1, 1, '', '<p><img src=\"https://www.pieceslevage.com/img/cms/Capture29.PNG\" alt=\"\" width=\"642\" height=\"315\" /></p>', 'patin-rond', 'Retrouvez chez pieceslevage.com, nos patins de calage Lodax pour vos béquilles et poutres de stabilisation. Envoi sous 48h', '', 'Pieceslevage.com|Patin rond Lodax', 'Patin rond', '', '', '', ''),
-(231, 1, 1, '<p>Ces bennes multi-fonctions conviennent tout particulièrement aux travaux rudes. L\'utilisation de deux vérins fournit à cette benne de reprise un effort de serrage très élevée.</p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\';\">- Conforme à la norme CE<o:p></o:p></span></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\';\">-</span></b><b><span style=\"font-size: 8.0pt; mso-bidi-font-size: 10.0pt; font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\';\"> </span></b><b><span style=\"font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\';\">Pression de travail : 200 bars<o:p></o:p></span></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\';\">- Effort de serrage : 30 kN.<o:p></o:p></span></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\';\">- Vérins horizontal hydraulique<o:p></o:p></span></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\';\">- Clapet piloté<o:p></o:p></span></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\';\">- Lames d’usure réversibles<o:p></o:p></span></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\';\">- Perçage étrier de tête d=180mm (<st1:date ls=\"trans\" month=\"10\" day=\"4\" year=\"18\" w:st=\"on\">4xØ18</st1:date>mm)</span></b><b><span style=\"font-family: \'Arial\',sans-serif; mso-bidi-font-family: \'Times New Roman\';\"><span> </span>et 140mm cc (<st1:date year=\"17\" day=\"4\" month=\"10\" ls=\"trans\" w:st=\"on\">4xø17</st1:date>mm)<span style=\"color: red;\">*</span></span></b></p>', '', 'benne-bdv', '', '', '', 'Benne preneuse BDV', '', '', '27 jours', ''),
+(227, 1, 2, '', '', 'patin-rond', '', '', '', 'Patin rond', '', '', '', ''),
+(231, 1, 1, '<p>Ces bennes multi-fonctions conviennent tout particulièrement aux travaux rudes. L\'utilisation de deux vérins fournit à cette benne de reprise un effort de serrage très élevée.</p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family:Arial, sans-serif;\">- Conforme à la norme CE</span></b></p>\r\n<p><b></b></p>\r\n<p><b></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family:Arial, sans-serif;\">-</span></b><b><span style=\"font-size:8pt;font-family:Arial, sans-serif;\"> </span></b><b><span style=\"font-family:Arial, sans-serif;\">Pression de travail : 200 bars</span></b></p>\r\n<p><b></b></p>\r\n<p><b></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family:Arial, sans-serif;\">- Effort de serrage : 30 kN.</span></b></p>\r\n<p><b></b></p>\r\n<p><b></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family:Arial, sans-serif;\">- Vérins horizontal hydraulique</span></b></p>\r\n<p><b></b></p>\r\n<p><b></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family:Arial, sans-serif;\">- Clapet piloté</span></b></p>\r\n<p><b></b></p>\r\n<p><b></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family:Arial, sans-serif;\">- Lames d’usure réversibles</span></b></p>\r\n<p><b></b></p>\r\n<p><b></b></p>\r\n<p class=\"MsoNormal\"><b><span style=\"font-family:Arial, sans-serif;\">- Perçage étrier de tête d=180mm (4xØ18mm)</span></b><b><span style=\"font-family:Arial, sans-serif;\"><span> </span>et 140mm cc (4xø17mm)<span style=\"color:#ff0000;\">*</span></span></b></p>', '', 'benne-bdv', '', '', '', 'Benne preneuse BDV', '', '', '27 jours', ''),
+(231, 1, 2, '', '', 'benne-preneuse-bdv', '', '', '', 'Benne preneuse BDV', '', '', '', ''),
 (232, 1, 1, '<p><b>Kit Hydraulique : </b>Chape femelle X1  435,00 € </p>', 'Personnalisation :Grappin SHT - Capacité - SHT 250L 5 dents', 'grappin-sht-capacite-sht-250l-5-dents-grappin-sht-capacite-sht-250l-5-dents-0', '', '', '', 'Grappin SHT - Capacité - SHT 250L 5 dents', '', '', '', ''),
 (234, 1, 1, '<p>Poids : 23 kg Charge de levage maximale : 4500 kg Pression maximale : 100 bars </p>', '', 'crochet-hydraulique-lhh-4500', '', '', '', 'Crochet hydraulique LHH-4500', '', '', '', ''),
-(234, 1, 2, '', '', '', '', '', '', 'Crochet hydraulique LHH-4500', '', '', '', '');
+(234, 1, 2, '', '', 'crochet-hydraulique-lhh-4500', '', '', '', 'Crochet hydraulique LHH-4500', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -17285,7 +20150,7 @@ CREATE TABLE `ps_product_sale` (
   `quantity` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `sale_nbr` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `date_upd` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -17328,19 +20193,19 @@ CREATE TABLE `ps_product_shop` (
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   `pack_stock_type` int(10) UNSIGNED NOT NULL DEFAULT 3
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_product_shop`
 --
 
 INSERT INTO `ps_product_shop` (`id_product`, `id_shop`, `id_category_default`, `id_tax_rules_group`, `on_sale`, `online_only`, `ecotax`, `minimal_quantity`, `low_stock_threshold`, `low_stock_alert`, `price`, `wholesale_price`, `unity`, `unit_price`, `unit_price_ratio`, `additional_shipping_cost`, `customizable`, `uploadable_files`, `text_fields`, `active`, `redirect_type`, `id_type_redirected`, `available_for_order`, `available_date`, `show_condition`, `condition`, `show_price`, `indexed`, `visibility`, `cache_default_attribute`, `advanced_stock_management`, `date_add`, `date_upd`, `pack_stock_type`) VALUES
-(20, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 403, 0, '2019-10-09 09:52:17', '2020-03-16 11:56:19', 3),
+(20, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 403, 0, '2019-10-09 09:52:17', '2023-10-01 13:11:42', 3),
 (22, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 43, 0, '2019-10-09 16:39:09', '2020-02-21 11:56:30', 3),
-(23, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 245.400000, 159.510000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, '2019-10-10 14:36:09', '2020-02-21 11:56:39', 3),
+(23, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 245.400000, 159.510000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, '2019-10-10 14:36:09', '2023-10-01 13:11:23', 3),
 (24, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 51, 0, '2019-10-10 14:56:24', '2020-02-21 11:56:47', 3),
 (25, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 154.760000, 100.590000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, '2019-10-10 16:27:58', '2020-02-21 11:56:52', 3),
-(26, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 52, 0, '2019-10-11 09:32:11', '2020-04-07 14:32:42', 3),
+(26, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 52, 0, '2019-10-11 09:32:11', '2023-10-01 13:11:52', 3),
 (27, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 61, 0, '2019-10-31 08:57:58', '2020-02-21 14:31:27', 3),
 (28, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 76, 0, '2019-10-31 09:22:18', '2020-02-21 14:31:18', 3),
 (29, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 4.990000, 2.740000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, '2019-10-31 09:56:50', '2020-03-09 10:06:58', 3),
@@ -17495,21 +20360,21 @@ INSERT INTO `ps_product_shop` (`id_product`, `id_shop`, `id_category_default`, `
 (208, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 370, 0, '2020-02-20 14:08:02', '2020-03-23 11:22:38', 3),
 (209, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, 1, 2, 1, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 377, 0, '2020-02-27 17:12:03', '2020-03-23 11:22:22', 3),
 (210, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 384, 0, '2020-03-02 15:19:30', '2020-03-23 11:18:21', 3),
-(211, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 10310.000000, 6701.500000, '', 0.000000, 0.000000, 150.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, '2020-03-02 17:09:35', '2020-03-23 11:16:02', 3),
+(211, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 10310.000000, 6701.500000, '', 0.000000, 0.000000, 150.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, '2020-03-02 17:09:35', '2023-10-01 11:57:57', 3),
 (212, 1, 54, 1, 0, 0, 0.000000, 1, NULL, 0, 2015.000000, 1309.750000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, '2020-03-03 09:26:33', '2020-03-05 16:08:02', 3),
 (214, 1, 54, 1, 0, 0, 0.000000, 1, NULL, 0, 2796.000000, 1817.400000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, '2020-03-03 09:36:23', '2020-03-03 10:35:00', 3),
 (215, 1, 54, 1, 0, 0, 0.000000, 1, NULL, 0, 2200.000000, 1430.000000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, '2020-03-03 09:51:09', '2020-03-05 16:07:57', 3),
 (216, 1, 54, 1, 0, 0, 0.000000, 1, NULL, 0, 3902.000000, 2536.300000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, '2020-03-03 10:04:11', '2020-03-05 16:07:42', 3),
-(217, 1, 54, 1, 0, 0, 0.000000, 1, NULL, 0, 2690.000000, 1748.500000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, '2020-03-03 10:25:37', '2020-03-05 15:58:39', 3),
+(217, 1, 54, 1, 0, 0, 0.000000, 1, NULL, 0, 2690.000000, 1748.500000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, '2020-03-03 10:25:37', '2023-10-01 13:09:58', 3),
 (219, 1, 77, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 0, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 0, 'both', 0, 0, '2020-03-06 10:16:16', '2020-03-23 10:52:46', 3),
-(220, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 0, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 0, 'both', 0, 0, '2020-03-06 11:20:13', '2020-03-23 10:52:46', 3),
-(221, 1, 10, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 0, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 0, 'both', 0, 0, '2020-03-06 11:38:31', '2023-06-28 10:28:43', 3),
-(225, 1, 10, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 388, 0, '2020-03-12 15:00:06', '2023-06-24 11:19:30', 3),
-(226, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, 1, 2, 1, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 389, 0, '2020-03-13 09:13:14', '2023-06-28 10:27:00', 3),
-(227, 1, 11, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 393, 0, '2020-03-16 10:51:07', '2020-04-07 14:16:45', 3),
-(231, 1, 10, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 413, 0, '2020-03-20 17:32:04', '2023-09-18 17:49:22', 3),
-(232, 1, 87, 1, 0, 0, 0.000000, 0, NULL, 0, 5735.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 1, 99, 99, 1, '', 0, 1, '0000-00-00', 0, 'new', 1, 0, 'none', 0, 0, '2020-03-20 18:08:49', '2020-03-23 10:52:46', 0),
-(234, 1, 10, 1, 0, 0, 0.000000, 1, NULL, 0, 1948.000000, 1266.200000, '', 0.000000, 0.000000, 150.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, '2020-04-07 09:34:38', '2023-09-25 20:44:45', 3);
+(220, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 0, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 0, 'both', 0, 0, '2020-03-06 11:20:13', '2023-10-01 13:09:49', 3),
+(221, 1, 10, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 0, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 0, 'both', 0, 0, '2020-03-06 11:38:31', '2023-10-01 13:09:49', 3),
+(225, 1, 10, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 388, 0, '2020-03-12 15:00:06', '2023-10-01 13:09:49', 3),
+(226, 1, 2, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, 1, 2, 1, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 389, 0, '2020-03-13 09:13:14', '2023-10-01 12:00:44', 3),
+(227, 1, 11, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 393, 0, '2020-03-16 10:51:07', '2023-10-01 13:09:42', 3),
+(231, 1, 10, 1, 0, 0, 0.000000, 1, NULL, 0, 0.000000, 0.000000, '', 0.000000, 0.000000, 150.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 413, 0, '2020-03-20 17:32:04', '2023-10-01 13:14:07', 3),
+(232, 1, 87, 1, 0, 0, 0.000000, 0, NULL, 0, 5735.000000, 0.000000, '', 0.000000, 0.000000, 0.00, 1, 99, 99, 1, '', 0, 1, '0000-00-00', 0, 'new', 1, 0, 'none', 0, 0, '2020-03-20 18:08:49', '2023-10-01 12:00:44', 0),
+(234, 1, 10, 1, 0, 0, 0.000000, 1, NULL, 0, 1948.000000, 1266.200000, '', 0.000000, 0.000000, 150.00, 0, 0, 0, 1, '301-category', 0, 1, '0000-00-00', 0, 'new', 1, 1, 'both', 0, 0, '2020-04-07 09:34:38', '2023-10-02 18:36:14', 3);
 
 -- --------------------------------------------------------
 
@@ -17525,7 +20390,7 @@ CREATE TABLE `ps_product_supplier` (
   `product_supplier_reference` varchar(64) DEFAULT NULL,
   `product_supplier_price_te` decimal(20,6) NOT NULL DEFAULT 0.000000,
   `id_currency` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -17537,7 +20402,7 @@ CREATE TABLE `ps_product_tag` (
   `id_product` int(10) UNSIGNED NOT NULL,
   `id_tag` int(10) UNSIGNED NOT NULL,
   `id_lang` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -17547,7 +20412,7 @@ CREATE TABLE `ps_product_tag` (
 
 CREATE TABLE `ps_profile` (
   `id_profile` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_profile`
@@ -17566,7 +20431,7 @@ CREATE TABLE `ps_profile_lang` (
   `id_lang` int(10) UNSIGNED NOT NULL,
   `id_profile` int(10) UNSIGNED NOT NULL,
   `name` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_profile_lang`
@@ -17596,7 +20461,7 @@ CREATE TABLE `ps_pscheckout_cart` (
   `isHostedFields` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -17609,7 +20474,7 @@ CREATE TABLE `ps_pscheckout_funding_source` (
   `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `position` tinyint(2) UNSIGNED NOT NULL,
   `id_shop` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_pscheckout_funding_source`
@@ -17638,7 +20503,7 @@ CREATE TABLE `ps_pscheckout_order_matrice` (
   `id_order_matrice` int(10) UNSIGNED NOT NULL,
   `id_order_prestashop` int(10) UNSIGNED NOT NULL,
   `id_order_paypal` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -17654,7 +20519,7 @@ CREATE TABLE `ps_psgdpr_consent` (
   `error_message` text DEFAULT NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -17667,7 +20532,7 @@ CREATE TABLE `ps_psgdpr_consent_lang` (
   `id_lang` int(10) UNSIGNED NOT NULL,
   `message` text DEFAULT NULL,
   `id_shop` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -17684,7 +20549,7 @@ CREATE TABLE `ps_psgdpr_log` (
   `request_type` int(10) NOT NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_psgdpr_log`
@@ -17709,7 +20574,7 @@ CREATE TABLE `ps_psreassurance` (
   `id_cms` int(10) UNSIGNED DEFAULT NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_psreassurance`
@@ -17733,7 +20598,7 @@ CREATE TABLE `ps_psreassurance_lang` (
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_psreassurance_lang`
@@ -17759,7 +20624,7 @@ CREATE TABLE `ps_quick_access` (
   `id_quick_access` int(10) UNSIGNED NOT NULL,
   `new_window` tinyint(1) NOT NULL DEFAULT 0,
   `link` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_quick_access`
@@ -17783,7 +20648,7 @@ CREATE TABLE `ps_quick_access_lang` (
   `id_quick_access` int(10) UNSIGNED NOT NULL,
   `id_lang` int(10) UNSIGNED NOT NULL,
   `name` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_quick_access_lang`
@@ -17814,7 +20679,7 @@ CREATE TABLE `ps_range_price` (
   `id_carrier` int(10) UNSIGNED NOT NULL,
   `delimiter1` decimal(20,6) NOT NULL,
   `delimiter2` decimal(20,6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -17827,7 +20692,7 @@ CREATE TABLE `ps_range_weight` (
   `id_carrier` int(10) UNSIGNED NOT NULL,
   `delimiter1` decimal(20,6) NOT NULL,
   `delimiter2` decimal(20,6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -17839,7 +20704,7 @@ CREATE TABLE `ps_request_sql` (
   `id_request_sql` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
   `sql` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -17851,7 +20716,7 @@ CREATE TABLE `ps_required_field` (
   `id_required_field` int(11) NOT NULL,
   `object_name` varchar(32) NOT NULL,
   `field_name` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -17863,7 +20728,7 @@ CREATE TABLE `ps_risk` (
   `id_risk` int(11) UNSIGNED NOT NULL,
   `percent` tinyint(3) NOT NULL,
   `color` varchar(32) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_risk`
@@ -17885,7 +20750,7 @@ CREATE TABLE `ps_risk_lang` (
   `id_risk` int(10) UNSIGNED NOT NULL,
   `id_lang` int(10) UNSIGNED NOT NULL,
   `name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_risk_lang`
@@ -17911,7 +20776,7 @@ CREATE TABLE `ps_search_engine` (
   `id_search_engine` int(10) UNSIGNED NOT NULL,
   `server` varchar(64) NOT NULL,
   `getvar` varchar(16) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_search_engine`
@@ -17967,13 +20832,198 @@ CREATE TABLE `ps_search_index` (
   `id_product` int(11) UNSIGNED NOT NULL,
   `id_word` int(11) UNSIGNED NOT NULL,
   `weight` smallint(4) UNSIGNED NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_search_index`
 --
 
 INSERT INTO `ps_search_index` (`id_product`, `id_word`, `weight`) VALUES
+(20, 308, 2),
+(20, 309, 2),
+(20, 310, 2),
+(20, 311, 2),
+(20, 312, 2),
+(20, 313, 2),
+(20, 44, 3),
+(20, 140, 6),
+(20, 141, 6),
+(20, 157, 6),
+(20, 158, 6),
+(20, 306, 6),
+(20, 322, 6),
+(20, 314, 10),
+(20, 315, 10),
+(20, 316, 10),
+(20, 317, 10),
+(20, 324, 10),
+(20, 325, 10),
+(20, 326, 10),
+(20, 327, 10),
+(20, 307, 20),
+(20, 323, 20),
+(20, 299, 60),
+(20, 304, 60),
+(23, 44, 3),
+(23, 297, 6),
+(23, 298, 6),
+(23, 302, 6),
+(23, 303, 6),
+(23, 299, 10),
+(23, 300, 10),
+(23, 304, 10),
+(23, 305, 10),
+(26, 335, 2),
+(26, 336, 2),
+(26, 44, 3),
+(26, 331, 6),
+(26, 332, 6),
+(26, 333, 6),
+(26, 339, 6),
+(26, 340, 6),
+(26, 341, 6),
+(26, 337, 10),
+(26, 343, 10),
+(26, 334, 20),
+(26, 342, 20),
+(211, 25, 1),
+(211, 26, 1),
+(211, 27, 1),
+(211, 28, 1),
+(211, 29, 1),
+(211, 30, 1),
+(211, 31, 1),
+(211, 32, 1),
+(211, 33, 1),
+(211, 34, 1),
+(211, 37, 1),
+(211, 38, 1),
+(211, 39, 1),
+(211, 40, 1),
+(211, 41, 1),
+(211, 42, 1),
+(211, 43, 1),
+(211, 44, 3),
+(211, 49, 3),
+(211, 50, 3),
+(211, 35, 4),
+(211, 36, 4),
+(211, 21, 6),
+(211, 22, 6),
+(211, 23, 6),
+(211, 45, 6),
+(211, 46, 6),
+(211, 47, 6),
+(211, 24, 10),
+(211, 48, 10),
+(217, 186, 3),
+(217, 184, 9),
+(217, 187, 9),
+(217, 185, 16),
+(217, 188, 16),
+(225, 168, 2),
+(225, 169, 2),
+(225, 9, 3),
+(225, 14, 3),
+(225, 35, 3),
+(225, 36, 3),
+(225, 49, 3),
+(225, 50, 3),
+(225, 21, 6),
+(225, 45, 6),
+(225, 166, 6),
+(225, 177, 6),
+(225, 178, 6),
+(225, 167, 8),
+(225, 170, 10),
+(225, 171, 10),
+(225, 179, 10),
+(225, 180, 10),
+(227, 144, 2),
+(227, 145, 2),
+(227, 146, 2),
+(227, 147, 2),
+(227, 148, 2),
+(227, 149, 2),
+(227, 150, 2),
+(227, 142, 3),
+(227, 143, 3),
+(227, 159, 3),
+(227, 140, 6),
+(227, 141, 6),
+(227, 157, 6),
+(227, 158, 6),
+(227, 153, 10),
+(227, 155, 10),
+(227, 156, 10),
+(227, 162, 10),
+(227, 164, 10),
+(227, 165, 10),
+(227, 151, 20),
+(227, 152, 20),
+(227, 154, 20),
+(227, 160, 20),
+(227, 161, 20),
+(227, 163, 20),
+(231, 2, 1),
+(231, 11, 1),
+(231, 13, 1),
+(231, 84, 1),
+(231, 85, 1),
+(231, 86, 1),
+(231, 87, 1),
+(231, 88, 1),
+(231, 89, 1),
+(231, 90, 1),
+(231, 91, 1),
+(231, 92, 1),
+(231, 93, 1),
+(231, 94, 1),
+(231, 95, 1),
+(231, 96, 1),
+(231, 97, 1),
+(231, 98, 1),
+(231, 99, 1),
+(231, 100, 1),
+(231, 101, 1),
+(231, 102, 1),
+(231, 103, 1),
+(231, 104, 1),
+(231, 105, 1),
+(231, 106, 1),
+(231, 107, 1),
+(231, 108, 1),
+(231, 109, 1),
+(231, 110, 1),
+(231, 111, 1),
+(231, 112, 1),
+(231, 113, 1),
+(231, 114, 1),
+(231, 115, 1),
+(231, 116, 1),
+(231, 117, 1),
+(231, 118, 1),
+(231, 119, 1),
+(231, 120, 1),
+(231, 121, 1),
+(231, 122, 1),
+(231, 123, 2),
+(231, 124, 2),
+(231, 125, 2),
+(231, 126, 2),
+(231, 127, 2),
+(231, 9, 3),
+(231, 14, 3),
+(231, 35, 3),
+(231, 36, 3),
+(231, 49, 3),
+(231, 50, 3),
+(231, 82, 6),
+(231, 83, 6),
+(231, 135, 6),
+(231, 136, 6),
+(231, 137, 6),
+(231, 81, 7),
 (234, 7, 1),
 (234, 8, 1),
 (234, 10, 1),
@@ -18006,7 +21056,7 @@ CREATE TABLE `ps_search_word` (
   `id_shop` int(11) UNSIGNED NOT NULL DEFAULT 1,
   `id_lang` int(10) UNSIGNED NOT NULL,
   `word` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_search_word`
@@ -18014,25 +21064,184 @@ CREATE TABLE `ps_search_word` (
 
 INSERT INTO `ps_search_word` (`id_word`, `id_shop`, `id_lang`, `word`) VALUES
 (12, 1, 1, '100'),
+(146, 1, 1, '1000x50mm'),
+(147, 1, 1, '1000x60mm'),
+(148, 1, 1, '1000x80mm'),
+(149, 1, 1, '1200x60mm'),
+(150, 1, 1, '1200x80mm'),
+(119, 1, 1, '140mm'),
+(299, 1, 1, '151'),
+(334, 1, 1, '1511050r'),
+(337, 1, 1, '1511550r'),
+(156, 1, 1, '15130'),
+(151, 1, 1, '15135'),
+(153, 1, 1, '15140'),
+(154, 1, 1, '15150'),
+(155, 1, 1, '15170'),
+(168, 1, 1, '1800'),
+(117, 1, 1, '180mm'),
+(107, 1, 1, '200'),
+(169, 1, 1, '2000'),
+(123, 1, 1, '300l'),
+(124, 1, 1, '400l'),
+(336, 1, 1, '400x400x40mm'),
+(308, 1, 1, '400x80x205mm'),
+(310, 1, 1, '400x80x232mm'),
 (4, 1, 1, '4500'),
+(125, 1, 1, '450l'),
+(120, 1, 1, '4xo17mm'),
+(118, 1, 1, '4xo18mm'),
+(126, 1, 1, '500l'),
+(335, 1, 1, '500x500x50'),
+(312, 1, 1, '500x80x256mm'),
+(127, 1, 1, '600l'),
+(313, 1, 1, '600x80x270mm'),
+(144, 1, 1, '800x60mm'),
+(145, 1, 1, '900x60mm'),
+(44, 1, 1, 'accueil'),
+(91, 1, 1, 'aux'),
+(36, 1, 1, 'bakker'),
 (13, 1, 1, 'bars'),
+(83, 1, 1, 'bdv'),
+(81, 1, 1, 'benne'),
+(85, 1, 1, 'bennes'),
+(306, 1, 1, 'calage'),
+(333, 1, 1, 'caoutchouc'),
+(84, 1, 1, 'ces'),
+(98, 1, 1, 'cette'),
 (8, 1, 1, 'charge'),
+(109, 1, 1, 'clapet'),
+(33, 1, 1, 'concu'),
+(104, 1, 1, 'conforme'),
+(88, 1, 1, 'conviennent'),
 (1, 1, 1, 'crochet'),
+(22, 1, 1, 'demolition'),
+(95, 1, 1, 'deux'),
+(40, 1, 1, 'efficace'),
+(100, 1, 1, 'effort'),
+(103, 1, 1, 'elevee'),
+(31, 1, 1, 'equipement'),
+(26, 1, 1, 'est'),
+(115, 1, 1, 'etrier'),
+(332, 1, 1, 'face'),
+(87, 1, 1, 'fonctions'),
+(97, 1, 1, 'fournit'),
+(167, 1, 1, 'gfc'),
+(170, 1, 1, 'gfc1100'),
+(171, 1, 1, 'gfc1300'),
+(35, 1, 1, 'gusella'),
+(43, 1, 1, 'gusella-bakker'),
+(42, 1, 1, 'gusellabakker'),
+(185, 1, 1, 'gv17s'),
+(23, 1, 1, 'gzp'),
+(24, 1, 1, 'gzp6'),
+(311, 1, 1, 'haut'),
+(108, 1, 1, 'horizontal'),
 (2, 1, 1, 'hydraulique'),
+(184, 1, 1, 'indexator'),
+(29, 1, 1, 'innovante'),
+(309, 1, 1, 'interieur'),
+(111, 1, 1, 'lames'),
 (9, 1, 1, 'levage'),
 (3, 1, 1, 'lhh'),
 (6, 1, 1, 'lhh-4500'),
 (5, 1, 1, 'lhh4500'),
+(143, 1, 1, 'lodax'),
 (14, 1, 1, 'materiel'),
 (10, 1, 1, 'maximale'),
+(86, 1, 1, 'multi'),
+(122, 1, 1, 'multi-fonctions'),
+(30, 1, 1, 'multifonctionne'),
+(121, 1, 1, 'multifonctions'),
+(105, 1, 1, 'norme'),
+(331, 1, 1, 'pads'),
+(34, 1, 1, 'par'),
+(166, 1, 1, 'parpaings'),
+(90, 1, 1, 'particulieremen'),
+(140, 1, 1, 'patin'),
+(114, 1, 1, 'percage'),
+(28, 1, 1, 'piece'),
+(110, 1, 1, 'pilote'),
+(21, 1, 1, 'pince'),
 (7, 1, 1, 'poids'),
+(25, 1, 1, 'polidemo'),
+(37, 1, 1, 'pour'),
+(82, 1, 1, 'preneuse'),
 (11, 1, 1, 'pression'),
+(298, 1, 1, 'rectangulaire'),
+(38, 1, 1, 'recyclage'),
+(99, 1, 1, 'reprise'),
+(113, 1, 1, 'reversibles'),
+(152, 1, 1, 'ro1'),
+(141, 1, 1, 'rond'),
+(186, 1, 1, 'rotators'),
+(93, 1, 1, 'rudes'),
+(101, 1, 1, 'serrage'),
+(297, 1, 1, 'shoes'),
+(39, 1, 1, 'simple'),
+(32, 1, 1, 'specialement'),
+(307, 1, 1, 'spp400'),
+(314, 1, 1, 'spp400pal'),
+(316, 1, 1, 'spp500'),
+(317, 1, 1, 'spp600'),
+(315, 1, 1, 'sppmax'),
+(300, 1, 1, 'sppr580280'),
+(142, 1, 1, 'stabilisateurs'),
+(116, 1, 1, 'tete'),
+(89, 1, 1, 'tout'),
+(106, 1, 1, 'travail'),
+(92, 1, 1, 'travaux'),
+(102, 1, 1, 'tres'),
+(27, 1, 1, 'une'),
+(112, 1, 1, 'usure'),
+(94, 1, 1, 'utilisation'),
+(96, 1, 1, 'verins'),
+(41, 1, 1, 'voiture'),
+(304, 1, 2, '151'),
+(342, 1, 2, '1511050r'),
+(343, 1, 2, '1511550r'),
+(165, 1, 2, '15130'),
+(160, 1, 2, '15135'),
+(162, 1, 2, '15140'),
+(163, 1, 2, '15150'),
+(164, 1, 2, '15170'),
 (18, 1, 2, '4500'),
+(50, 1, 2, 'bakker'),
+(137, 1, 2, 'bdv'),
+(135, 1, 2, 'benne'),
+(322, 1, 2, 'calage'),
+(341, 1, 2, 'caoutchouc'),
 (15, 1, 2, 'crochet'),
+(46, 1, 2, 'demolition'),
+(340, 1, 2, 'face'),
+(178, 1, 2, 'gfc'),
+(179, 1, 2, 'gfc1100'),
+(180, 1, 2, 'gfc1300'),
+(49, 1, 2, 'gusella'),
+(188, 1, 2, 'gv17s'),
+(47, 1, 2, 'gzp'),
+(48, 1, 2, 'gzp6'),
 (16, 1, 2, 'hydraulique'),
+(187, 1, 2, 'indexator'),
 (17, 1, 2, 'lhh'),
 (20, 1, 2, 'lhh-4500'),
-(19, 1, 2, 'lhh4500');
+(19, 1, 2, 'lhh4500'),
+(159, 1, 2, 'lodax'),
+(339, 1, 2, 'pads'),
+(177, 1, 2, 'parpaings'),
+(157, 1, 2, 'patin'),
+(45, 1, 2, 'pince'),
+(136, 1, 2, 'preneuse'),
+(303, 1, 2, 'rectangulaire'),
+(161, 1, 2, 'ro1'),
+(158, 1, 2, 'rond'),
+(302, 1, 2, 'shoes'),
+(323, 1, 2, 'spp400'),
+(324, 1, 2, 'spp400pal'),
+(326, 1, 2, 'spp500'),
+(327, 1, 2, 'spp600'),
+(325, 1, 2, 'sppmax'),
+(305, 1, 2, 'sppr580280');
 
 -- --------------------------------------------------------
 
@@ -18043,10 +21252,10 @@ INSERT INTO `ps_search_word` (`id_word`, `id_shop`, `id_lang`, `word`) VALUES
 CREATE TABLE `ps_shop` (
   `id_shop` int(11) NOT NULL,
   `id_shop_group` int(11) NOT NULL,
-  `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `color` varchar(50) NOT NULL,
   `id_category` int(11) NOT NULL,
-  `theme_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `theme_name` varchar(255) NOT NULL,
   `active` tinyint(1) NOT NULL,
   `deleted` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -18066,8 +21275,8 @@ INSERT INTO `ps_shop` (`id_shop`, `id_shop_group`, `name`, `color`, `id_category
 
 CREATE TABLE `ps_shop_group` (
   `id_shop_group` int(11) NOT NULL,
-  `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `color` varchar(50) NOT NULL,
   `share_customer` tinyint(1) NOT NULL,
   `share_order` tinyint(1) NOT NULL,
   `share_stock` tinyint(1) NOT NULL,
@@ -18097,7 +21306,7 @@ CREATE TABLE `ps_shop_url` (
   `virtual_uri` varchar(64) NOT NULL,
   `main` tinyint(1) NOT NULL,
   `active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_shop_url`
@@ -18118,7 +21327,7 @@ CREATE TABLE `ps_smarty_cache` (
   `cache_id` varchar(254) DEFAULT NULL,
   `modified` timestamp NOT NULL DEFAULT current_timestamp(),
   `content` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -18129,7 +21338,7 @@ CREATE TABLE `ps_smarty_cache` (
 CREATE TABLE `ps_smarty_last_flush` (
   `type` enum('compile','template') NOT NULL,
   `last_flush` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -18143,7 +21352,7 @@ CREATE TABLE `ps_smarty_lazy_cache` (
   `compile_id` varchar(32) NOT NULL DEFAULT '',
   `filepath` varchar(255) NOT NULL DEFAULT '',
   `last_update` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -18170,7 +21379,7 @@ CREATE TABLE `ps_specific_price` (
   `reduction_type` enum('amount','percentage') NOT NULL,
   `from` datetime NOT NULL,
   `to` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_specific_price`
@@ -18193,7 +21402,7 @@ CREATE TABLE `ps_specific_price_priority` (
   `id_specific_price_priority` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
   `priority` varchar(80) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_specific_price_priority`
@@ -18403,7 +21612,7 @@ CREATE TABLE `ps_specific_price_rule` (
   `reduction_type` enum('amount','percentage') NOT NULL,
   `from` datetime NOT NULL,
   `to` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_specific_price_rule`
@@ -18423,7 +21632,7 @@ CREATE TABLE `ps_specific_price_rule_condition` (
   `id_specific_price_rule_condition_group` int(11) UNSIGNED NOT NULL,
   `type` varchar(255) NOT NULL,
   `value` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_specific_price_rule_condition`
@@ -18441,7 +21650,7 @@ INSERT INTO `ps_specific_price_rule_condition` (`id_specific_price_rule_conditio
 CREATE TABLE `ps_specific_price_rule_condition_group` (
   `id_specific_price_rule_condition_group` int(11) UNSIGNED NOT NULL,
   `id_specific_price_rule` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_specific_price_rule_condition_group`
@@ -18464,7 +21673,7 @@ CREATE TABLE `ps_state` (
   `iso_code` varchar(7) NOT NULL,
   `tax_behavior` smallint(1) NOT NULL DEFAULT 0,
   `active` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_state`
@@ -18837,7 +22046,7 @@ CREATE TABLE `ps_statssearch` (
   `keywords` varchar(255) NOT NULL,
   `results` int(6) NOT NULL DEFAULT 0,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_statssearch`
@@ -18899,7 +22108,7 @@ CREATE TABLE `ps_stock` (
   `physical_quantity` int(11) UNSIGNED NOT NULL,
   `usable_quantity` int(11) UNSIGNED NOT NULL,
   `price_te` decimal(20,6) DEFAULT 0.000000
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -18919,7 +22128,7 @@ CREATE TABLE `ps_stock_available` (
   `depends_on_stock` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
   `out_of_stock` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
   `location` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_stock_available`
@@ -19409,8 +22618,8 @@ CREATE TABLE `ps_stock_mvt` (
   `id_supply_order` int(11) DEFAULT NULL,
   `id_stock_mvt_reason` int(11) NOT NULL,
   `id_employee` int(11) NOT NULL,
-  `employee_lastname` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `employee_firstname` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `employee_lastname` varchar(32) DEFAULT NULL,
+  `employee_firstname` varchar(32) DEFAULT NULL,
   `physical_quantity` int(11) NOT NULL,
   `date_add` datetime NOT NULL,
   `sign` smallint(6) NOT NULL DEFAULT 1,
@@ -19450,7 +22659,7 @@ CREATE TABLE `ps_stock_mvt_reason` (
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_stock_mvt_reason`
@@ -19479,8 +22688,8 @@ INSERT INTO `ps_stock_mvt_reason` (`id_stock_mvt_reason`, `sign`, `date_add`, `d
 CREATE TABLE `ps_stock_mvt_reason_lang` (
   `id_stock_mvt_reason` int(11) UNSIGNED NOT NULL,
   `id_lang` int(11) UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_stock_mvt_reason_lang`
@@ -19532,7 +22741,7 @@ CREATE TABLE `ps_store` (
   `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_store`
@@ -19555,7 +22764,7 @@ CREATE TABLE `ps_store_lang` (
   `address2` varchar(255) DEFAULT NULL,
   `hours` text DEFAULT NULL,
   `note` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_store_lang`
@@ -19574,7 +22783,7 @@ INSERT INTO `ps_store_lang` (`id_store`, `id_lang`, `name`, `address1`, `address
 CREATE TABLE `ps_store_shop` (
   `id_store` int(11) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_store_shop`
@@ -19595,7 +22804,7 @@ CREATE TABLE `ps_supplier` (
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -19610,7 +22819,7 @@ CREATE TABLE `ps_supplier_lang` (
   `meta_title` varchar(255) DEFAULT NULL,
   `meta_keywords` varchar(255) DEFAULT NULL,
   `meta_description` varchar(512) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -19621,7 +22830,7 @@ CREATE TABLE `ps_supplier_lang` (
 CREATE TABLE `ps_supplier_shop` (
   `id_supplier` int(11) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -19649,7 +22858,7 @@ CREATE TABLE `ps_supply_order` (
   `discount_rate` decimal(20,6) DEFAULT 0.000000,
   `discount_value_te` decimal(20,6) DEFAULT 0.000000,
   `is_template` tinyint(1) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -19683,7 +22892,7 @@ CREATE TABLE `ps_supply_order_detail` (
   `price_ti` decimal(20,6) DEFAULT 0.000000,
   `tax_value_with_order_discount` decimal(20,6) DEFAULT 0.000000,
   `price_with_order_discount_te` decimal(20,6) DEFAULT 0.000000
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -19699,7 +22908,7 @@ CREATE TABLE `ps_supply_order_history` (
   `employee_firstname` varchar(255) DEFAULT '',
   `id_state` int(11) UNSIGNED NOT NULL,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -19716,7 +22925,7 @@ CREATE TABLE `ps_supply_order_receipt_history` (
   `id_supply_order_state` int(11) UNSIGNED NOT NULL,
   `quantity` int(11) UNSIGNED NOT NULL,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -19732,7 +22941,7 @@ CREATE TABLE `ps_supply_order_state` (
   `pending_receipt` tinyint(1) NOT NULL DEFAULT 0,
   `enclosed` tinyint(1) NOT NULL DEFAULT 0,
   `color` varchar(32) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_supply_order_state`
@@ -19756,7 +22965,7 @@ CREATE TABLE `ps_supply_order_state_lang` (
   `id_supply_order_state` int(11) UNSIGNED NOT NULL,
   `id_lang` int(11) UNSIGNED NOT NULL,
   `name` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_supply_order_state_lang`
@@ -19786,14 +22995,14 @@ CREATE TABLE `ps_tab` (
   `id_tab` int(11) NOT NULL,
   `id_parent` int(11) NOT NULL,
   `position` int(11) NOT NULL,
-  `module` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `class_name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `route_name` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `module` varchar(64) DEFAULT NULL,
+  `class_name` varchar(64) NOT NULL,
+  `route_name` varchar(256) DEFAULT NULL,
   `active` tinyint(1) NOT NULL,
   `enabled` tinyint(1) NOT NULL,
-  `icon` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `wording` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `wording_domain` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `icon` varchar(32) DEFAULT NULL,
+  `wording` varchar(255) DEFAULT NULL,
+  `wording_domain` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -19919,9 +23128,9 @@ INSERT INTO `ps_tab` (`id_tab`, `id_parent`, `position`, `module`, `class_name`,
 (116, -1, 3, NULL, 'AdminPatterns', '', 1, 1, '', '', ''),
 (117, 43, 7, 'ps_linklist', 'AdminLinkWidget', 'admin_link_block_list', 1, 1, '', 'Link List', 'Modules.Linklist.Admin'),
 (118, 0, 6, 'blockreassurance', 'AdminBlockListing', '', 0, 1, '', NULL, NULL),
-(119, 38, 5, 'blockwishlist', 'WishlistConfigurationAdminParentController', '', 0, 1, '', NULL, NULL),
-(120, 119, 1, 'blockwishlist', 'WishlistConfigurationAdminController', '', 1, 1, '', NULL, NULL),
-(121, 119, 2, 'blockwishlist', 'WishlistStatisticsAdminController', '', 1, 1, '', NULL, NULL),
+(119, 38, 5, 'blockwishlist', 'WishlistConfigurationAdminParentController', '', 0, 0, '', NULL, NULL),
+(120, 119, 1, 'blockwishlist', 'WishlistConfigurationAdminController', '', 1, 0, '', NULL, NULL),
+(121, 119, 2, 'blockwishlist', 'WishlistStatisticsAdminController', '', 1, 0, '', NULL, NULL),
 (122, -1, 4, 'psgdpr', 'AdminAjaxPsgdpr', '', 1, 1, '', NULL, NULL),
 (123, -1, 5, 'psgdpr', 'AdminDownloadInvoicesPsgdpr', '', 1, 1, '', NULL, NULL),
 (124, -1, 6, 'dashgoals', 'AdminDashgoals', '', 1, 1, '', NULL, NULL),
@@ -19973,7 +23182,7 @@ INSERT INTO `ps_tab` (`id_tab`, `id_parent`, `position`, `module`, `class_name`,
 CREATE TABLE `ps_tab_advice` (
   `id_tab` int(11) NOT NULL,
   `id_advice` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -19984,7 +23193,7 @@ CREATE TABLE `ps_tab_advice` (
 CREATE TABLE `ps_tab_lang` (
   `id_tab` int(11) NOT NULL,
   `id_lang` int(11) NOT NULL,
-  `name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL
+  `name` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -20322,7 +23531,7 @@ CREATE TABLE `ps_tab_module_preference` (
   `id_employee` int(11) NOT NULL,
   `id_tab` int(11) NOT NULL,
   `module` varchar(191) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -20334,7 +23543,7 @@ CREATE TABLE `ps_tag` (
   `id_tag` int(10) UNSIGNED NOT NULL,
   `id_lang` int(10) UNSIGNED NOT NULL,
   `name` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -20348,7 +23557,7 @@ CREATE TABLE `ps_tag_count` (
   `id_lang` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `id_shop` int(11) UNSIGNED NOT NULL DEFAULT 0,
   `counter` int(10) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -20361,7 +23570,7 @@ CREATE TABLE `ps_tax` (
   `rate` decimal(10,3) NOT NULL,
   `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
   `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_tax`
@@ -20411,7 +23620,7 @@ CREATE TABLE `ps_tax_lang` (
   `id_tax` int(10) UNSIGNED NOT NULL,
   `id_lang` int(10) UNSIGNED NOT NULL,
   `name` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_tax_lang`
@@ -20499,7 +23708,7 @@ CREATE TABLE `ps_tax_rule` (
   `id_tax` int(11) NOT NULL,
   `behavior` int(11) NOT NULL,
   `description` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_tax_rule`
@@ -20665,7 +23874,7 @@ CREATE TABLE `ps_tax_rules_group` (
   `deleted` tinyint(1) UNSIGNED NOT NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_tax_rules_group`
@@ -20687,7 +23896,7 @@ INSERT INTO `ps_tax_rules_group` (`id_tax_rules_group`, `name`, `active`, `delet
 CREATE TABLE `ps_tax_rules_group_shop` (
   `id_tax_rules_group` int(11) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_tax_rules_group_shop`
@@ -20709,7 +23918,7 @@ INSERT INTO `ps_tax_rules_group_shop` (`id_tax_rules_group`, `id_shop`) VALUES
 CREATE TABLE `ps_timezone` (
   `id_timezone` int(10) UNSIGNED NOT NULL,
   `name` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_timezone`
@@ -21287,9 +24496,9 @@ CREATE TABLE `ps_translation` (
   `id_translation` int(11) NOT NULL,
   `id_lang` int(11) NOT NULL,
   `key` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `translation` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `domain` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `theme` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `translation` text NOT NULL,
+  `domain` varchar(80) NOT NULL,
+  `theme` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -21307,7 +24516,7 @@ CREATE TABLE `ps_warehouse` (
   `name` varchar(45) NOT NULL,
   `management_type` enum('WA','FIFO','LIFO') NOT NULL DEFAULT 'WA',
   `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -21318,7 +24527,7 @@ CREATE TABLE `ps_warehouse` (
 CREATE TABLE `ps_warehouse_carrier` (
   `id_carrier` int(11) UNSIGNED NOT NULL,
   `id_warehouse` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -21332,7 +24541,7 @@ CREATE TABLE `ps_warehouse_product_location` (
   `id_product_attribute` int(11) UNSIGNED NOT NULL,
   `id_warehouse` int(11) UNSIGNED NOT NULL,
   `location` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -21343,7 +24552,7 @@ CREATE TABLE `ps_warehouse_product_location` (
 CREATE TABLE `ps_warehouse_shop` (
   `id_shop` int(11) UNSIGNED NOT NULL,
   `id_warehouse` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -21359,7 +24568,7 @@ CREATE TABLE `ps_webservice_account` (
   `is_module` tinyint(2) NOT NULL DEFAULT 0,
   `module_name` varchar(50) DEFAULT NULL,
   `active` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_webservice_account`
@@ -21377,7 +24586,7 @@ INSERT INTO `ps_webservice_account` (`id_webservice_account`, `key`, `descriptio
 CREATE TABLE `ps_webservice_account_shop` (
   `id_webservice_account` int(11) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_webservice_account_shop`
@@ -21397,7 +24606,7 @@ CREATE TABLE `ps_webservice_permission` (
   `resource` varchar(50) NOT NULL,
   `method` enum('GET','POST','PUT','PATCH','DELETE','HEAD') NOT NULL,
   `id_webservice_account` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_webservice_permission`
@@ -21419,7 +24628,7 @@ INSERT INTO `ps_webservice_permission` (`id_webservice_permission`, `resource`, 
 CREATE TABLE `ps_web_browser` (
   `id_web_browser` int(10) UNSIGNED NOT NULL,
   `name` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_web_browser`
@@ -21455,7 +24664,7 @@ CREATE TABLE `ps_wishlist` (
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   `default` int(10) UNSIGNED DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ps_wishlist`
@@ -21477,7 +24686,7 @@ CREATE TABLE `ps_wishlist_product` (
   `id_product_attribute` int(10) UNSIGNED NOT NULL,
   `quantity` int(10) UNSIGNED NOT NULL,
   `priority` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -21490,7 +24699,7 @@ CREATE TABLE `ps_wishlist_product_cart` (
   `id_cart` int(10) UNSIGNED NOT NULL,
   `quantity` int(10) UNSIGNED NOT NULL,
   `date_add` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -21502,7 +24711,7 @@ CREATE TABLE `ps_zone` (
   `id_zone` int(10) UNSIGNED NOT NULL,
   `name` varchar(64) NOT NULL,
   `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_zone`
@@ -21527,7 +24736,7 @@ INSERT INTO `ps_zone` (`id_zone`, `name`, `active`) VALUES
 CREATE TABLE `ps_zone_shop` (
   `id_zone` int(11) UNSIGNED NOT NULL,
   `id_shop` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ps_zone_shop`
@@ -23613,7 +26822,7 @@ ALTER TABLE `ps_address`
 -- AUTO_INCREMENT for table `ps_admin_filter`
 --
 ALTER TABLE `ps_admin_filter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `ps_advice`
@@ -23655,7 +26864,7 @@ ALTER TABLE `ps_attribute_group`
 -- AUTO_INCREMENT for table `ps_authorization_role`
 --
 ALTER TABLE `ps_authorization_role`
-  MODIFY `id_authorization_role` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=981;
+  MODIFY `id_authorization_role` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=985;
 
 --
 -- AUTO_INCREMENT for table `ps_blockwishlist_statistics`
@@ -23673,7 +26882,7 @@ ALTER TABLE `ps_carrier`
 -- AUTO_INCREMENT for table `ps_cart`
 --
 ALTER TABLE `ps_cart`
-  MODIFY `id_cart` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_cart` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ps_cart_rule`
@@ -23733,7 +26942,7 @@ ALTER TABLE `ps_condition`
 -- AUTO_INCREMENT for table `ps_configuration`
 --
 ALTER TABLE `ps_configuration`
-  MODIFY `id_configuration` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=500;
+  MODIFY `id_configuration` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=508;
 
 --
 -- AUTO_INCREMENT for table `ps_configuration_kpi`
@@ -23745,13 +26954,13 @@ ALTER TABLE `ps_configuration_kpi`
 -- AUTO_INCREMENT for table `ps_connections`
 --
 ALTER TABLE `ps_connections`
-  MODIFY `id_connections` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_connections` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `ps_connections_source`
 --
 ALTER TABLE `ps_connections_source`
-  MODIFY `id_connections_source` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=955;
+  MODIFY `id_connections_source` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2660;
 
 --
 -- AUTO_INCREMENT for table `ps_contact`
@@ -23889,7 +27098,7 @@ ALTER TABLE `ps_group_reduction`
 -- AUTO_INCREMENT for table `ps_guest`
 --
 ALTER TABLE `ps_guest`
-  MODIFY `id_guest` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_guest` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `ps_homeslider`
@@ -23907,7 +27116,7 @@ ALTER TABLE `ps_homeslider_slides`
 -- AUTO_INCREMENT for table `ps_hook`
 --
 ALTER TABLE `ps_hook`
-  MODIFY `id_hook` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=980;
+  MODIFY `id_hook` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=983;
 
 --
 -- AUTO_INCREMENT for table `ps_hook_alias`
@@ -23955,7 +27164,7 @@ ALTER TABLE `ps_lang`
 -- AUTO_INCREMENT for table `ps_layered_category`
 --
 ALTER TABLE `ps_layered_category`
-  MODIFY `id_layered_category` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_layered_category` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=415;
 
 --
 -- AUTO_INCREMENT for table `ps_layered_filter`
@@ -23985,7 +27194,7 @@ ALTER TABLE `ps_link_block_shop`
 -- AUTO_INCREMENT for table `ps_log`
 --
 ALTER TABLE `ps_log`
-  MODIFY `id_log` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1050;
+  MODIFY `id_log` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1674;
 
 --
 -- AUTO_INCREMENT for table `ps_mail`
@@ -24063,13 +27272,13 @@ ALTER TABLE `ps_meta`
 -- AUTO_INCREMENT for table `ps_module`
 --
 ALTER TABLE `ps_module`
-  MODIFY `id_module` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id_module` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `ps_module_history`
 --
 ALTER TABLE `ps_module_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `ps_module_preference`
@@ -24159,7 +27368,7 @@ ALTER TABLE `ps_order_state`
 -- AUTO_INCREMENT for table `ps_page`
 --
 ALTER TABLE `ps_page`
-  MODIFY `id_page` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_page` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ps_pagenotfound`
@@ -24171,7 +27380,7 @@ ALTER TABLE `ps_pagenotfound`
 -- AUTO_INCREMENT for table `ps_page_type`
 --
 ALTER TABLE `ps_page_type`
-  MODIFY `id_page_type` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_page_type` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ps_product`
@@ -24297,7 +27506,7 @@ ALTER TABLE `ps_search_engine`
 -- AUTO_INCREMENT for table `ps_search_word`
 --
 ALTER TABLE `ps_search_word`
-  MODIFY `id_word` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_word` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=478;
 
 --
 -- AUTO_INCREMENT for table `ps_shop`
@@ -24327,7 +27536,7 @@ ALTER TABLE `ps_specific_price`
 -- AUTO_INCREMENT for table `ps_specific_price_priority`
 --
 ALTER TABLE `ps_specific_price_priority`
-  MODIFY `id_specific_price_priority` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1673;
+  MODIFY `id_specific_price_priority` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1693;
 
 --
 -- AUTO_INCREMENT for table `ps_specific_price_rule`

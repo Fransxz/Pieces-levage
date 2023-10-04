@@ -53,6 +53,8 @@
   </div>
 </div>
 
-<a href="#" id="call-btn-wrapper">
-  <i class="material-icons shopping-cart" aria-hidden="true">phone</i>
-</a>
+<div class="dflex-parent">
+  <a href="#" id="call-btn-wrapper">
+    <i class="material-icons shopping-cart" aria-hidden="true">phone</i>
+  </a>
+</div>

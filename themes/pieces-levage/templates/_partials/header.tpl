@@ -43,10 +43,10 @@
             {/if}
           {/if}
         </div>
-        <div class="header-top-right col-md-5 col-sm-12 position-static">
+        <div class="header-top-right col-md-6 col-sm-12 position-static">
           {hook h='displayTop'}
         </div>
-        <div class="col-md-5 header-rightnav-wrapper">
+        <div class="col-md-4 header-rightnav-wrapper">
           {hook h='displayNav2'}
         </div>
       </div>

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-10-01 09:44:26
+/* Smarty version 4.3.1, created on 2023-10-02 21:14:28
   from 'module:productcommentsviewstemplateshookproductlistreviews.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6519235a037b41_39276948',
+  'unifunc' => 'content_651b1694a43891_99322706',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6519235a037b41_39276948 (Smarty_Internal_Template $_smarty_tpl) {
+function content_651b1694a43891_99322706 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- begin C:\xampp8.0\htdocs\pieces-levage/modules/productcomments/views/templates/hook/product-list-reviews.tpl -->
 
 <div class="product-list-reviews" data-id="<?php echo htmlspecialchars((string) $_smarty_tpl->tpl_vars['product']->value['id'], ENT_QUOTES, 'UTF-8');?>
